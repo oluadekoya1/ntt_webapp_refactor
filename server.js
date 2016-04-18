@@ -11,8 +11,7 @@ var pg = require('pg');
 var fs = require('fs');
 var session = require('client-sessions');
 var xml = require('xml');
-var connectionString = "postgres://mayrxzhkdqyrsq:TiAJiKpfPiJVR1sqFEPW7WCL5i@ec2-54-83-17-9.compute-1.amazonaws.com:5432/de7p33qig0t9p5";
-
+var connectionString = "postgres://brshjyxsgjtxgc:koSrrBCITEn1QGQGSLlqp0_joX@ec2-54-83-41-183.compute-1.amazonaws.com:5432/d48tg7v0prdja0";
 
 pg.defaults.ssl = true;
 
