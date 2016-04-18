@@ -1,0 +1,23 @@
+<div class="col-md-12">
+    <div class="tab-content">
+        <div class="h2" >{{newPolicy.generalQuestions.tabName}}</div>
+        <div ng-repeat="tabChild in newPolicy.generalQuestions.tabContent">
+            <div class="form-group" ng-if="tabChild.type === 'text'">
+                <label for="" class="font-weight-500">
+                    {{tabChild.question}}
+                    <i class="glyphicon glyphicon-question-sign question-sign-color" data-toggle="tooltip" title={{tabChild.description}}></i>
+                </label>
+                <input type="text" class="form-control" ng-model="tabChild.selectedAnswer">
+            </div>
+            <div ng-if="tabChild.type === 'radio'">
+                <label class="font-weight-500">{{tabChild.question}}</label>
+                <i class="glyphicon glyphicon-question-sign question-sign-color" data-toggle="tooltip" title={{tabChild.description}}></i>
+                <div ng-repeat="option in tabChild.options">
+                    <input id={{tabChild.name}}{{option}} class="radio-custom" name={{tabChild.name}} type="radio" value={{option}} ng-model="tabChild.selectedAnswer">
+                    <label for={{tabChild.name}}{{option}} class="radio-custom-label font-weight-500">{{option}}</label>
+                </div>
+            </div>
+            <hr/>
+        </div>
+    </div>
+</div>

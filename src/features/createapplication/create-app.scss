@@ -1,0 +1,69 @@
+.allignLine{
+    display: inline;
+    padding: 5px;
+    line-height: 0%;
+    font-size: 11px;
+}
+
+hr{
+    padding: 2px;
+    margin: 1px;
+}
+
+.CritBut{
+    margin-left: 20px;
+}
+
+.PolicyBut{
+    margin-left: 800px;
+}
+
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.cursor-hand{
+    cursor: pointer;
+}
+.button-align-right{
+    float: right;
+    padding: 10px;
+}
+
+
+.panelStart{
+    padding-top: 0px;
+}
+.panelStart2{
+    margin-top: -20px;
+}
+
+.tableHeading{
+    font-size: 11px;
+}
+.table-home{
+  margin-top: 10px;
+
+  &__name {
+       width: 20%;
+       word-break: break-all;
+  }
+
+  &__description{
+       width: 45%;
+       word-break: break-all;
+  }
+
+  &__pd{
+    width: 10%;
+  }
+
+}

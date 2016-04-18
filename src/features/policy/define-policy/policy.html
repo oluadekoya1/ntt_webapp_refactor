@@ -1,0 +1,141 @@
+<!-- menu bar--->
+<menubar></menubar>
+<div ng-show="!showResult">
+    <div class="row ">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button class="btn btn-primary" type="button">Application Name</button>
+                </div><!-- /btn-group -->
+                <input type="text" class="form-control" ng-model="appName" disabled />
+            </div>
+        </div><!-- /.col-lg-6 -->
+        <div class="col-lg-6">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button class="btn btn-primary" type="button">Application Description</button>
+                </div><!-- /btn-group -->
+                <input type="text" class="form-control" ng-model="appDescription" disabled />
+            </div>
+        </div><!-- /.col-lg-6 -->
+        <div class="col-lg-12 top-spaced-15 ">
+            <div class="input-group policyfont">
+                <span class="input-group-addon">{{newPolicy.category1.question}}</span>
+                <select class="form-control" ng-model="newPolicy.webServiceOnly" ng-change="updateWebServices()">
+                    <option ng-repeat="option in newPolicy.category1.options" value="{{option.value * 1}}">
+                        {{option.label}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-12 top-spaced-15" ng-show="newPolicy.webServiceOnly * 1 === 0">
+            <div class="input-group">
+                <span class="input-group-addon">{{newPolicy.category2.question}}</span>
+                <select class="form-control" ng-model="newPolicy.knowappOnly" ng-change="updateKnowApp()">
+                    <option ng-repeat="option in newPolicy.category2.options" value="{{option.value * 1}}">
+                        {{option.label}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-12 top-spaced-15" ng-show="newPolicy.knowappOnly * 1 === 0">
+            <div class="input-group">
+                <span class="input-group-addon">{{newPolicy.category3.question}}</span>
+                <select class="form-control" ng-model="newPolicy.knownAttack">
+                    <option ng-repeat="option in newPolicy.category3.options" value="{{option.value * 1}}">
+                        {{option.label}}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="PolicyFont">
+        <ul class="nav nav-tabs" role="tablist">
+            <li ng-repeat="tab in newPolicy.webServices" role="presentation" ng-class="{active: $index === 0}"  ng-show="newPolicy.webServiceOnly * 1 === 1">
+                <a href= {{tab.href}} aria-controls={{tab.tabID}} role="tab" data-toggle="tab">
+                    {{tab.tabName}}
+                </a>
+            </li>
+            <li ng-repeat="tab in newPolicy.knownApp" role="presentation" ng-class="{active: $index === 0}"  ng-show="newPolicy.knowappOnly * 1 > 0">
+                <a href= {{tab.href}} aria-controls={{tab.tabID}} role="tab" data-toggle="tab">
+                    {{tab.tabName}}
+                </a>
+            </li>
+            <li ng-repeat="tab in newPolicy.knownAttacks" role="presentation" ng-class="{active: $index === 0}"  ng-show="newPolicy.knownAttack * 1 === 1">
+                <a href= {{tab.href}} aria-controls={{tab.tabID}} role="tab" data-toggle="tab">
+                    {{tab.tabName}}
+                </a>
+            </li>
+            <li ng-repeat="tab in newPolicy.unknownAttacks" role="presentation" ng-class="{active: $index === 0}"  ng-show="newPolicy.knownAttack * 1 === 0">
+                <a href= {{tab.href}} aria-controls={{tab.tabID}} role="tab" data-toggle="tab">
+                    {{tab.tabName}}
+                </a>
+            </li>
+        </ul>
+        <form class="row content-container" ng-submit="" >
+            <web-services ng-show="newPolicy.webServiceOnly * 1 === 1" new-policy="newPolicy"></web-services>
+            <known-app new-policy="newPolicy" ng-show="newPolicy.knowappOnly * 1 > 0"></known-app>
+            <known-attack new-policy="newPolicy" ng-show="newPolicy.knownAttack * 1 === 1"></known-attack>
+            <unknown-attack new-policy="newPolicy" ng-show="newPolicy.knownAttack * 1 === 0"></unknown-attack>
+            <general-questions ng-show="newPolicy.webServiceOnly * 1 === 1 || newPolicy.knowappOnly * 1 > 0 || newPolicy.knownAttack != -1" new-policy="newPolicy"></general-questions>
+            <div class="button-right ">
+                <input type="submit" value="Generate PDF" class="btn btn-success" ng-click="generatePDF()"/>
+                <input type="submit" value="Submit" class="btn btn-success" ng-click="submit()"/>
+                <input type="submit" value="Cancel" class="btn btn-warning" ng-click="cancelPolicy()"/>
+
+            </div>
+        </form>
+    </div>
+</div>
+<div ng-show="showResult">
+    <table class="table table-condensed" id="app-details">
+        <thead>
+        <tr>
+            <th>Application Name</th>
+            <th>Application Description</th>
+            <th>Selected Option</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{results.appName}}</td>
+            <td>{{results.appDescription}}</td>
+            <td>{{results.selectedOption}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <div id="selectedAnswersTable">
+        <table  ng-repeat="selectedAnswer in results.selectedAnswers" class="table table-condensed" id={{'id'+$index}}>
+            <thead>
+            <tr>
+                <th>{{selectedAnswer.tabName}}</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="tab in selectedAnswer.tabContent">
+                <td>{{tab.question}}</td>
+                <td>{{tab.selectedAnswer}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="table table-condensed" id="general-questions">
+            <thead>
+            <tr>
+                <th>General Questions</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="tab in results.generalAnswers.tabContent">
+                <td>{{tab.question}}</td>
+                <td>{{tab.selectedAnswer}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="button-right ">
+        <input type="submit" value="Print PDF" class="btn btn-success" ng-click="printPDF()"/>
+        <input type="submit" value="Cancel" class="btn btn-danger" ng-click="Cancel()"/>
+    </div>
+</div>

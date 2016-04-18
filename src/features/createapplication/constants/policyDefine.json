@@ -1,0 +1,937 @@
+{
+  "webServiceOnly" : -1,
+  "knowappOnly" :  -1,
+  "knownAttack" : -1,
+  "category1" : {
+    "question": "Does this application use ONLY web services (XML/SOAP)?",
+    "options" : [
+      {
+        "label" : "Please Select",
+        "value" : -1
+      },
+      {
+        "label" : "Yes",
+        "value" : 1
+      },
+      {
+        "label" : "No",
+        "value": 0
+      }
+    ],
+    "description": "XML provides a common syntax for data transfer between systems. ASM provides an XML profile which defines XML properties that a security policy enforces for an XML application."
+  },
+  "category2": {
+    "question": "Is the application a known Application, for which ASM has an Application-Ready Security Policy Template? If so, please select from the available templates.",
+    "options" : [
+      {
+        "label" : "please select",
+        "value" : -1
+      },
+      {
+        "label" : "no",
+        "value" : 0
+      },
+      {
+        "label" : "activesync v1.0 v2.0(HTTP)",
+        "value": 1
+      },
+      {
+        "label" : "activesync v1.0 v2.0(HTTPS)",
+        "value": 2
+      },
+      {
+        "label" : "lotusdomino 6.5(HTTP)",
+        "value": 3
+      },
+      {
+        "label" : "lotusdomino 6.5(HTTPS)",
+        "value": 4
+      },
+      {
+        "label" : "owa exchange 2003(HTTP)",
+        "value": 5
+      },
+      {
+        "label" : "owa exchange 2003(HTTPS)",
+        "value": 6
+      },
+      {
+        "label" : "owa exchange 2003 with activesync(HTTP)",
+        "value": 7
+      },
+      {
+        "label" : "owa exchange 2003 with activesync(HTTPS)",
+        "value": 8
+      },
+      {
+        "label" : "owa exchange 2007(HTTP)",
+        "value": 9
+      },
+      {
+        "label" : "owa exchange 2007(HTTPS)",
+        "value": 10
+      },
+      {
+        "label" : "owa exchange 2007 with activesync(HTTP)",
+        "value": 11
+      },
+      {
+        "label" : "owa exchange 2007 with activesync(HTTPS)",
+        "value": 12
+      },
+      {
+        "label" : "owa exchange 2010(HTTP)",
+        "value": 13
+      },
+      {
+        "label" : "owa exchange 2010(HTTPS)",
+        "value": 14
+      },
+      {
+        "label" : "oracle 10g portal(HTTP)",
+        "value": 15
+      },
+      {
+        "label" : "oracle 10g portal(HTTPS)",
+        "value": 16
+      },
+      {
+        "label" : "oracle applications 11i(HTTP)",
+        "value": 17
+      },
+      {
+        "label" : "oracle application 11i(HTTPS)",
+        "value": 18
+      },
+      {
+        "label" : "peoplesoft portal 9(HTTP)",
+        "value": 19
+      },
+      {
+        "label" : "peoplesoft portal 9(HTTPS)",
+        "value": 20
+      },
+      {
+        "label" : "sap netweaver 7(HTTP)",
+        "value": 21
+      },
+      {
+        "label" : "sap netweaver 7(HTTPS)",
+        "value": 22
+      },
+      {
+        "label" : "sharepoint 2003(HTTP)",
+        "value": 23
+      },
+      {
+        "label" : "sharepoint 2003(HTTPS)",
+        "value": 24
+      },
+      {
+        "label" : "sharepoint 2007(HTTP)",
+        "value": 25
+      },
+      {
+        "label" : "sharepoint 2007(HTTPS)",
+        "value": 26
+      },
+      {
+        "label" : "sharepoint 2010(HTTP)",
+        "value": 27
+      },
+      {
+        "label" : "sharepoint 2010(HTTPS)",
+        "value": 28
+      }
+    ],
+    "description":"ASM contains predefined templates for known applications to allow easy deployment of ASM policy."
+  },
+  "category3" : {
+    "question" : "Does the Application require protection only from known attacks, or does the application require protection from both known and unknown attacks?",
+    "options": [
+      {
+        "label" : "Please Select",
+        "value": "-1"
+      },
+      {
+        "label" : "Yes",
+        "value": 1
+      },
+      {
+        "label" : "No",
+        "value" : 0
+      }
+    ],
+    "description": "Protection against known attacks only would require deployment of an ASM policy based on negative security concept, where all traffic is allowed except what was configured to be blocked (often known as blacklist). Protection against unknonwn attacks would require deploment of an ASM policy based on positive security policy concept, where all traffic is blocked except what has been configured to be allowed (often known as whitelist)."
+  },
+  "webServices" : [
+    {
+      "tabID" : "Dep_Ques",
+      "href" : "#Dep_Ques",
+      "tabName": "Deployment Type Related Question",
+      "tabContent": [
+        {
+          "question" : "What server Operating Systems are in use across the web application architecture?",
+          "description":"Examples: Windows, Unix/Linux",
+          "type":"checkbox",
+          "options" : ["Microsoft Windows","Unix/Linux","Others"],
+          "name": "depQues1",
+          "ASM_Feature": "Negative security - attack signatures",
+          "selectedAnswer" : []
+        },
+        {
+          "question" : "What type and version of Application Server is used?",
+          "description":"Examples: WebSphere, Apache Tomcat6",
+          "type":"checkbox",
+          "options" : ["Apache", "Apache Tomcat","Proxy Servers","Other Web Server"],
+          "name": "depQues2",
+          "ASM_Feature": "Negative security - attack signatures",
+          "selectedAnswer" : []
+        },
+        {
+          "question" : "Does the application use XML, SOAP, or both?",
+          "description":" ",
+          "type":"radio",
+          "options": ["XML only", "SOAP only", "Both XML and SOAP" ],
+          "name": "depQues3",
+          "ASM_Feature": "General",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Is a current definition or schema XSD file available and can it be provided?",
+          "description":" ",
+          "type":"radio",
+          "options" : ["An XSD schema file is available", "An XSD schema file is not available" ],
+          "name": "depQues4",
+          "ASM_Feature": "General",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Is a current definition or schema WSDL file available and can be provided?",
+          "description":" ",
+          "type":"radio",
+          "options" : ["A WSDL schema file is available", "A WSDL schema file is not available"],
+          "name": "depQues5",
+          "ASM_Feature": "General",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Does the application use any HTTP methods other than GET and POST? ",
+          "description":"Example: OPTIONS, DELETE, PUT etc.",
+          "type":"radio",
+          "options" : ["No - Only GET and POST are used", "Yes - additional HTTP methods are used - please specify.."],
+          "name": "depQues6",
+          "ASM_Feature": "Valid HTTP request methods",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Does the application allow any files to be uploaded by the users? If so, are these files checked for viruses by the application? (Examples: Images, videos, documents) ?",
+          "description":"ASM can integrate using iCAP to an Antivirus for file upload scanning. ",
+          "type":"radio",
+          "options" : ["No - File upload is prohibited","Yes - File upload is allowed - virus scanning is required","Yes - File uploaded is allowed - files are not checked for viruses", "Yes - File uploaded is allowed - virus scanning is not required"],
+          "name": "depQues7",
+          "ASM_Feature": "ICAP virus scanning with external A/V",
+          "selectedAnswer" : ""
+        }
+      ]
+
+    },
+    {
+      "tabID" : "App_Over",
+      "href" : "#App_Over",
+      "tabName" : "Application Overview Question",
+      "tabContent": [
+        {
+          "question" : "What type of character encoding does the application use?",
+          "description":"Examples: UTF-8, Unicode, ISO-8859-1",
+          "type":"radio",
+          "options" : ["Unicode (utf-8)", "Western European (iso-8859-1)","Western European (iso-8859-15)", "Western European (windows-1252)", "Central European (iso-8859-2)","Central European (windows-1250)","South European (iso-8859-3)","Others"],
+          "name": "appOver1",
+          "ASM_Feature": "General",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Which layer 7 protocols does the application use? Are there any bespoke or atypical protocols used?",
+          "description":"Examples: Standard HTTP, Standard HTTPS",
+          "type":"radio",
+          "options" : ["Stanadard HTTP only", "Stanadard HTTPS only", "Standard HTTP and HTTPS", "Non standard HTTP/HTTPS - please specify.."],
+          "name": "appOver2",
+          "ASM_Feature": "General",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "If custom error pages are used, how are they implemented ?",
+          "description":"For example: HTTP errors might be handled via the HTTP server using httpd.conf directives and .htaccess, whist application errors might be handled by using a server-side java error handler.",
+          "type":"text",
+          "options" : " ",
+          "name": "appOver3",
+          "ASM_Feature": "General",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Please list  the allowed HTTP response status codes for which custom error pages exist within the application ?",
+          "description":"Please list all allowed HTTP response status code between 400 and 599 (ASM automatically allows all other response status codes). For example: response codes 404, 500, 503.",
+          "type":"text",
+          "options" : "",
+          "name": "appOver4",
+          "ASM_Feature": "General",
+          "selectedAnswer" : ""
+        }
+      ]
+    },
+    {
+      "tabID" : "App_Test",
+      "href" : "#App_Test",
+      "tabName" : "Application Testing Question",
+      "tabContent": [
+
+        {
+          "question" : "Is there a pre-prod/test/QA or Dev version of the web application?",
+          "description":"Best practice dictates that WAF policy should be deployed and tuned in pre-prod/test/QA/dev environment prior to deployment in production environment.",
+          "type":"radio",
+          "options" : ["Yes - Pre-Prod/Test/QA/Dev version of application available", "No - Pre-Prod/Test/QA/Dev version of application is not available "],
+          "name": "appTest1",
+          "ASM_Feature": "Informational",
+          "selectedAnswer" : ""
+
+
+        },
+        {
+          "question" : "How can the application be tested? ",
+          "description":"Application testing is required for WAF policy tuning cycles. Only legitimate traffic should be generated during the tests. Tests should cover all of the following application elements:-Uri’s:explore all areas of the application -Login forms -Parameters -File uploads/downloads:test different file sizes -User input fields (email address/postal address, any field where a user can submit his input which is not login details).",
+          "type":"radio",
+          "options" : ["Automatically tested using script", "Manually tested by Q.A. team","Both Automatically using script and manually by Q.A team","Others"],
+          "name": "appTest2",
+          "ASM_Feature": "Informational",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Are web application vulnerability scan / Penetration Test results available for the application?If not, are there plans to perform penetration testing prior to deployment of ASM policy? ",
+          "description":"Vulnerability scan / Penetration Test results can assist in WAF policy design, so that discovered vulnerabilities or weakness points can be addressed.",
+          "type":"radio",
+          "options" : ["Vulnerability scan/penetration test results are available", "Vulnerability scan/penetration test results are not available"],
+          "name": "appTest3",
+          "ASM_Feature": "Informational",
+          "selectedAnswer" : ""
+        }
+
+      ]
+    }
+
+
+  ],
+  "generalQuestions": {
+    "tabName": "General Questions",
+    "tabContent": [
+      {
+        "question": "Are there any portions of the application that send back data to the user that you would want to mask, so that the user cannot see the data displayed in their browser or within the response content?",
+        "description": "Example: account numbers, sort codes or other private details",
+        "type": "radio",
+        "options": [
+          "Yes - Masking sensitive data is needed",
+          "No - Masking sensitive data is not needed"
+        ],
+        "name": "gQues1",
+        "selectedAnswer": ""
+      },
+      {
+        "question": "Does the application require Geolocation Enforcement? If so, please list the countries to block/allow (shorter list applies)?",
+        "description": "Geolocation feature allows to configure which countries can access the web application, based on source IP address.",
+        "type": "radio",
+        "options": [
+          "Yes - Geolocation enforcement is required",
+          "No - Geolocation enforcement is not required"
+        ],
+        "name": "gQues2",
+        "selectedAnswer": ""
+      },
+      {
+        "question": "Is there a need to protect the application from large number of failed login attempts? If so, please specify login URLs to protect?",
+        "description": "Brute force protection feature allows to limit the number of  failed attempts to reach the configured login URL. If this feature is required than please provide the following information in the Comments/Details box.Login URL - Specifies a URL in the web application that users must pass through in order to access a certain authenticated URL.Authentication Type - None, HTML Form, HTTP Basic Authentication, HTTP Digest Authentication, NTLMExpected HTTP response status code - Type an HTTP response code that the server must return to the user to allow access to the authenticated URL, after the user’s request to the authenticated URL.",
+        "type": "radio",
+        "options": [
+          "No need for failed login attempts protection",
+          "Yes - failed login attempts protection is required - please fill in details"
+        ],
+        "name": "gQues3",
+        "selectedAnswer": ""
+      },
+      {
+        "question": "Does the application require Denial of Service (DoS) protection?",
+        "description" : "Anamoly detection can be applied to the application to identify and mitigate DoS attacks",
+        "type": "radio",
+        "options": [
+          "No - DoS protection is not required",
+          "Yes - DoS protection is required"
+        ],
+        "name": "gQues4",
+        "selectedAnswer": ""
+      },
+      {
+        "question": "Does the application require Cross-Site Request Forgery (CSRF) protection? If so, please specify the URLs which require CSRF protection.",
+        "description" : "Cross-site request forgery (CSRF) is an attack which forces a user to execute unwanted actions on a web application in which the user is currently authenticated.",
+        "type": "radio",
+        "options": [
+          "No - DoS protection is not required",
+          "Yes - DoS protection is required"
+        ],
+        "name": "gQues5",
+        "selectedAnswer": ""
+      },
+      {
+        "question": "Does the application generate content which is likely to be harvested?",
+        "description" : "Web harvesting/Web Scraping is a software technique of extracting information from a website by a web crawler.",
+        "type": "radio",
+        "options": [
+          "Yes - content is likely to be harvested",
+          "No - content is unlikely to be harvested"
+        ],
+        "name": "gQues6",
+        "selectedAnswer": ""
+      },
+      {
+        "question": "Is there a requirement for ASM to send log records to a remote syslog facility or SIEM? If so, please specify remote syslog/SIEM type",
+        "description" : "It is recommended to use remote logging for logging illegal requests only, to prevent the remote logging facility from overfilling. It is possible to set remote logging instead of, or in addition to local logging on ASM. Example of logging facilities: Syslog Server, ArcSight, Splunk.",
+        "type": "radio",
+        "options": [
+          "Remote logging is not required",
+          "Remote logging is required - please specify.."
+        ],
+        "name": "gQues7",
+        "selectedAnswer": ""
+      },
+      {
+        "question": "Are there any areas of the web application that you are aware of, where security needs to be enhanced? Please outline these areas.",
+        "description" : "",
+        "type": "text",
+        "name": "gQues8",
+        "selectedAnswer": ""
+      }
+    ]
+  },
+  "knownApp" : [
+    {
+      "tabID" : "knownAppDep_Ques",
+      "href" : "#knownAppDep_Ques",
+      "tabName": "Deployment Type Related Question",
+      "tabContent": [
+        {
+          "question" : "Does the application use any HTTP methods other than GET and POST? ",
+          "description":"Example: OPTIONS, DELETE, PUT etc.",
+          "type":"radio",
+          "options" : ["No - Only GET and POST are used", "Yes - additional HTTP methods are used - please specify.."],
+          "name": "knownAppdepQues1",
+          "ASM_Feature": "Valid HTTP request methods",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Does any part of the application use JSON? If so, please specify the URL or parameter which use JSON?",
+          "description":"A JSON profile can be assigned to URL or parameter to allow protection of the POST request  body or protection of parameter value of a GET or a POST request",
+          "type":"radio",
+          "options" : ["No - JSON is not in use by the application", "Yes - JSON is in use by the application"],
+          "name": "knownAppdepQues2",
+          "ASM_Feature": "knownAppdepQues2",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Does the application allow any files to be uploaded by the users? If so, are these files checked for viruses by the application? (Examples: Images, videos, documents) ?",
+          "description":"ASM can integrate using iCAP to an Antivirus for file upload scanning. ",
+          "type":"radio",
+          "options" : ["No - File upload is prohibited","Yes - File upload is allowed - virus scanning is required","Yes - File uploaded is allowed - files are not checked for viruses", "Yes - File uploaded is allowed - virus scanning is not required"],
+          "name": "knownAppdepQues3",
+          "ASM_Feature": "ICAP virus scanning with external A/V",
+          "selectedAnswer" : ""
+        }
+      ]
+    },
+    {
+      "tabID" : "knownAppApp_Over",
+      "href" : "#knownAppApp_Over",
+      "tabName" : "Application Overview Question",
+      "tabContent": [
+        {
+          "question" : "What type of character encoding does the application use?",
+          "description":"Examples: UTF-8, Unicode, ISO-8859-1",
+          "type":"radio",
+          "options" : ["Unicode (utf-8)", "Western European (iso-8859-1)","Western European (iso-8859-15)", "Western European (windows-1252)", "Central European (iso-8859-2)","Central European (windows-1250)","South European (iso-8859-3)","Others"],
+          "name": "knownAppappOver1",
+          "ASM_Feature": "General",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Which layer 7 protocols does the application use? Are there any bespoke or atypical protocols used?",
+          "description":"Examples: Standard HTTP, Standard HTTPS",
+          "type":"radio",
+          "options" : ["Stanadard HTTP only", "Stanadard HTTPS only", "Standard HTTP and HTTPS", "Non standard HTTP/HTTPS - please specify.."],
+          "name": "knownAppappOver2",
+          "ASM_Feature": "General",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "If custom error pages are used, how are they implemented ?",
+          "description":"For example: HTTP errors might be handled via the HTTP server using httpd.conf directives and .htaccess, whist application errors might be handled by using a server-side java error handler.",
+          "type":"text",
+          "options" : " ",
+          "name": "knownAppappOver3",
+          "ASM_Feature": "General",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Please list  the allowed HTTP response status codes for which custom error pages exist within the application ?",
+          "description":"Please list all allowed HTTP response status code between 400 and 599 (ASM automatically allows all other response status codes). For example: response codes 404, 500, 503.",
+          "type":"text",
+          "options" : "",
+          "name": "knownAppappOver4",
+          "ASM_Feature": "General",
+          "selectedAnswer" : ""
+        }
+      ]
+    },
+    {
+      "tabID" : "knownAppApp_Test",
+      "href" : "#knownAppApp_Test",
+      "tabName" : "Application Testing Question",
+      "tabContent": [
+
+        {
+          "question" : "Is there a pre-prod/test/QA or Dev version of the web application?",
+          "description":"Best practice dictates that WAF policy should be deployed and tuned in pre-prod/test/QA/dev environment prior to deployment in production environment.",
+          "type":"radio",
+          "options" : ["Yes - Pre-Prod/Test/QA/Dev version of application available", "No - Pre-Prod/Test/QA/Dev version of application is not available "],
+          "name": "knownAppappTest1",
+          "ASM_Feature": "Informational",
+          "selectedAnswer" : ""
+
+
+        },
+        {
+          "question" : "How can the application be tested? ",
+          "description":"Application testing is required for WAF policy tuning cycles. Only legitimate traffic should be generated during the tests. Tests should cover all of the following application elements:-Uri’s:explore all areas of the application -Login forms -Parameters -File uploads/downloads:test different file sizes -User input fields (email address/postal address, any field where a user can submit his input which is not login details).",
+          "type":"radio",
+          "options" : ["Automatically tested using script", "Manually tested by Q.A. team","Both Automatically using script and manually by Q.A team","Others"],
+          "name": "knownAppappTest2",
+          "ASM_Feature": "Informational",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Are web application vulnerability scan / Penetration Test results available for the application?If not, are there plans to perform penetration testing prior to deployment of ASM policy? ",
+          "description":"Vulnerability scan / Penetration Test results can assist in WAF policy design, so that discovered vulnerabilities or weakness points can be addressed.",
+          "type":"radio",
+          "options" : ["Vulnerability scan/penetration test results are available", "Vulnerability scan/penetration test results are not available"],
+          "name": "knownAppappTest3",
+          "ASM_Feature": "Informational",
+          "selectedAnswer" : ""
+        }
+
+      ]
+    }
+
+  ],
+  "knownAttacks" : [
+    {
+      "tabID" : "knownAttackDep_Ques",
+      "href" : "#knownAttackDep_Ques",
+      "tabName": "Deployment Type Related Question",
+      "tabContent": [
+        {
+          "question" : "What server Operating Systems are in use across the web application architecture?",
+          "description":"Examples: Windows, Unix/Linux",
+          "type":"checkbox",
+          "options": ["Microsoft Windows","Unix/Linux", "Others"],
+          "name": "knownAttackdepQues1",
+          "ASM_Feature": "",
+          "selectedAnswer" : []
+        },
+        {
+          "question" : "What type and version of Web Server is used?",
+          "description":"Examples: WebSphere, Apache Tomcat6",
+          "type":"checkbox",
+          "options": ["Apache", "Apache Tomcat", "IIS", "Proxy Servers", "Other Web Servers"],
+          "name": "knownAttackdepQues2",
+          "ASM_Feature": "",
+          "selectedAnswer" : []
+        },
+        {
+          "question" : "What programming language(s) does the application use?",
+          "description":"Examples: J2EE, ASPX, PHP",
+          "type":"checkbox",
+          "options":["ASP","ASP.NET","BEA Systems WebLogic Server", "CGI", "Front Page Server Extension (FPSE)","Java Servlets/JSP",
+            "Lotus Domino", "MacroMedia ColdFusion", "MacroMedia JRun", "Outlook Web Access", "PHP", "SSI(Server Side Includes)", "WebDAV", "XML"],
+          "name": "knownAttackdepQues3",
+          "ASM_Feature": "",
+          "selectedAnswer" : []
+        },
+        {
+          "question" : "What type and version of database server is used?",
+          "description":"Examples: Oracle 11g, MS SQL Server 2005",
+          "type":"checkbox",
+          "options": ["IBM DB2", "Microsoft SQL Server", "MySQL", "Oracle", "PostgreSQL", "Sybase/ASE", "Others"],
+          "name": "knownAttackdepQues4",
+          "ASM_Feature": "",
+          "selectedAnswer" : []
+        },
+        {
+          "question" : "Does the application use any custom or non-RFC HTTP headers?",
+          "description":"",
+          "type":"radio",
+          "options" : ["No", "Yes - please specify.." ],
+          "name": "knownAttackdepQues5",
+          "ASM_Feature": "",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Does the application use any HTTP methods other than GET and POST? ",
+          "description":"Example: OPTIONS, DELETE, PUT etc.",
+          "type":"radio",
+          "options" : ["No - Only GET and POST are used", "Yes - additional HTTP methods are used - please specify.."],
+          "name": "knownAttackdepQues6",
+          "ASM_Feature": "Valid HTTP request methods",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Does any part of the application use JSON? If so, please specify the URL or parameter which use JSON?",
+          "description":"A JSON profile can be assigned to URL or parameter to allow protection of the POST request  body or protection of parameter value of a GET or a POST request",
+          "type":"radio",
+          "options" : ["No - JSON is not in use by the application", "Yes - JSON is in use by the application"],
+          "name": "knownAttackdepQues7",
+          "ASM_Feature": "",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Does the application allow any files to be uploaded by the users? If so, are these files checked for viruses by the application? (Examples: Images, videos, documents) ?",
+          "description":"ASM can integrate using iCAP to an Antivirus for file upload scanning. ",
+          "type":"radio",
+          "options" : ["No - File upload is prohibited","Yes - File upload is allowed - virus scanning is required","Yes - File uploaded is allowed - files are not checked for viruses", "Yes - File uploaded is allowed - virus scanning is not required"],
+          "name": "knownAttackdepQues8",
+          "ASM_Feature": "ICAP virus scanning with external A/V",
+          "selectedAnswer" : ""
+        }
+      ]
+    },
+    {
+      "tabID" : "knownAttackApp_Over",
+      "href" : "#knownAttackApp_Over",
+      "tabName" : "Application Overview Question",
+      "tabContent": [
+        {
+          "question" : "What type of character encoding does the application use?",
+          "description":"Examples: UTF-8, Unicode, ISO-8859-1",
+          "type":"radio",
+          "options" : ["Unicode (utf-8)", "Western European (iso-8859-1)","Western European (iso-8859-15)", "Western European (windows-1252)", "Central European (iso-8859-2)","Central European (windows-1250)","South European (iso-8859-3)","Others"],
+          "name": "knownAttackappOver1",
+          "ASM_Feature": "General",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Which layer 7 protocols does the application use? Are there any bespoke or atypical protocols used?",
+          "description":"Examples: Standard HTTP, Standard HTTPS",
+          "type":"radio",
+          "options" : ["Stanadard HTTP only", "Stanadard HTTPS only", "Standard HTTP and HTTPS", "Non standard HTTP/HTTPS - please specify.."],
+          "name": "knownAttackappOver2",
+          "ASM_Feature": "General",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "If custom error pages are used, how are they implemented ?",
+          "description":"For example: HTTP errors might be handled via the HTTP server using httpd.conf directives and .htaccess, whist application errors might be handled by using a server-side java error handler.",
+          "type":"text",
+          "options" : " ",
+          "name": "knownAttackappOver3",
+          "ASM_Feature": "General",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Please list  the allowed HTTP response status codes for which custom error pages exist within the application ?",
+          "description":"Please list all allowed HTTP response status code between 400 and 599 (ASM automatically allows all other response status codes). For example: response codes 404, 500, 503.",
+          "type":"text",
+          "options" : "",
+          "name": "knownAttackappOver4",
+          "ASM_Feature": "General",
+          "selectedAnswer" : ""
+        }
+      ]
+    },
+    {
+      "tabID" : "knownAttackApp_Test",
+      "href" : "#knownAttackApp_Test",
+      "tabName" : "Application Testing Question",
+      "tabContent": [
+        {
+          "question" : "Is there a pre-prod/test/QA or Dev version of the web application?",
+          "description":"Best practice dictates that WAF policy should be deployed and tuned in pre-prod/test/QA/dev environment prior to deployment in production environment.",
+          "type":"radio",
+          "options" : ["Yes - Pre-Prod/Test/QA/Dev version of application available", "No - Pre-Prod/Test/QA/Dev version of application is not available "],
+          "name": "knownAttackappTest1",
+          "ASM_Feature": "Informational",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "How can the application be tested? ",
+          "description":"Application testing is required for WAF policy tuning cycles. Only legitimate traffic should be generated during the tests. Tests should cover all of the following application elements:-Uri’s:explore all areas of the application -Login forms -Parameters -File uploads/downloads:test different file sizes -User input fields (email address/postal address, any field where a user can submit his input which is not login details).",
+          "type":"radio",
+          "options" : ["Automatically tested using script", "Manually tested by Q.A. team","Both Automatically using script and manually by Q.A team","Others"],
+          "name": "knownAttackappTest2",
+          "ASM_Feature": "Informational",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Are web application vulnerability scan / Penetration Test results available for the application?If not, are there plans to perform penetration testing prior to deployment of ASM policy? ",
+          "description":"Vulnerability scan / Penetration Test results can assist in WAF policy design, so that discovered vulnerabilities or weakness points can be addressed.",
+          "type":"radio",
+          "options" : ["Vulnerability scan/penetration test results are available", "Vulnerability scan/penetration test results are not available"],
+          "name": "knownAttackappTest3",
+          "ASM_Feature": "Informational",
+          "selectedAnswer" : ""
+        }
+
+      ]
+    }
+
+  ],
+  "unknownAttacks" : [
+    {
+      "tabID" : "unknownAttackDep_Ques",
+      "href" : "#unknownAttackDep_Ques",
+      "tabName": "Deployment Type Related Question",
+      "tabContent": [
+        {
+          "question" : "What server Operating Systems are in use across the web application architecture?",
+          "description":"Examples: Windows, Unix/Linux",
+          "type":"checkbox",
+          "options": ["Microsoft Windows","Unix/Linux", "Others"],
+          "name": "unknownAttackdepQues1",
+          "ASM_Feature": "",
+          "selectedAnswer" : []
+        },
+        {
+          "question" : "What type and version of Web Server is used?",
+          "description":"Examples: WebSphere, Apache Tomcat6",
+          "type":"checkbox",
+          "options": ["Apache", "Apache Tomcat", "IIS", "Proxy Servers", "Other Web Servers"],
+          "name": "unknownAttackdepQues2",
+          "ASM_Feature": "",
+          "selectedAnswer" : []
+        },
+        {
+          "question" : "What programming language(s) does the application use?",
+          "description":"Examples: J2EE, ASPX, PHP",
+          "type":"checkbox",
+          "options":["ASP","ASP.NET","BEA Systems WebLogic Server", "CGI", "Front Page Server Extension (FPSE)","Java Servlets/JSP",
+            "Lotus Domino", "MacroMedia ColdFusion", "MacroMedia JRun", "Outlook Web Access", "PHP", "SSI(Server Side Includes)", "WebDAV", "XML"],
+          "name": "unknownAttackdepQues3",
+          "ASM_Feature": "",
+          "selectedAnswer" : []
+        },
+        {
+          "question" : "What type and version of database server is used?",
+          "description":"Examples: Oracle 11g, MS SQL Server 2005",
+          "type":"checkbox",
+          "options": ["IBM DB2", "Microsoft SQL Server", "MySQL", "Oracle", "PostgreSQL", "Sybase/ASE", "Others"],
+          "name": "unknownAttackdepQues4",
+          "ASM_Feature": "",
+          "selectedAnswer" : []
+        },
+        {
+          "question" : "Does the application use any HTTP methods other than GET and POST? ",
+          "description":"Example: OPTIONS, DELETE, PUT etc.",
+          "type":"radio",
+          "options" : ["No - Only GET and POST are used", "Yes - additional HTTP methods are used - please specify.."],
+          "name": "unknownAttackdepQues5",
+          "ASM_Feature": "Valid HTTP request methods",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Does any part of the application use JSON? If so, please specify the URL or parameter which use JSON?",
+          "description":"A JSON profile can be assigned to URL or parameter to allow protection of the POST request  body or protection of parameter value of a GET or a POST request",
+          "type":"radio",
+          "options" : ["No - JSON is not in use by the application", "Yes - JSON is in use by the application"],
+          "name": "unknownAttackdepQues6",
+          "ASM_Feature": "",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Does the application allow any files to be uploaded by the users? If so, are these files checked for viruses by the application? (Examples: Images, videos, documents) ?",
+          "description":"ASM can integrate using iCAP to an Antivirus for file upload scanning. ",
+          "type":"radio",
+          "options" : ["No - File upload is prohibited","Yes - File upload is allowed - virus scanning is required","Yes - File uploaded is allowed - files are not checked for viruses", "Yes - File uploaded is allowed - virus scanning is not required"],
+          "name": "unknownAttackdepQues7",
+          "ASM_Feature": "ICAP virus scanning with external A/V",
+          "selectedAnswer" : ""
+        },
+
+        {
+          "question" : "Does the application use any custom or non-RFC HTTP headers?",
+          "description":"",
+          "type":"radio",
+          "options" : ["No", "Yes - please specify.." ],
+          "name": "unknownAttackdepQues8",
+          "ASM_Feature": "",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Which file types are used within the application?",
+          "description":"Examples: jsp, css, gif, jpg, pdf, htm, txt, js, ico and objects with no extension.",
+          "type":"text",
+          "options" : "",
+          "name": "unknownAttackdepQues9",
+          "ASM_Feature": "",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Does the application perfrom any control on the parameter? If not, is it required to prevent Parameter Tampering?",
+          "description":"Example: If a user tampers  with a parameter value like changing a value form £10 to -£10000. Is there a protection mechanism such as logging off the user, or locking the account?",
+          "type":"radio",
+          "options" : ["Yes - application performs parameter control", "No - parameter control is needed - please specify…", "No - parameter control is not needed"],
+          "name": "unknownAttackdepQues10",
+          "ASM_Feature": "",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Are any parameter values considered sensitive and should not be recorded in ASM logs?",
+          "description":"Example: passwords, credit card numbers, bank account details, national insurance number.",
+          "type":"radio",
+          "options" : ["Yes - some parameter values should not be logged - please specify...", "No - all parameter values can be logged by ASM"],
+          "name": "unknownAttackdepQues11",
+          "ASM_Feature": "",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Which cookies does the application use? Are there any application specific cookies?",
+          "description":"Please provide examples of any cookies used by the application with their purpose, including user session cookies. Example:  JSESSIONID,PHPSESSIONID, ASPSESSIONID etc.",
+          "type":"text",
+          "options" : "",
+          "name": "unknownAttackdepQues12",
+          "ASM_Feature": "",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Does any part of the application use XML, SOAP, or both? If so, is a current definition or schema xsd or wsdl file available?",
+          "description":"ASM is able to parse specific requests with an XML parser or SOAP parser. Critiria for parsing can be a specific HTTP header name and value, or specific parameter.",
+          "type":"radio",
+          "options" : ["No - XML/SOAP are not in use within the application", "Yes - SOAP is used within the application - wsd file is available", "XML is in use within the application - wsdl file is available"],
+          "name": "unknownAttackdepQues13",
+          "ASM_Feature": "",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Does the application enforce any navigational  flows between pages? If so, how is it enforced?",
+          "description":"A flow could be defined as a specific route through the application that a user cannot deviate from. This could be something like A -> B -> C -> D, where A is the login page, B is the PIN code validation, C is the disclaimer and D is the account information page. The implication of this flow is that it is impossible for a user to start at B, C, or D  without passing via page A first.",
+          "type":"radio",
+          "options" : ["Navigational flows are not enforced by the application", "There is no need for navigaional flows enforcement" , "Navigational flows enforcement is needed"],
+          "name": "unknownAttackdepQues14",
+          "ASM_Feature": "",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Does the application use any kind of dynamic parameter names?",
+          "description":"For example a parameter might have a base name of PARA and a variable component of numbers from 0000 to 9999, which will create a 10,000 parameter names of PARA0000 to PARA9999",
+          "type":"radio",
+          "options" : ["Dynamic parameter names are not in use", "Dynamic parameter names are in used"],
+          "name": "unknownAttackdepQues15",
+          "ASM_Feature": "",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Does the application apply any type of validation to the user input fields? If so, are validation checks performed  client-side (javascript) or server-side (checked by application)? ",
+          "description":"If not validated, WAF policy can be set to enforce parameter-based data type validation. For example, enforcing email syntax, integer or decimal data types. Please specify parameters if this is required.",
+          "type":"radio",
+          "options" : ["User input validation is required by WAF policy", "User input validation is done on client side", "User input validation is done on server side"],
+          "name": "unknownAttackdepQues16",
+          "ASM_Feature": "",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Does the application have a globally allowed character set? For instance does the application only allow certain characters, or does it explicitly not allow some characters? ",
+          "description":"Example: Single quote, asterisk(*), and left/right angle brackets(<>).",
+          "type":"radio",
+          "options" : ["No global character set", "Application allows global character set", "Some characters are disallowed in some fields input"],
+          "name": "unknownAttackdepQues17",
+          "ASM_Feature": "",
+          "selectedAnswer" : ""
+        }
+      ]
+    },
+    {
+      "tabID" : "unknownAttackApp_Over",
+      "href" : "#unknownAttackApp_Over",
+      "tabName" : "Application Overview Question",
+      "tabContent": [
+        {
+          "question" : "What type of character encoding does the application use?",
+          "description":"Examples: UTF-8, Unicode, ISO-8859-1",
+          "type":"radio",
+          "options" : ["Unicode (utf-8)", "Western European (iso-8859-1)","Western European (iso-8859-15)", "Western European (windows-1252)", "Central European (iso-8859-2)","Central European (windows-1250)","South European (iso-8859-3)","Others"],
+          "name": "unknownAttackappOver1",
+          "ASM_Feature": "General",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Which layer 7 protocols does the application use? Are there any bespoke or atypical protocols used?",
+          "description":"Examples: Standard HTTP, Standard HTTPS",
+          "type":"radio",
+          "options" : ["Stanadard HTTP only", "Stanadard HTTPS only", "Standard HTTP and HTTPS", "Non standard HTTP/HTTPS - please specify.."],
+          "name": "unknownAttackappOver2",
+          "ASM_Feature": "General",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "If custom error pages are used, how are they implemented ?",
+          "description":"For example: HTTP errors might be handled via the HTTP server using httpd.conf directives and .htaccess, whist application errors might be handled by using a server-side java error handler.",
+          "type":"text",
+          "options" : " ",
+          "name": "unknownAttackappOver3",
+          "ASM_Feature": "General",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Please list  the allowed HTTP response status codes for which custom error pages exist within the application ?",
+          "description":"Please list all allowed HTTP response status code between 400 and 599 (ASM automatically allows all other response status codes). For example: response codes 404, 500, 503.",
+          "type":"text",
+          "options" : "",
+          "name": "unknownAttackappOver4",
+          "ASM_Feature": "General",
+          "selectedAnswer" : ""
+        }
+      ]
+    },
+    {
+      "tabID" : "unknownAttackApp_Test",
+      "href" : "#unknownAttackApp_Test",
+      "tabName" : "Application Testing Question",
+      "tabContent": [
+
+        {
+          "question" : "Is there a pre-prod/test/QA or Dev version of the web application?",
+          "description":"Best practice dictates that WAF policy should be deployed and tuned in pre-prod/test/QA/dev environment prior to deployment in production environment.",
+          "type":"radio",
+          "options" : ["Yes - Pre-Prod/Test/QA/Dev version of application available", "No - Pre-Prod/Test/QA/Dev version of application is not available "],
+          "name": "unknownAttackappTest1",
+          "ASM_Feature": "Informational",
+          "selectedAnswer" : ""
+
+
+        },
+        {
+          "question" : "How can the application be tested? ",
+          "description":"Application testing is required for WAF policy tuning cycles. Only legitimate traffic should be generated during the tests. Tests should cover all of the following application elements:-Uri’s:explore all areas of the application -Login forms -Parameters -File uploads/downloads:test different file sizes -User input fields (email address/postal address, any field where a user can submit his input which is not login details).",
+          "type":"radio",
+          "options" : ["Automatically tested using script", "Manually tested by Q.A. team","Both Automatically using script and manually by Q.A team","Others"],
+          "name": "unknownAttackappTest2",
+          "ASM_Feature": "Informational",
+          "selectedAnswer" : ""
+        },
+        {
+          "question" : "Are web application vulnerability scan / Penetration Test results available for the application?If not, are there plans to perform penetration testing prior to deployment of ASM policy? ",
+          "description":"Vulnerability scan / Penetration Test results can assist in WAF policy design, so that discovered vulnerabilities or weakness points can be addressed.",
+          "type":"radio",
+          "options" : ["Vulnerability scan/penetration test results are available", "Vulnerability scan/penetration test results are not available"],
+          "name": "unknownAttackappTest3",
+          "ASM_Feature": "Informational",
+          "selectedAnswer" : ""
+        }
+
+      ]
+    }
+
+  ]
+}

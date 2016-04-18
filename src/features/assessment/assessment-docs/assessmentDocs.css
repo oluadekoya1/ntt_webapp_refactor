@@ -1,0 +1,10 @@
+.section-header{
+    background-color: lightgray;
+    font-size: 14px;
+    font-weight: bold
+}
+
+.progress-bar-text{
+    color: black;
+    font-weight: bold;
+}

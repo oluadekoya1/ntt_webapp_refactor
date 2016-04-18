@@ -1,0 +1,49 @@
+[
+  {
+    "tabID" : "App_Info",
+    "href" : "#App_Info",
+    "tabName": "Application Information",
+    "tabContent": [
+      {
+        "question" : "What is the fully qualified domain name for this application ?",
+        "description":"This should contain both the domain (i.e www.example.com) and host portion (i.e. kb.example.com )",
+        "type":"text",
+        "page":"right",
+        "holder":"#uriForm",
+        "options": "",
+        "name": "apinfo2",
+        "selectedAnswer" : ""
+      },
+      {
+        "question" : "Does the application perform multiple functions ?",
+        "description":"Examples of possible application functions may are Customer/partner portal, Knowledge base, E-commerceBusiness to business (B2B) and Web-Services communication",
+        "type":"radio",
+        "page":"right",
+        "options" : ["Yes", "No" ],
+        "name": "apinfo3",
+        "selectedAnswer" : "",
+        "ansDescription": ""
+      },
+      {
+        "question" : "Are application specific functions accessed through a specific URIs?",
+        "description":"In some cases different application functions can be accessed through different URIs. For example, web portal functionality will be accessed through: www.example.com/portal, whilst a KB will be accessed through: www.example.com/kb.",
+        "type":"radio",
+        "page":"left",
+        "options" : ["Yes", "No"],
+        "name": "apinfo4",
+        "selectedAnswer" : "",
+        "ansDescription": ""
+      },
+      {
+        "question" : "Are application specific functions accessed through specific HTTP parameters?",
+        "description":"In some cases different application functions can be accessed through different HTTP parameters.For example, web portal will be accessed will be accessed through: www.example.com/en?function=portal,whilst a KB will be accessed through:www.example.com/en?function=kb ",
+        "type":"radio",
+        "page":"left",
+        "options" : ["Yes", "No"],
+        "name": "apinfo5",
+        "selectedAnswer" : "",
+        "ansDescription": ""
+      }
+    ]
+  }
+]

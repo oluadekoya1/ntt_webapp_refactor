@@ -1,0 +1,91 @@
+.page-container{
+    width:100% !important;
+}
+.pgLine{
+    width : 1% !important;
+    height: 55%;
+
+    &__line {
+        border-left: 1px solid #000;
+        height: 282px;
+    }
+
+}
+.positonHead{
+    margin-left: 31%;
+}
+.positionside{
+
+}
+.textcolor{
+    color: #00b3ee;
+}
+.picholder{
+    margin-left: 120px;
+    float: inherit;
+}
+
+.butholder{
+    margin-left: 120px;
+
+}
+.form-control-force-select{
+     display: inline-block;
+     width: 11%;
+ }
+
+.form-control-force-input{
+    display: inline-block;
+    width: 30%;
+}
+
+.button-height{
+
+    button{
+        height: 60px;
+        width: 150px;
+        font-size: 15px;
+    }
+
+    &__right {
+        margin-right: 15%;
+        float: right;
+    }
+
+    &__left {
+        margin-left: 15%;
+        float: left;
+    }
+}
+
+.butholder1{
+    margin-left: 280px;
+}
+
+.containclass{
+    width: 60%;
+}
+.myfont{
+    margin-left:20%;
+}
+.hompage-picture{
+    height: 25%;
+    width: 25%;
+    /* vertical-align: middle; */
+    margin-left: 40%;
+    margin-top: -2%;
+}
+.homepage-button{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    padding: 12px 27px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer !important;
+}
+
