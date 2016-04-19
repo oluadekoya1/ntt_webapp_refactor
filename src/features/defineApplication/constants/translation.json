@@ -11,6 +11,6 @@
   "applicationTypes" : [
     {"label" : "Please Select", "value" : -1},
     {"label" : "Custom Application", "value" : 1},
-    {"label" : "F5 ASM Known Application", "value" : 2}
+    {"label" : "F5 ASM Template Application", "value" : 2}
   ]
 }
