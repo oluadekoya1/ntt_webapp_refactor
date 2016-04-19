@@ -1,0 +1,16 @@
+{
+  "questionFeatures" : {
+     "owasp" : {"label" : "OWASP Top 10 Application Vulnerability", "value" : 1, "checked" : false},
+     "api" : {"label" : "Web Services (SOAP and REST)", "value" : 2, "checked" : false},
+     "loginPage" : {"label" : "Login Page (Brute Force Protection)", "value" : 3, "checked" : false},
+     "harvestedData" : {"label" : "Harvested Data (Web Scraping)", "value" : 4, "checked" : false},
+     "fileUpload" : {"label" : "File Upload (Anti-Virus)", "value" : 5, "checked" : false},
+     "resConsumption" : {"label" : "Resource Consumption (Denial-of-Service)", "value" : 6, "checked" : false}
+  },
+
+  "applicationTypes" : [
+    {"label" : "Please Select", "value" : -1},
+    {"label" : "Custom Application", "value" : 1},
+    {"label" : "F5 ASM Known Application", "value" : 2}
+  ]
+}

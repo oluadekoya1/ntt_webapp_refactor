@@ -3,6 +3,7 @@
 import angular from 'angular';
 import uirouter from 'angular-ui-router';
 import '../homepage/homepage.scss';
+import '../homepage/w3.css';
 import routing from './homepage.routes';
 import HomePageController from './homepage.controller';
 import mainMenu from '../../directives/js/main-menu';

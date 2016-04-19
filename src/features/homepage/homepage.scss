@@ -5,6 +5,7 @@
     width : 1% !important;
     height: 55%;
 
+
     &__line {
         border-left: 1px solid #000;
         height: 282px;
@@ -75,6 +76,7 @@
     margin-left: 40%;
     margin-top: -2%;
 }
+
 .homepage-button{
     background-color: #4CAF50;
     border: none;
@@ -89,3 +91,22 @@
     cursor: pointer !important;
 }
 
+.img_position{
+    margin-left: 40%;
+    margin-top: -2%;
+}
+
+.font_color{
+    color:steelblue;
+}
+
+.text_size{
+    font-size: 11px;
+}
+
+.textPosition{
+    margin-left: 10%;
+}
+.textPosition2{
+    margin-left: -100%;
+}

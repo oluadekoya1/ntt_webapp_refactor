@@ -1,0 +1,58 @@
+<menubar></menubar>
+<div class="container def_font">
+    <div class="row bottom-spaced-10">
+        <div class="col-sm-6">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button class="btn btn-primary" type="button">Application Name</button>
+                </div><!-- /btn-group -->
+                <input type="text" class="form-control" id="textfield1" ng-model="appName">
+            </div><!-- /input-group -->
+        </div>
+        <div class="col-sm-6">
+            <div class="input-group">
+                <span class="input-group-addon">Application Type</span>
+                <select class="form-control" ng-options="item as item.label for item in appTypes track by item.value" ng-model="selectedAppType"></select>
+            </div>
+        </div>
+    </div>
+    <div class="row bottom-spaced-10">
+        <div class="col-sm-6">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button class="btn btn-primary" type="button">Full Qualified Domain Name (Main)</button>
+                </div><!-- /btn-group -->
+                <input type="text" class="form-control" id="">
+            </div><!-- /input-group -->
+        </div>
+        <div class="col-sm-6" ng-if="selectedAppType.value === 2">
+            <div class="input-group">
+                <span class="input-group-addon">{{KnownApplications.question}}</span>
+                <select class="form-control" ng-options="item as item.label for item in KnownApplications.options track by item.value" ng-model="selectedKnownApp"></select>
+            </div>
+        </div>
+    </div>
+    <div class="row bottom-spaced-10">
+        <br>
+        <br>
+        <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12 list-cont-div" ng-if="selectedAppType.value === 1">
+            <div class="list-checkbox-div" ng-repeat="(key, value) in customOptions">
+                <input id="custom-option-{{key}}" class="checkbox-custom" name="customOptions" type="checkbox" ng-checked="value.checked" value={{value.value}}>
+                <label for="custom-option-{{key}}" class="checkbox-custom-label font-weight-500">{{value.label}}</label>
+            </div>
+        </div>
+        <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12 list-cont-div" ng-if="selectedAppType.value === 2">
+            <div class="list-checkbox-div" ng-repeat="(key, value) in knownAppOptions">
+                <input id="known-app-{{key}}" class="checkbox-custom" name="customOptions" type="checkbox" ng-checked="value.checked" value={{value.value}}>
+                <label for="known-app-{{key}}" class="checkbox-custom-label font-weight-500">{{value.label}}</label>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+

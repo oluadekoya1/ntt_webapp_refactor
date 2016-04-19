@@ -15,6 +15,11 @@ export default function HomePageController($scope ,$state, $stateParams, appServ
     $scope.create = function(){
         $state.go('create-app', {username :$scope.user });
     };
+
+    $scope.define = function(){
+        $state.go('define-app', {username :$scope.user });
+    };
+
     $scope.dashboard = function(){
         $state.go('current-assessment');
     };

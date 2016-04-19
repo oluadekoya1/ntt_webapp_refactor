@@ -1,6 +1,6 @@
 'use strict';
 
-// exporting the contents of the Assessment Controller so that it ia available to other pages
+// exporting the contents of the Assessment Controller so that it is available to other pages
 export default function PolicyController($scope ,$state, $stateParams, pdfService, appServices) {
 
     var getResults = function(option){

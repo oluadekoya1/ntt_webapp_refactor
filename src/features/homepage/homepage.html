@@ -1,43 +1,35 @@
-<main-menu></main-menu>
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-    </ol>
+<menubar></menubar>
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src={{thisPic1}} alt="..." class="img-responsive">
-            <div class="carousel-caption">
-                ...
+
+<div class="w3-row-padding ">
+    <div class="w3-threequarter">
+        <h4 class="w3-center font_color">Welcome to NTT Com Security </h4>
+        <div class="def_font w3-center font_color">To secure an application, click the create application button below</div>
+        </br>
+        <div>
+            <img class="img_position" src={{assesspic}}>
+        </div>
+        <div class="button-height def_font">
+            <!-- Create Application -->
+            <button type="button" class="btn btn-success button-height__right" ng-click="create()" value="Your Applications">Your Applications</button>
+            <!-- Your Applications -->
+            <button type="button" class="btn btn-success button-height__left" ng-click="define()" value="Create Application">Create Application</button>
+        </div>
+    </div>
+    <div class="w3-quarter def_font">
+        <div class="col-md-1 pgLine">
+            <div class="pgLine__line"></div>
+        </div>
+        <div class=" textPosition">
+            <div class="text_size ">
+                </br>
+                <div>Your Account</div>
+                </br>
+                <div class="textcolor">License</div>
+                </br>
+                <div class="textcolor">Details</div>
             </div>
         </div>
-        <div class="item">
-            <img src={{thisPic2}} alt="..." class="img-responsive">
-            <div class="carousel-caption">
-                ...
-            </div>
-        </div>
-        <div class="item">
-            <img src={{thisPic3}} alt=".." class="img-responsive" >
-            <div class="carousel-caption">
-
-            </div>
-        </div>
-
     </div>
 
-    <!-- Controls -->
-    <a class="carousel-control left" href="#carousel-example-generic" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control right" href="#carousel-example-generic" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-
-  </div>
+</div>

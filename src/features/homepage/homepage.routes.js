@@ -6,7 +6,7 @@ export default function routes($stateProvider) {
     $stateProvider
         .state('homepage', {
             url: '/homepage',
-            template: require('./homepage1.html'),
+            template: require('./homepage.html'),
             controller: 'HomePageController',
             controllerAs: 'homepage'
         });

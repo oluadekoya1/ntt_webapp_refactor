@@ -6,6 +6,7 @@ import swal from 'sweetalert';
 import signIn from './features/signIn/index';
 import homepage from './features/homepage/index';
 import createapp from './features/createapplication/index';
+import defineapp from './features/defineApplication/index'
 import assessApp from './features/assessment/assess-application/index';
 import definepolicy from './features/policy/define-policy/index';
 import editpolicy from './features/policy/define-policy/index';
@@ -19,7 +20,7 @@ google.load('visualization', '1', {packages:['corechart', 'gauge']});
 google.setOnLoadCallback(function() {});
 
 
-var nttComs = angular.module('app', [uirouter,assessDocs, signIn, assessApp, createapp, homepage, support, definepolicy, editpolicy, appServices]);
+var nttComs = angular.module('app', [uirouter,assessDocs, signIn, assessApp, createapp, defineapp, homepage, support, definepolicy, editpolicy, appServices]);
 
 nttComs.run(function($rootScope, appServices, $location) {
     $rootScope.$on('$stateChangeStart', function () { console.log(appServices);

@@ -1,0 +1,128 @@
+{
+  "KnownApplications": {
+    "question": "Application Description",
+    "options" : [
+      {
+        "label" : "please select",
+        "value" : -1
+      },
+      {
+        "label" : "no",
+        "value" : 0
+      },
+      {
+        "label" : "activesync v1.0 v2.0(HTTP)",
+        "value": 1
+      },
+      {
+        "label" : "activesync v1.0 v2.0(HTTPS)",
+        "value": 2
+      },
+      {
+        "label" : "lotusdomino 6.5(HTTP)",
+        "value": 3
+      },
+      {
+        "label" : "lotusdomino 6.5(HTTPS)",
+        "value": 4
+      },
+      {
+        "label" : "owa exchange 2003(HTTP)",
+        "value": 5
+      },
+      {
+        "label" : "owa exchange 2003(HTTPS)",
+        "value": 6
+      },
+      {
+        "label" : "owa exchange 2003 with activesync(HTTP)",
+        "value": 7
+      },
+      {
+        "label" : "owa exchange 2003 with activesync(HTTPS)",
+        "value": 8
+      },
+      {
+        "label" : "owa exchange 2007(HTTP)",
+        "value": 9
+      },
+      {
+        "label" : "owa exchange 2007(HTTPS)",
+        "value": 10
+      },
+      {
+        "label" : "owa exchange 2007 with activesync(HTTP)",
+        "value": 11
+      },
+      {
+        "label" : "owa exchange 2007 with activesync(HTTPS)",
+        "value": 12
+      },
+      {
+        "label" : "owa exchange 2010(HTTP)",
+        "value": 13
+      },
+      {
+        "label" : "owa exchange 2010(HTTPS)",
+        "value": 14
+      },
+      {
+        "label" : "oracle 10g portal(HTTP)",
+        "value": 15
+      },
+      {
+        "label" : "oracle 10g portal(HTTPS)",
+        "value": 16
+      },
+      {
+        "label" : "oracle applications 11i(HTTP)",
+        "value": 17
+      },
+      {
+        "label" : "oracle application 11i(HTTPS)",
+        "value": 18
+      },
+      {
+        "label" : "peoplesoft portal 9(HTTP)",
+        "value": 19
+      },
+      {
+        "label" : "peoplesoft portal 9(HTTPS)",
+        "value": 20
+      },
+      {
+        "label" : "sap netweaver 7(HTTP)",
+        "value": 21
+      },
+      {
+        "label" : "sap netweaver 7(HTTPS)",
+        "value": 22
+      },
+      {
+        "label" : "sharepoint 2003(HTTP)",
+        "value": 23
+      },
+      {
+        "label" : "sharepoint 2003(HTTPS)",
+        "value": 24
+      },
+      {
+        "label" : "sharepoint 2007(HTTP)",
+        "value": 25
+      },
+      {
+        "label" : "sharepoint 2007(HTTPS)",
+        "value": 26
+      },
+      {
+        "label" : "sharepoint 2010(HTTP)",
+        "value": 27
+      },
+      {
+        "label" : "sharepoint 2010(HTTPS)",
+        "value": 28
+      }
+    ],
+    "description":"ASM contains predefined templates for known applications to allow easy deployment of ASM policy."
+  }
+}
