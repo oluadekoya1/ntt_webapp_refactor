@@ -25,6 +25,34 @@ export default function DefineAppCtrl($scope ,$state, $stateParams) {
 
     $scope.selectedKnownApp = $scope.KnownApplications.options[0];
 
+    $scope.parameters = [{id: 'parameter1'}];
+    $scope.addNewParameter = function() {
+        var newItemNo = $scope.parameters.length+1;
+        $scope.parameters.push({'id':'parameter'+newItemNo});
+    };
+    $scope.removeParameter = function() {
+        var lastItem = $scope.parameters.length-1;
+        $scope.parameters.splice(lastItem);
+    };
+
+    $scope.uris = [{id: 'uri1'}];
+    $scope.addNewUri = function() {
+        var newItemNo = $scope.uris.length+1;
+        $scope.uris.push({'id':'uri'+newItemNo});
+    };
+    $scope.removeUri = function() {
+        var lastItem = $scope.uris.length-1;
+        $scope.uris.splice(lastItem);
+    };
+
+
+
+
+
+
+
+
+
 }
 
 DefineAppCtrl.$inject = ['$scope', '$state', '$stateParams'];

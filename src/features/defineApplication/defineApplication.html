@@ -25,6 +25,7 @@
                 <input type="text" class="form-control" id="">
             </div><!-- /input-group -->
         </div>
+
         <div class="col-sm-6" ng-if="selectedAppType.value === 2">
             <div class="input-group">
                 <span class="input-group-addon">{{KnownApplications.question}}</span>
@@ -32,24 +33,86 @@
             </div>
         </div>
     </div>
+    <br>
+    <br>
+    <br>
+
     <div class="row bottom-spaced-10">
-        <br>
-        <br>
-        <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12 list-cont-div" ng-if="selectedAppType.value === 1">
-            <div class="list-checkbox-div" ng-repeat="(key, value) in customOptions">
-                <input id="custom-option-{{key}}" class="checkbox-custom" name="customOptions" type="checkbox" ng-checked="value.checked" value={{value.value}}>
-                <label for="custom-option-{{key}}" class="checkbox-custom-label font-weight-500">{{value.label}}</label>
+        <div>
+            <div class="col-sm-6">
+            <div class=" list-cont-div" ng-if="selectedAppType.value === 1">
+                <div class="list-checkbox-div" ng-repeat="(key, value) in customOptions">
+                    <input id="custom-option-{{key}}" class="checkbox-custom" name="customOptions" type="checkbox" ng-checked="value.checked" value={{value.value}}>
+                    <label for="custom-option-{{key}}" class="checkbox-custom-label font-weight-500">{{value.label}}</label>
+                </div>
             </div>
-        </div>
-        <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12 list-cont-div" ng-if="selectedAppType.value === 2">
-            <div class="list-checkbox-div" ng-repeat="(key, value) in knownAppOptions">
-                <input id="known-app-{{key}}" class="checkbox-custom" name="customOptions" type="checkbox" ng-checked="value.checked" value={{value.value}}>
-                <label for="known-app-{{key}}" class="checkbox-custom-label font-weight-500">{{value.label}}</label>
+            <div  class=" list-cont-div" ng-if="selectedAppType.value === 2">
+                <div class="list-checkbox-div" ng-repeat="(key, value) in knownAppOptions">
+                    <input id="known-app-{{key}}" class="checkbox-custom" name="customOptions" type="checkbox" ng-checked="value.checked" value={{value.value}}>
+                    <label for="known-app-{{key}}" class="checkbox-custom-label font-weight-500">{{value.label}}</label>
+                </div>
             </div>
-        </div>
+            </div>
+            <div class="col-sm-6">
+                <fieldset data-ng-repeat="uri in uris" ng-if="selectedAppType.value === 1">
+                    <div class="input-group ">
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary" type="button">Uniform Resource Identifier (URI)</button>
+                        </div><!-- /btn-group -->
+                        <input type="text" class="form-control"  ng-model="uri.name" placeholder="Enter URI details">
+                    </div><!-- /input-group -->
+                </fieldset>
+                <button class="add_but" ng-if="selectedAppType.value === 1" ng-click="addNewUri()">+</button>
+                <button class="remove" ng-if="selectedAppType.value === 1"  ng-click="removeUri()">-</button>
+                <fieldset data-ng-repeat="uri in uris" ng-if="selectedAppType.value === 2">
+                    <div class="input-group " >
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary" type="button">Uniform Resource Identifier (URI)</button>
+                        </div><!-- /btn-group -->
+                        <input type="text" class="form-control"  ng-model="uri.name" placeholder="Enter URI details">
+                    </div>
+                </fieldset>
+                <button class="add_but" ng-if="selectedAppType.value === 2" ng-click="addNewUri()">+</button>
+                <button class="remove" ng-if="selectedAppType.value === 2"  ng-click="removeUri()">-</button>
+                <br>
+                <br>
+                <fieldset data-ng-repeat="parameter in parameters" ng-if="selectedAppType.value === 1">
+                    <div class="input-group ">
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary" type="button">Parameter</button>
+                        </div><!-- /btn-group -->
+                        <input type="text" class="form-control"  ng-model="parameter.name" placeholder="Enter parameter details">
+                    </div><!-- /input-group -->
+                </fieldset>
+                <button class="add_but" ng-if="selectedAppType.value === 1" ng-click="addNewParameter()">+</button>
+                <button class="remove" ng-if="selectedAppType.value === 1"  ng-click="removeParameter()">-</button>
+                <fieldset data-ng-repeat="parameter in parameters" ng-if="selectedAppType.value === 2">
+                    <div class="input-group " >
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary" type="button">Parameter</button>
+                        </div><!-- /btn-group -->
+                        <input type="text" class="form-control"  ng-model="parameter.name" placeholder="Enter parameter details">
+                    </div>
+                </fieldset>
+                <button class="add_but" ng-if="selectedAppType.value === 2" ng-click="addNewParameter()">+</button>
+                <button class="remove" ng-if="selectedAppType.value === 2"  ng-click="removeParameter()">-</button>
+            </div>
+
     </div>
 
 </div>
+
+
+
+    <div id="ParametersDisplay">
+        {{ parameters }}
+    </div>
+
+    <div id="UrisDisplay">
+        {{ uris }}
+    </div>
+
+
 
 
 
