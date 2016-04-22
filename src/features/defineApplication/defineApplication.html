@@ -22,7 +22,7 @@
                 <div class="input-group-btn">
                     <button class="btn btn-primary" type="button">Full Qualified Domain Name (Main)</button>
                 </div><!-- /btn-group -->
-                <input type="text" class="form-control" id="">
+                <input type="text" class="form-control" id="appFqdn" ng-model="appFqdn">
             </div><!-- /input-group -->
         </div>
 
@@ -42,13 +42,13 @@
             <div class="col-sm-6">
             <div class=" list-cont-div" ng-if="selectedAppType.value === 1">
                 <div class="list-checkbox-div" ng-repeat="(key, value) in customOptions">
-                    <input id="custom-option-{{key}}" class="checkbox-custom" name="customOptions" type="checkbox" ng-checked="value.checked" value={{value.value}}>
+                    <input id="custom-option-{{key}}" class="checkbox-custom" name="customOptions" type="checkbox" ng-model="value.checked" value={{value.value}}>
                     <label for="custom-option-{{key}}" class="checkbox-custom-label font-weight-500">{{value.label}}</label>
                 </div>
             </div>
             <div  class=" list-cont-div" ng-if="selectedAppType.value === 2">
                 <div class="list-checkbox-div" ng-repeat="(key, value) in knownAppOptions">
-                    <input id="known-app-{{key}}" class="checkbox-custom" name="customOptions" type="checkbox" ng-checked="value.checked" value={{value.value}}>
+                    <input id="known-app-{{key}}" class="checkbox-custom" name="customOptions" type="checkbox" ng-model="value.checked" value={{value.value}}>
                     <label for="known-app-{{key}}" class="checkbox-custom-label font-weight-500">{{value.label}}</label>
                 </div>
             </div>
@@ -104,13 +104,25 @@
 
 
 
-    <div id="ParametersDisplay">
-        {{ parameters }}
+    <!--<div id="ParametersDisplay">-->
+        <!--{{ parameters }}-->
+    <!--</div>-->
+
+    <!--<div id="UrisDisplay">-->
+        <!--{{ uris }}-->
+    <!--</div>-->
+
+    <div class="button-align-right">
+        <button class="btn btn-success" ng-click="SaveappDefn()">Save</button>
     </div>
 
-    <div id="UrisDisplay">
-        {{ uris }}
-    </div>
+
+
+
+
+
+
+
 
 
 

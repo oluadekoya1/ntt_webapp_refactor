@@ -55,7 +55,7 @@ function appServices($http, $q) {
             this.$http.get('/api/get-all/' + this.username)
                 .success(function (data) {
                     var result = [];
-                    data.forEach((app) => {
+                    data.forEach(function(app){
                         var newApp = {
                             id : app.id * 1,
                             username : app.username,
@@ -66,7 +66,13 @@ function appServices($http, $q) {
                             assessmentList : JSON.parse(app.criticality),
                             policyDefinition: JSON.parse(app.policy) ,
                             status : app.application_status,
-                            policyCheck : (app.policy_check === 'true')
+                            policyCheck : (app.policy_check === 'true'),
+                            knownAppOptions : app.features,
+                            uris : app.uris,
+                            appFqdn : app.application_fqdn,
+                            selectedAppType : app.application_type,
+                            parameters : app.parameters,
+                            features1 :  app.features
                         };
                         result.push(newApp);
                     });
@@ -78,6 +84,22 @@ function appServices($http, $q) {
 
             return dfd.promise;
         }
+
+    };
+
+    this.getAppWIthID = function(id){
+        var dfd = $q.defer();
+
+        this.$http.get('/api/get-app-with-id/' + id)
+                .success(function (data) {
+                    dfd.resolve(data);
+                })
+                .error(function (error) {
+                    dfd.reject(error)
+                });
+
+            return dfd.promise;
+
 
     };
 

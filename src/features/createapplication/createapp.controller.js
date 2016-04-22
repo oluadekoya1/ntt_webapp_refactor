@@ -139,27 +139,27 @@ export default function CreateAppCtrl($scope ,$state, $stateParams, $http, allAp
         };
     }());
 
-    $scope.appName = "";
-    $scope.appDescription = "";
-    $scope.header = ($state.params && $state.params.id) ? "Edit Application" : "Create Application";
-    //$scope.allList = (sessionStorage.allList) ? JSON.parse(sessionStorage.allList) : [];
-    $scope.allList = angular.copy(allApp) ;
-    $scope.tabs = angular.copy(questionData);
-    $scope.computeResult = getResult($scope.allList);
-
-    $scope.readFile = function(){
-        $http.get('/api/getxml')
-            .success(function (data) {
-                var xmlfile = '<?xml version="1.0" encoding="utf-8"?>' + data.xmlfile;
-                //var parser = new DOMParser();
-               // var xmlDoc = parser.parseFromString( xmlfile ,"text/xml");
-                window.open('data:text/xml,' + encodeURIComponent(xmlfile));
-            })
-            .error(function (error) {
-                console.log(error);
-            });
-
-    };
+    //$scope.appName = "";
+    //$scope.appDescription = "";
+    //$scope.header = ($state.params && $state.params.id) ? "Edit Application" : "Create Application";
+    ////$scope.allList = (sessionStorage.allList) ? JSON.parse(sessionStorage.allList) : [];
+    //$scope.allList = angular.copy(allApp) ;
+    //$scope.tabs = angular.copy(questionData);
+    //$scope.computeResult = getResult($scope.allList);
+    //
+    //$scope.readFile = function(){
+    //    $http.get('/api/getxml')
+    //        .success(function (data) {
+    //            var xmlfile = '<?xml version="1.0" encoding="utf-8"?>' + data.xmlfile;
+    //            //var parser = new DOMParser();
+    //           // var xmlDoc = parser.parseFromString( xmlfile ,"text/xml");
+    //            window.open('data:text/xml,' + encodeURIComponent(xmlfile));
+    //        })
+    //        .error(function (error) {
+    //            console.log(error);
+    //        });
+    //
+    //};
 
     $scope.editAssessment = function(id){
         $state.go('edit-assessment', {redirect : true, id : id});

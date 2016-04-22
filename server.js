@@ -79,14 +79,20 @@ app.post('/api/save', function (request, response) {
             username = request.body.username,
             criticalityComplete  = request.body.assessApp,
             appName = request.body.appName,
-              appDescription = request.body.appDescription,
+            appDescription = request.body.appDescription,
             commonQns = request.body.commonQuestions,
             criticality = request.body.assessmentList,
             policy = request.body.policyDefinition,
             status = request.body.status,
-            policyCheck = "false";
+            policyCheck = "false",
+            customOptions = request.body.customOptions,
+            uris = request.body.uris,
+            application_Fqdn = request.body.appFqdn,
+            application_type = request.body.selectedAppType,
+            parameters =request.body.parameters,
+            knownApp = request.body.knownAppOptions;
 
-        client.query( "INSERT INTO appdetails VALUES ('"+id+"','"+username+"','"+criticalityComplete+"','"+appName+"','"+appDescription+"','"+commonQns+"','"+criticality+"','"+policy+"', '"+status+"','"+policyCheck+"' )", function(err, result) {
+        client.query( "INSERT INTO appdetails VALUES ('"+id+"','"+username+"','"+criticalityComplete+"','"+appName+"','"+appDescription+"','"+commonQns+"','"+criticality+"','"+policy+"', '"+status+"','"+policyCheck+"' ,'"+customOptions+"','"+uris+"','"+application_Fqdn+"','"+application_type+"', '"+parameters+"','"+knownApp+"' )", function(err, result) {
             done();
             if (err) {
                 console.error(err); response.send("Error " + err);
@@ -148,6 +154,22 @@ app.get('/api/get-all/:username', function (request, response) {
     pg.connect(connectionString, function(err, client, done) {
 
         client.query( "SELECT * FROM appdetails WHERE username = '"+request.params.username+"'", function(err, result) {
+            done();
+            if (err) {
+                console.error(err); response.send("Error " + err);
+            }
+            else {
+                response.send(result.rows);
+            }
+        });
+    });
+});
+
+app.get('/api/get-app-with-id/:id', function (request, response) {
+
+    pg.connect(connectionString, function(err, client, done) { console.log(request.params.id);
+
+        client.query( "SELECT  * FROM appdetails WHERE id = '"+request.params.id+"'", function(err, result) {
             done();
             if (err) {
                 console.error(err); response.send("Error " + err);

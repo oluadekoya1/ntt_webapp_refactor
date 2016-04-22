@@ -1,0 +1,119 @@
+<menubar></menubar>
+
+
+<div class="container def_font">
+    <div class="row bottom-spaced-10">
+        <div class="col-sm-6">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button class="btn btn-primary" type="button">Application Name</button>
+                </div><!-- /btn-group -->
+                <input type="text" class="form-control" id="textfield1" ng-model="appName">
+            </div><!-- /input-group -->
+        </div>
+        <div class="col-sm-6">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button class="btn btn-primary" type="button">Application Type</button>
+                </div><!-- /btn-group -->
+                <input type="text" class="form-control" id="textfield3" ng-model="selectedAppType">
+            </div>
+        </div>
+    </div>
+
+    <div class="row bottom-spaced-10">
+        <div class="col-sm-2">
+
+        </div>
+        <div class="col-sm-8">
+
+            <br>
+            <br>
+            <div>
+
+            </div>
+            <br>
+            <br>
+
+            <div ng-init="getAppData()">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr ng-if="appType === 1">
+                        <th></th>
+                        <th ng-repeat="header in rowHeader">{{header.name}}</th>
+                    </tr>
+                    <tr ng-if="appType === 2">
+                        <th></th>
+                        <th>{{appDescribe}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="col in colHeader" ng-show="col.checked"  ng-if="appType === 1">
+                        <td>{{col.label}}</td>
+                        <td ng-repeat="row in rowHeader" class="td_2">
+                            <input id={{col.label}}{{row.id}} class="checkbox-custom " name={{row.id}} type="checkbox">
+                            <label for={{col.label}}{{row.id}} class="checkbox-custom-label font-weight-500"></label>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="col in colHeader" ng-show="col.checked"  ng-if="appType === 2">
+                        <td>{{col.label}}</td>
+                        <td class="td_2">
+                            <input id={{col.label}}{{appType}} class="checkbox-custom" name={{appType}}{{col.label}} type="checkbox">
+                            <label for={{col.label}}{{appType}} class="checkbox-custom-label font-weight-500"></label>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+
+        </div>
+        <div class="col-sm-2">
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+<!--<div ng-init="getAppData()">-->
+    <!--<table class="table table-bordered">-->
+        <!--<thead>-->
+        <!--<tr ng-if="appType === 1">-->
+            <!--<th></th>-->
+            <!--<th ng-repeat="header in rowHeader">{{header.name}}</th>-->
+        <!--</tr>-->
+        <!--<tr ng-if="appType === 2">-->
+            <!--<th></th>-->
+            <!--<th>{{appDescribe}}</th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+            <!--<tr ng-repeat="col in colHeader" ng-show="col.checked"  ng-if="appType === 1">-->
+                <!--<td>{{col.label}}</td>-->
+                <!--<td ng-repeat="row in rowHeader">-->
+                    <!--<input id={{col.label}}{{row.id}} class="checkbox-custom" name={{row.id}} type="checkbox">-->
+                    <!--<label for={{col.label}}{{row.id}} class="checkbox-custom-label font-weight-500"></label>-->
+                <!--</td>-->
+            <!--</tr>-->
+            <!--<tr ng-repeat="col in colHeader" ng-show="col.checked"  ng-if="appType === 2">-->
+                <!--<td>{{col.label}}</td>-->
+                <!--<td>-->
+                    <!--<input id={{col.label}}{{appType}} class="checkbox-custom" name={{appType}}{{col.label}} type="checkbox">-->
+                    <!--<label for={{col.label}}{{appType}} class="checkbox-custom-label font-weight-500"></label>-->
+                <!--</td>-->
+            <!--</tr>-->
+        <!--</tbody>-->
+    <!--</table>-->
+<!--</div>-->
+
+<div class="button-align-right">
+    <button class="btn btn-success" ng-click="create()">Submit</button>
+</div>
