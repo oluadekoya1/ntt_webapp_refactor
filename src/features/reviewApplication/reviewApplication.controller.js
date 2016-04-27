@@ -37,9 +37,7 @@ export default function reviewAppCtrl($scope ,$state, $stateParams, appServices 
         $scope.colHeader = $scope.currentAppData['known_applications'];
     }
 
-    $scope.create = function(){
-        $state.go('create-app', {username :$scope.user });
-    };
+
 
 }
 

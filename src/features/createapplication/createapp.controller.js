@@ -90,174 +90,154 @@ function  getResult(allList){
 // exporting the contents of the Create App Controller so that it is available to other pages
 export default function CreateAppCtrl($scope ,$state, $stateParams, $http, allApp, appServices) {
 
-    function getPolicyCnt(){
-        var policies = [],
-            policyQn,
-            policyQn2;
-
-        var opt1 = $scope.tabs[0].tabContent.filter(function(qn){
-            return qn.name === 'apinfo3';
-        });
-
-        var opt2 = $scope.tabs[0].tabContent.filter(function(qn){
-            return qn.name === 'apinfo4';
-        });
-
-
-        if(opt1[0].selectedAnswer.toLowerCase() === 'yes' && opt2[0].selectedAnswer.toLowerCase() === 'yes'){
-            policyQn = {cnt: 0, pd : angular.copy(policyQuestions)};
-            policyQn2 = {cnt: 1, pd : angular.copy(policyQuestions)};
-            policies = [policyQn, policyQn2]
-        } else {
-            policyQn = {cnt: 0, pd : angular.copy(policyQuestions)};
-            policies = [policyQn]
-        }
-
-        return policies;
-
-    }
-
-    function resetAll(){
-
-        $scope.appName = "";
-        $scope.appDescription = "";
-        $scope.tabs = angular.copy(questionData);
-    }
-
-    var saveData = (function () {
-        var a = document.createElement("a");
-        document.body.appendChild(a);
-        a.style = "display: none";
-        return function (data, fileName) {
-            var json = JSON.stringify(data),
-                blob = new Blob([json], {type: "text/xml"}),
-                url = window.URL.createObjectURL(blob);
-            a.href = url;
-            a.download = fileName;
-            a.click();
-            window.URL.revokeObjectURL(url);
-        };
-    }());
-
-    //$scope.appName = "";
-    //$scope.appDescription = "";
-    //$scope.header = ($state.params && $state.params.id) ? "Edit Application" : "Create Application";
-    ////$scope.allList = (sessionStorage.allList) ? JSON.parse(sessionStorage.allList) : [];
-    //$scope.allList = angular.copy(allApp) ;
-    //$scope.tabs = angular.copy(questionData);
-    //$scope.computeResult = getResult($scope.allList);
+    //function getPolicyCnt(){
+    //    var policies = [],
+    //        policyQn,
+    //        policyQn2;
     //
-    //$scope.readFile = function(){
-    //    $http.get('/api/getxml')
+    //    var opt1 = $scope.tabs[0].tabContent.filter(function(qn){
+    //        return qn.name === 'apinfo3';
+    //    });
+    //
+    //    var opt2 = $scope.tabs[0].tabContent.filter(function(qn){
+    //        return qn.name === 'apinfo4';
+    //    });
+    //
+    //
+    //    if(opt1[0].selectedAnswer.toLowerCase() === 'yes' && opt2[0].selectedAnswer.toLowerCase() === 'yes'){
+    //        policyQn = {cnt: 0, pd : angular.copy(policyQuestions)};
+    //        policyQn2 = {cnt: 1, pd : angular.copy(policyQuestions)};
+    //        policies = [policyQn, policyQn2]
+    //    } else {
+    //        policyQn = {cnt: 0, pd : angular.copy(policyQuestions)};
+    //        policies = [policyQn]
+    //    }
+    //
+    //    return policies;
+    //
+    //}
+    //
+    //function resetAll(){
+    //
+    //    $scope.appName = "";
+    //    $scope.appDescription = "";
+    //    $scope.tabs = angular.copy(questionData);
+    //}
+    //
+    //var saveData = (function () {
+    //    var a = document.createElement("a");
+    //    document.body.appendChild(a);
+    //    a.style = "display: none";
+    //    return function (data, fileName) {
+    //        var json = JSON.stringify(data),
+    //            blob = new Blob([json], {type: "text/xml"}),
+    //            url = window.URL.createObjectURL(blob);
+    //        a.href = url;
+    //        a.download = fileName;
+    //        a.click();
+    //        window.URL.revokeObjectURL(url);
+    //    };
+    //}());
+    //
+    //
+    //
+    //$scope.editAssessment = function(id){
+    //    $state.go('edit-assessment', {redirect : true, id : id});
+    //};
+    //
+    //$scope.editPolicy = function(id, cnt){
+    //    $state.go('edit-policy', {redirect : true, id : id, cnt: cnt });
+    //};
+    //
+    //$scope.dashboard = function(id){
+    //    $state.go('assess-doc', {id : id });
+    //};
+    //
+    //$scope.Policy1 = function(){
+    //    $state.go('policy');
+    //};
+    //
+    //$scope.deleteApp = function(id){
+    //
+    //    $http.post('/api/delete/' + id)
     //        .success(function (data) {
-    //            var xmlfile = '<?xml version="1.0" encoding="utf-8"?>' + data.xmlfile;
-    //            //var parser = new DOMParser();
-    //           // var xmlDoc = parser.parseFromString( xmlfile ,"text/xml");
-    //            window.open('data:text/xml,' + encodeURIComponent(xmlfile));
+    //            $scope.allList = $scope.allList.filter(function(list){
+    //                return list.id != id
+    //            });
     //        })
     //        .error(function (error) {
     //            console.log(error);
     //        });
     //
+    //    //$scope.allList = $scope.allList.filter(function(list){
+    //    //    return list.id != id
+    //    //});
+    // //   sessionStorage.allList = JSON.stringify($scope.allList);
     //};
-
-    $scope.editAssessment = function(id){
-        $state.go('edit-assessment', {redirect : true, id : id});
-    };
-
-    $scope.editPolicy = function(id, cnt){
-        $state.go('edit-policy', {redirect : true, id : id, cnt: cnt });
-    };
-
-    $scope.dashboard = function(id){
-        $state.go('assess-doc', {id : id });
-    };
-
-    $scope.Policy1 = function(){
-        $state.go('policy');
-    };
-
-    $scope.deleteApp = function(id){
-
-        $http.post('/api/delete/' + id)
-            .success(function (data) {
-                $scope.allList = $scope.allList.filter(function(list){
-                    return list.id != id
-                });
-            })
-            .error(function (error) {
-                console.log(error);
-            });
-
-        //$scope.allList = $scope.allList.filter(function(list){
-        //    return list.id != id
-        //});
-     //   sessionStorage.allList = JSON.stringify($scope.allList);
-    };
-
-    //$scope.downloadXML = function(){
     //
-    //    var jsonString = JSON.stringify(xmlfile);
+    ////$scope.downloadXML = function(){
+    ////
+    ////    var jsonString = JSON.stringify(xmlfile);
+    ////
+    ////    var xmlString = js2xmlparser("policy", jsonString);
+    ////
+    ////    var a = document.createElement('a');
+    ////    a.setAttribute("href", "data:application/xml;charset=utf-8," + xmlString);
+    ////    a.setAttribute("download", "my.xml");
+    ////    a.click();
+    ////
+    ////};
     //
-    //    var xmlString = js2xmlparser("policy", jsonString);
+    //$scope.TableUpdate = function() { console.log(appServices);
     //
-    //    var a = document.createElement('a');
-    //    a.setAttribute("href", "data:application/xml;charset=utf-8," + xmlString);
-    //    a.setAttribute("download", "my.xml");
-    //    a.click();
+    //    if ($scope.appName == null || $scope.appName == "") {
+    //        alert("Application Name must be filled out");
+    //    } else {
+    //        let date = new Date(),
+    //            assessmentQns = angular.copy(assessmentQuestions),
+    //            policyQns = getPolicyCnt();
+    //
+    //        //create new application
+    //        var newApp = {
+    //                id : date.getTime(),
+    //                username : appServices.username,
+    //                assessApp : 'false',
+    //                policyCheck: 'false',
+    //                appName : $scope.appName,
+    //                appDescription: $scope.appDescription,
+    //                commonQuestions: JSON.stringify($scope.tabs[0]),
+    //                assessmentList : JSON.stringify([assessmentQns]),
+    //                policyDefinition: JSON.stringify(policyQns) ,
+    //                status : 'in progress'
+    //            },
+    //            newJSONApp = {
+    //                id : date.getTime(),
+    //                username : appServices.username,
+    //                assessApp : false,
+    //                policyCheck: false,
+    //                appName : $scope.appName,
+    //                appDescription: $scope.appDescription,
+    //                commonQuestions: $scope.tabs[0],
+    //                assessmentList : [assessmentQns],
+    //                policyDefinition: policyQns ,
+    //                status : 'in progress'
+    //            };
+    //
+    //
+    //        $http.post('/api/save', newApp)
+    //            .success(function(){
+    //                $scope.allList.push(newJSONApp);
+    //            })
+    //            .error(function(data){
+    //                console.log(data);
+    //            });
+    //
+    //
+    //        resetAll();
+    //    }
+    //
     //
     //};
-
-    $scope.TableUpdate = function() { console.log(appServices);
-
-        if ($scope.appName == null || $scope.appName == "") {
-            alert("Application Name must be filled out");
-        } else {
-            let date = new Date(),
-                assessmentQns = angular.copy(assessmentQuestions),
-                policyQns = getPolicyCnt();
-
-            //create new application
-            var newApp = {
-                    id : date.getTime(),
-                    username : appServices.username,
-                    assessApp : 'false',
-                    policyCheck: 'false',
-                    appName : $scope.appName,
-                    appDescription: $scope.appDescription,
-                    commonQuestions: JSON.stringify($scope.tabs[0]),
-                    assessmentList : JSON.stringify([assessmentQns]),
-                    policyDefinition: JSON.stringify(policyQns) ,
-                    status : 'in progress'
-                },
-                newJSONApp = {
-                    id : date.getTime(),
-                    username : appServices.username,
-                    assessApp : false,
-                    policyCheck: false,
-                    appName : $scope.appName,
-                    appDescription: $scope.appDescription,
-                    commonQuestions: $scope.tabs[0],
-                    assessmentList : [assessmentQns],
-                    policyDefinition: policyQns ,
-                    status : 'in progress'
-                };
-
-
-            $http.post('/api/save', newApp)
-                .success(function(){
-                    $scope.allList.push(newJSONApp);
-                })
-                .error(function(data){
-                    console.log(data);
-                });
-
-
-            resetAll();
-        }
-
-
-    };
 
 };
 

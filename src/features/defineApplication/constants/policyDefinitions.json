@@ -2,18 +2,7 @@
   "KnownApplications": {
     "question": "Application Description",
     "options" : [
-      {
-        "label" : "please select",
-        "value" : -1
-      },
-      {
-        "label" : "no",
-        "value" : 0
-      },
-      {
-        "label" : "activesync v1.0 v2.0(HTTP)",
-        "value": 1
-      },
+      { "label" : "activesync v1.0 v2.0(HTTP)", "value": 1 },
       {
         "label" : "activesync v1.0 v2.0(HTTPS)",
         "value": 2
