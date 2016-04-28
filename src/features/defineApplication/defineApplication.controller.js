@@ -6,15 +6,62 @@ import assessmentQuestions from '../createapplication/constants/assessment.json'
 import policyQuestions from '../createapplication/constants/policyDefine.json';
 import questionData1 from '../defineApplication/constants/constant1.json';
 
+function makeid() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 5; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}
+
+function createCustomOption(){
+    var cOption = angular.copy(features.questionFeatures);
+
+    for (var i in cOption){
+
+        for(var prop in cOption[i]){
+            if(prop === "options"){
+                cOption[i][prop].forEach(function(obj){
+                    obj.id = obj.id+"-"+makeid();
+                });
+            }
+        }
+
+
+    }
+
+    return angular.copy(cOption);
+}
+
+
+function createKnowAppOptions(){
+    var kOption = angular.copy(features.questionFeatures);
+
+    for (var i in kOption){
+
+        for(var prop in kOption[i]){
+            if(prop === "options"){
+                kOption[i][prop].forEach(function(obj){
+                    obj.id = obj.id+"-"+makeid();
+                });
+            }
+        }
+
+    }
+
+    kOption.owasp.checked = true;
+
+    kOption.api.checked = true;
+
+    return angular.copy(kOption);
+}
+
+
 export default function DefineAppCtrl($scope ,$state, $stateParams, $http, appServices) {
 
-    $scope.customOptions = angular.copy(features.questionFeatures);
-
-    $scope.knownAppOptions = angular.copy(features.questionFeatures);
-
-    $scope.knownAppOptions.owasp.checked = true;
-
-    $scope.knownAppOptions.api.checked = true;
+    //common questions
 
     $scope.appFunc = angular.copy(questionData1.appFunc);
 
@@ -23,6 +70,8 @@ export default function DefineAppCtrl($scope ,$state, $stateParams, $http, appSe
     $scope.multiHttpFunc = angular.copy(questionData1.multiHttpFunc);
 
     $scope.specificHttpFunc = angular.copy(questionData1.specificHttpFunc);
+
+    //end of common questions
 
     $scope.appTypes = angular.copy(features.applicationTypes);
 
@@ -50,12 +99,16 @@ export default function DefineAppCtrl($scope ,$state, $stateParams, $http, appSe
 
     $scope.appFqdn =  "";
 
-    $scope.uris = [{id: 'uri1'}];
+    $scope.uris = [];
+
+    $scope.knownAppOptions = createKnowAppOptions();
 
     $scope.selectedKnownApp = $scope.KnownApplications.options[0];
 
-
     $scope.addNewUri = function() {
+
+        $scope.customOptions = createCustomOption();
+
         var newItemNo = $scope.uris.length+1;
         $scope.uris.push({'id':'uri'+newItemNo});
     };
@@ -99,7 +152,7 @@ export default function DefineAppCtrl($scope ,$state, $stateParams, $http, appSe
             $http.post('/api/save', stringifyNewApp)
                 .success(function(){
                     //$scope.allList.push(newJSONApp);
-                   // $state.go('review-app', { id : id });
+                   $state.go('review-app', { id : id });
                 })
                 .error(function(data){
                     console.log(data);
@@ -112,8 +165,8 @@ export default function DefineAppCtrl($scope ,$state, $stateParams, $http, appSe
     };
 
     $scope.$watch('selectedAppType.value', function() {
+
         if($scope.selectedAppType.value === 1){
-            $scope.selectedFeatures = [];
 
             $scope.appFunc = angular.copy(questionData1.appFunc);
 
@@ -123,17 +176,13 @@ export default function DefineAppCtrl($scope ,$state, $stateParams, $http, appSe
 
             $scope.specificHttpFunc = angular.copy(questionData1.specificHttpFunc);
 
-            $scope.uris = [{id: 'uri1'}];
+            $scope.uris.length = 0;
 
             $scope.parameters = [{id: 'parameter1'}];
 
-        }else{
-            $scope.selectedFeatures = [{"label" : "OWASP Top 10 Application Vulnerability", "value" : 1, "checked" : false},
-                {"label" : "Web Services (SOAP and REST)", "value" : 2, "checked" : false}];
         }
+
     });
-
-
 
     $scope.checkItems = function(obj){
         if(obj.checked){

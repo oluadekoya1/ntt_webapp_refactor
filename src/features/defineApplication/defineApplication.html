@@ -1,4 +1,5 @@
 <menubar></menubar>
+
 <div class="container def_font">
     <div class="row bottom-spaced-10">
         <div class="col-sm-2">
@@ -25,9 +26,7 @@
     </div>
 
     <div class="row bottom-spaced-10">
-        <div class="col-sm-2">
-
-        </div>
+        <div class="col-sm-2"></div>
         <div class="col-sm-5">
             <div class="input-group">
                 <div class="input-group-btn">
@@ -36,7 +35,6 @@
                 <input type="text" class="form-control" id="appFqdn" ng-model="appFqdn">
             </div><!-- /input-group -->
         </div>
-
         <div class="col-sm-5" ng-if="selectedAppType.value === 2">
             <div class="input-group">
                 <span class="input-group-addon">{{KnownApplications.question}}</span>
@@ -44,7 +42,6 @@
             </div>
         </div>
     </div>
-
     <div class="row bottom-spaced-10" ng-if="selectedAppType.value === 1">
         <div class="col-sm-2">
 
@@ -60,9 +57,9 @@
                     </div>
                 </div>
                 <div class="div-50-percent" ng-if="appFunc.selectedAnswer === 'Yes'">
-                    <label class="font-weight-500">{{uriFunc.question}}</label>
-                    <i class="glyphicon glyphicon-question-sign question-sign-color" data-toggle="tooltip" title={{uriFunc.description}}></i>
-                    <div ng-repeat="option in uriFunc.options">
+                    <label class="font-weight-500 question_position">{{uriFunc.question}}</label>
+                    <i class="glyphicon glyphicon-question-sign question-sign-color " data-toggle="tooltip" title={{uriFunc.description}}></i>
+                    <div class="question_position" ng-repeat="option in uriFunc.options">
                         <input id={{uriFunc.name}}{{option}} class="radio-custom" name={{uriFunc.name}} type="radio" value={{option}} ng-model="uriFunc.selectedAnswer">
                         <label for={{uriFunc.name}}{{option}} class="radio-custom-label font-weight-500">{{option}}</label>
                     </div>
@@ -85,7 +82,7 @@
                 </div>
                 <div class="div-50-percent">
                     <label class="font-weight-500">{{multiHttpFunc.question}}</label>
-                    <i class="glyphicon glyphicon-question-sign question-sign-color" data-toggle="tooltip" title={{multiHttpFunc.description}}></i>
+                    <i class="glyphicon  question-sign-color" data-toggle="tooltip" title={{multiHttpFunc.description}}></i>
                     <div ng-repeat="option in multiHttpFunc.options">
                         <input id={{multiHttpFunc.name}}{{option}} class="radio-custom" name={{multiHttpFunc.name}} type="radio" value={{option}} ng-model="multiHttpFunc.selectedAnswer">
                         <label for={{multiHttpFunc.name}}{{option}} class="radio-custom-label font-weight-500">{{option}}</label>
@@ -130,66 +127,19 @@
                     </div><!-- /btn-group -->
                 </div><!-- /input-group -->
             </div>
-            <div class="col-sm-5">
-            <div class=" list-cont-div" ng-if="selectedAppType.value === 1">
-                <div class="list-checkbox-div" ng-repeat="(key, value) in customOptions">
-                    <input id="custom-option-{{key}}" class="checkbox-custom" name="customOptions" type="checkbox" ng-model="value.checked" value={{value.value}} ng-change="checkItems(value)">
-                    <label for="custom-option-{{key}}" class="checkbox-custom-label font-weight-500">{{value.label}}</label>
-                </div>
-            </div>
-            <div  class="list-cont-div" ng-if="selectedAppType.value === 2">
-                <div class="list-checkbox-div" ng-repeat="(key, value) in knownAppOptions">
-                    <input id="known-app-{{key}}" class="checkbox-custom" name="customOptions" type="checkbox" ng-model="value.checked" value={{value.value}} ng-change="checkItems(value)" >
-                    <label for="known-app-{{key}}" class="checkbox-custom-label font-weight-500">{{value.label}}</label>
-                </div>
-            </div>
-            </div>
-    </div>
-
-</div>
-
-    <br>
-    <br>
-    <br>
-    <div class="row bottom-spaced-10">
-        <div>
-            <div class="col-sm-2">
-                <div class="input-group">
-                    <div class="input-group-btn">
-                        <button class="btn btn-info tabBut_size" type="button">Review Application</button>
-                    </div><!-- /btn-group -->
-                </div>
-
-            </div>
             <div class="col-sm-8">
-                <table class="table table-bordered">
-                    <thead>
-                    <tr ng-if="selectedAppType.value * 1 === 1">
-                        <!--<th>{{uris}}</th>-->
-                        <th></th>
-                        <th ng-repeat="uri in uris">{{uri.name}}</th>
-                    </tr>
-                    <tr ng-if="selectedAppType.value * 1 === 2">
-                        <th></th>
-                        <th>{{selectedKnownApp.label}}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="col in selectedFeatures">
-                            <td>{{col.label}}</td>
-                            <td ng-repeat="row in uris" class="td_2">
-                                <input id={{col.label}}{{row.id}} class="checkbox-custom " name={{row.id}} type="checkbox">
-                                <label for={{col.label}}{{row.id}} class="checkbox-custom-label font-weight-500"></label>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <generic-table selected-app-type="selectedAppType" custom-options="customOptions" known-app-options="knownAppOptions" uris="uris" selected-known-app="selectedKnownApp"></generic-table>
             </div>
         </div>
     </div>
+</div>
 
- </div>
+
+
 
 <div class="button-align-right">
     <button class="btn btn-success" ng-click="SaveappDefn()">Save</button>
 </div>
+
+
+

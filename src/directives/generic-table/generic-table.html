@@ -1,0 +1,46 @@
+<div>
+    <table class="table table-bordered" ng-if="selectedAppType.value * 1 === 1 && uris.length > 0">
+        <thead>
+            <tr ng-if="selectedAppType.value * 1 === 1">
+                <th></th>
+                <th ng-repeat="uri in uris">{{uri.name}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="(key,col) in customOptions"  ng-if="selectedAppType.value * 1 === 1">
+                <td>{{col.label}}</td>
+                <td ng-repeat="row in uris" class="td_2">
+                    <div ng-if="col.type === 'dropdown'">
+                        <div ng-dropdown-multiselect="" option-array="col.options" options-data="col.optionsdata" ></div>
+                    </div>
+                    <div ng-if="col.type === 'checkbox'">
+                        <input id={{col.label}}{{row.id}} class="checkbox-custom " name={{row.id}} type="checkbox">
+                         <label for={{col.label}}{{row.id}} class="checkbox-custom-label font-weight-500"></label>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-bordered " ng-if="selectedAppType.value * 1 === 2">
+        <thead>
+        <tr ng-if="selectedAppType.value * 1 === 2">
+            <th></th>
+            <th>{{selectedKnownApp.label}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="(key,col) in knownAppOptions"  ng-if="selectedAppType.value * 1 === 2">
+            <td>{{col.label}}</td>
+            <td class="td_2">
+                <div ng-if="col.type === 'dropdown'">
+                    <div ng-dropdown-multiselect="" option-array="col.options" options-data="col.optionsdata"></div>
+                </div>
+                <div ng-if="col.type === 'checkbox'">
+                    <input id={{col.label}}{{selectedKnownApp}} class="checkbox-custom " name={{selectedKnownApp}} type="checkbox">
+                    <label for={{col.label}}{{selectedKnownApp}} class="checkbox-custom-label font-weight-500"></label>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

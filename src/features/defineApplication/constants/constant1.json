@@ -18,25 +18,5 @@
     "name": "uri-func",
     "selectedAnswer" : "",
     "ansDescription": ""
-  },
-  "multiHttpFunc" : {
-    "question" : "Are multiple functions accessed through specific HTTP parameters?",
-    "description":"In some cases different application functions can be accessed through different HTTP parameters.For example, web portal will be accessed will be accessed through: www.example.com/en?function=portal,whilst a KB will be accessed through:www.example.com/en?function=kb ",
-    "type":"radio",
-    "page":"right",
-    "options" : ["Yes", "No"],
-    "name": "multi-http-func",
-    "selectedAnswer" : "",
-    "ansDescription": ""
-  },
-  "specificHttpFunc" : {
-    "question": "Are application specific functions accessed through specific HTTP parameters?",
-    "description": "In some cases different application functions can be accessed through different HTTP parameters.For example, web portal will be accessed will be accessed through: www.example.com/en?function=portal,whilst a KB will be accessed through:www.example.com/en?function=kb ",
-    "type": "radio",
-    "page": "left",
-    "options": [ "Yes", "No" ],
-    "name": "specific-http-func",
-    "selectedAnswer": "",
-    "ansDescription": ""
   }
 }

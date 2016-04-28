@@ -1,11 +1,11 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import lodash from "lodash";
 import angular from 'angular';
 import uirouter from 'angular-ui-router';
 import swal from 'sweetalert';
 import signIn from './features/signIn/index';
 import homepage from './features/homepage/index';
-
 import createapp from './features/createapplication/index';
 import defineapp from './features/defineApplication/index';
 import reviewapp from './features/reviewApplication/index';
