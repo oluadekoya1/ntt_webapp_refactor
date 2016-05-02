@@ -148,7 +148,45 @@ function appServices($http, $q) {
 
         return dfd.promise;
 
-    }
+    };
+
+    this.getAllSavedApp = function(){
+        var dfd = $q.defer();
+
+        this.$http.get('/api/get-saved-app/' + this.username)
+            .success(function (data) {
+                var result = [];
+                data.forEach(function (app) {
+                    var newApp = {
+                        id: app.id * 1,
+                        username: app.username,
+                        appName: app["application_name"],
+                        selectedAppType: app["application_type"],
+                        appFqdn: app["domain_name"],
+                        selectedKnownApp: app["application_description"],
+                        general_questions: app["general_questions"],
+                        assessmentList: JSON.parse(app["criticality_questions"]),
+                        policyDefinition: app["policy_design_questions"],
+                        assessCheck: app["criticality_check"],
+                        policyCheck: app["policy_check"],
+                        uris: JSON.parse(app["uris"]),
+                        parameters: JSON.parse(app["parameters"]),
+                        knownAppOptions: JSON.parse(app["known_application"])
+                    };
+                    result.push(newApp);
+
+                    dfd.resolve(result);
+                })
+            })
+            .error(function (error) {
+                dfd.reject(error)
+            });
+
+        return dfd.promise;
+
+
+    };
+
 
 }
 

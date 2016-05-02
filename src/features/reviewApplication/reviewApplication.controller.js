@@ -6,23 +6,29 @@ export default function reviewAppCtrl($scope ,$state, $stateParams, appServices 
 
     $scope.currentAppData = {};
 
-    $scope.getAppData = function(){
-        appServices.getAppWIthID($state.params.id).then(function(data){
-            data = data[0];
-            data['application_type'] = data['application_type'] * 1;
-            data.uris = JSON.parse(data.uris);
-            data.parameters = JSON.parse(data.parameters);
-            data.criticality = JSON.parse(data.criticality);
-            data['custom_options'] = JSON.parse(data['custom_options']);
-            data['known_applications'] = JSON.parse(data['known_applications']);
+    $scope.getAllSavedApp = function(){
 
-            $scope.appDescribe = data['application_description'];
+        appServices.getAllSavedApp().then(function(data){
 
-            $scope.appType = data['application_type'];
+            $scope.allSavedApps = data;
 
-            $scope.currentAppData = data;  console.log($scope);
+            console.log(data);
 
-            ($scope.currentAppData['application_type'] === 1 )  ? customApp() : knownApp();
+            //data = data[0];
+            //data['application_type'] = data['application_type'] * 1;
+            //data.uris = JSON.parse(data.uris);
+            //data.parameters = JSON.parse(data.parameters);
+            //data.criticality = JSON.parse(data.criticality);
+            //data['custom_options'] = JSON.parse(data['custom_options']);
+            //data['known_applications'] = JSON.parse(data['known_applications']);
+            //
+            //$scope.appDescribe = data['application_description'];
+            //
+            //$scope.appType = data['application_type'];
+            //
+            //$scope.currentAppData = data;  console.log($scope);
+            //
+            //($scope.currentAppData['application_type'] === 1 )  ? customApp() : knownApp();
         })
     };
 

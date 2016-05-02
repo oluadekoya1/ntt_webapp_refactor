@@ -104,6 +104,53 @@ app.post('/api/save', function (request, response) {
     });
 });
 
+
+app.post('/api/save1', function (request, response) {
+
+    pg.connect(connectionString, function(err, client, done) {
+        var id = request.body.id,
+            username = request.body.username,
+            application_name = request.body.appName,
+            application_type = request.body.selectedAppType,
+            domain_name = request.body.appFqdn,
+            application_description = request.body.selectedAppType,
+            general_questions = request.body.general_questions,
+            criticality_questions = request.body.assessmentList,
+            policy_design_questions = request.body.policyDefinition,
+            criticality_check = request.body.assessCheck,
+            policy_check = request.body.policyCheck,
+            uris = request.body.uris,
+            parameters = request.body.parameters,
+            knownApp = request.body.knownAppOptions;
+
+        client.query( "INSERT INTO appinformation VALUES ('"+id+"','"+username+"','"+application_name+"', '"+application_type+"', '"+domain_name+"' ,'"+application_description+"','"+general_questions+"', '"+criticality_questions+"','"+policy_design_questions+"', '"+criticality_check+"','"+policy_check+"' , '"+uris+"', '"+parameters+"' , '"+knownApp+"' )", function(err, result) {
+            done();
+            if (err) {
+                console.error(err); response.send("Error " + err);
+            }
+            else { console.log("success");
+                response.send(result);
+            }
+        });
+    });
+});
+
+app.get('/api/get-saved-app/:username', function (request, response) {
+
+    pg.connect(connectionString, function(err, client, done) {
+
+        client.query( "SELECT * FROM appinformation WHERE username = '"+request.params.username+"'", function(err, result) {
+            done();
+            if (err) {
+                console.error(err); response.send("Error " + err);
+            }
+            else {
+                response.send(result.rows);
+            }
+        });
+    });
+});
+
 app.post('/api/update-assessment/:id', function (request, response) {
 
     pg.connect(connectionString, function(err, client, done) {
@@ -115,7 +162,7 @@ app.post('/api/update-assessment/:id', function (request, response) {
             commonQns = request.body.commonQuestions,
             criticality = request.body.assessmentList,
             policy = request.body.policyDefinition,
-            status = request.body.status;
+            status = request.body.status,
             policyCheck = request.body.policyCheck;
 
         client.query( "UPDATE appdetails SET criticality_complete = '"+ criticalityComplete +"', application_name = '"+ appName +"', application_description = '"+ appDescription +"', common_questions = '"+ commonQns +"', criticality = '"+ criticality +"', policy = '"+ policy +"', application_status = '"+ status +"', policy_check = '"+ policyCheck +"'  WHERE id = '"+ id +"'", function(err, result){

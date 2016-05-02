@@ -107,10 +107,9 @@ export default function DefineAppCtrl($scope ,$state, $stateParams, $http, appSe
 
     $scope.addNewUri = function() {
 
-        $scope.customOptions = createCustomOption();
-
         var newItemNo = $scope.uris.length+1;
-        $scope.uris.push({'id':'uri'+newItemNo});
+
+        $scope.uris.push({'id':'uri'+newItemNo, name: "", uriFunction: "", customOptions : createCustomOption()});
     };
 
     $scope.removeUri = function(){
@@ -184,16 +183,47 @@ export default function DefineAppCtrl($scope ,$state, $stateParams, $http, appSe
 
     });
 
-    $scope.checkItems = function(obj){
-        if(obj.checked){
-            $scope.selectedFeatures.push(obj)
-        } else {
-            $scope.selectedFeatures = $scope.selectedFeatures.filter(function(item){
-                return item.value != obj.value
-            })
-        }
-    };
+    $scope.updateTable = function() {
 
+            if ($scope.appName == null || $scope.appName == "") {
+                alert("Application Name must be filled out");
+            } else {
+                let date = new Date(),
+                    assessmentQns = angular.copy(assessmentQuestions),
+                    policyQns = angular.copy(policyQuestions);
+
+                //create new application
+                var newApp = {
+                        id : date.getTime(),
+                        username : appServices.username,
+                        appName : $scope.appName,
+                        selectedAppType : $scope.selectedAppType.label,
+                        appFqdn : $scope.appFqdn,
+                        selectedKnownApp :  JSON.stringify($scope.selectedKnownApp),
+                        general_questions : "",
+                        assessmentList : JSON.stringify([assessmentQns]),
+                        policyDefinition:  "" ,
+                        assessCheck : 'false',
+                        policyCheck: 'false',
+                        uris :  JSON.stringify($scope.uris),
+                        parameters :  JSON.stringify( $scope.parameters),
+                        knownAppOptions :  JSON.stringify($scope.knownAppOptions)
+                    };
+
+
+                $http.post('/api/save1', newApp)
+                    .success(function(){
+                        console.log("Update successful!!!");
+                        $state.go('review-app');
+                    })
+                    .error(function(data){
+                        console.log(data);
+                    });
+
+            }
+
+
+        };
 
 }
 

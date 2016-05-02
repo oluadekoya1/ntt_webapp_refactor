@@ -7,9 +7,8 @@ import angular from 'angular';
         return {
             restrict: 'AE',
             scope: {
-                optionsData: '=',
-                customId: '=',
-                optionArray: '=',
+                selectedModel: '=',
+                options: '=',
                 extraSettings: '=',
                 events: '=',
                 searchFilter: '=?',
@@ -64,9 +63,9 @@ import angular from 'angular';
             link: function ($scope, $element, $attrs) {
 
 
-                $scope.options = angular.copy($scope.optionArray);
-
-                $scope.selectedModel = angular.copy($scope.optionsData);
+                //$scope.options = angular.copy($scope.optionArray);
+                //
+                //$scope.selectedModel = angular.copy($scope.optionsData);
 
                 //console.log(JSON.stringify($scope.options, null, 2));
 

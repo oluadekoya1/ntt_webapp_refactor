@@ -7,18 +7,24 @@ function genericTable() {
         restrict: 'E',
         scope: {
             selectedAppType : "=",
-            customOptions : "=",
             knownAppOptions : "=",
             uris : "=",
             description : "=",
-            selectedKnownApp : '='
+            selectedKnownApp : '=',
+            results: '='
         },
         template: templateData,
         link: function(scope){
-           scope.customSettings = {idProp: 'id'};
+
+            scope.checkItems = function(obj){
+                obj.checked = !obj.checked;
+            };
+
         }
 
     }
+
+
 
 }
 

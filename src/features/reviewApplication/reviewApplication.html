@@ -1,102 +1,51 @@
 <menubar></menubar>
-
-
-
-
-
-    <!--<div class="row bottom-spaced-10">-->
-        <!--<div class="col-sm-2">-->
-
-        <!--</div>-->
-        <!--<div class="col-sm-8">-->
-
-            <!--<br>-->
-            <!--<br>-->
-            <!--<div>-->
-
-            <!--</div>-->
-            <!--<br>-->
-            <!--<br>-->
-
-            <!--<div ng-init="getAppData()">-->
-                <!--<table class="table table-bordered">-->
-                    <!--<thead>-->
-                    <!--<tr ng-if="appType === 1">-->
-                        <!--<th></th>-->
-                        <!--<th ng-repeat="header in rowHeader">{{header.name}}</th>-->
-                    <!--</tr>-->
-                    <!--<tr ng-if="appType === 2">-->
-                        <!--<th></th>-->
-                        <!--<th>{{appDescribe}}</th>-->
-                    <!--</tr>-->
-                    <!--</thead>-->
-                    <!--<tbody>-->
-                    <!--<tr ng-repeat="col in colHeader" ng-show="col.checked"  ng-if="appType === 1">-->
-                        <!--<td>{{col.label}}</td>-->
-                        <!--<td ng-repeat="row in rowHeader" class="td_2">-->
-                            <!--<input id={{col.label}}{{row.id}} class="checkbox-custom " name={{row.id}} type="checkbox">-->
-                            <!--<label for={{col.label}}{{row.id}} class="checkbox-custom-label font-weight-500"></label>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr ng-repeat="col in colHeader" ng-show="col.checked"  ng-if="appType === 2">-->
-                        <!--<td>{{col.label}}</td>-->
-                        <!--<td class="td_2">-->
-                            <!--<input id={{col.label}}{{appType}} class="checkbox-custom" name={{appType}}{{col.label}} type="checkbox">-->
-                            <!--<label for={{col.label}}{{appType}} class="checkbox-custom-label font-weight-500"></label>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--</tbody>-->
-                <!--</table>-->
-            <!--</div>-->
-
-
-
-
-
-        <!--</div>-->
-        <!--<div class="col-sm-2">-->
-
-        <!--</div>-->
-
-    <!--</div>-->
-
-
-
-
-
-
-
-<!--<div ng-init="getAppData()">-->
-    <!--<table class="table table-bordered">-->
-        <!--<thead>-->
-        <!--<tr ng-if="appType === 1">-->
-            <!--<th></th>-->
-            <!--<th ng-repeat="header in rowHeader">{{header.name}}</th>-->
-        <!--</tr>-->
-        <!--<tr ng-if="appType === 2">-->
-            <!--<th></th>-->
-            <!--<th>{{appDescribe}}</th>-->
-        <!--</tr>-->
-        <!--</thead>-->
-        <!--<tbody>-->
-            <!--<tr ng-repeat="col in colHeader" ng-show="col.checked"  ng-if="appType === 1">-->
-                <!--<td>{{col.label}}</td>-->
-                <!--<td ng-repeat="row in rowHeader">-->
-                    <!--<input id={{col.label}}{{row.id}} class="checkbox-custom" name={{row.id}} type="checkbox">-->
-                    <!--<label for={{col.label}}{{row.id}} class="checkbox-custom-label font-weight-500"></label>-->
-                <!--</td>-->
-            <!--</tr>-->
-            <!--<tr ng-repeat="col in colHeader" ng-show="col.checked"  ng-if="appType === 2">-->
-                <!--<td>{{col.label}}</td>-->
-                <!--<td>-->
-                    <!--<input id={{col.label}}{{appType}} class="checkbox-custom" name={{appType}}{{col.label}} type="checkbox">-->
-                    <!--<label for={{col.label}}{{appType}} class="checkbox-custom-label font-weight-500"></label>-->
-                <!--</td>-->
-            <!--</tr>-->
-        <!--</tbody>-->
-    <!--</table>-->
-<!--</div>-->
-
-<!--<div class="button-align-right">-->
-    <!--<button class="btn btn-success" ng-click="listApp()">Submit</button>-->
-<!--</div>-->
+<div data-ng-init="getAllSavedApp()">
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th></th>
+        <th>Application Name</th>
+        <th>Application Function</th>
+        <th>FQDN</th>
+        <th>URI</th>
+        <th>Application assessment</th>
+        <th>Policy Design</th>
+        <th>Download ASM Policy</th>
+        <th>Dashboard</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="app in allSavedApps">
+        <td>
+            <a data-toggle="collapse" href="#{{app.id}}">
+                <i class="glyphicon glyphicon-collapse-down"></i>
+            </a>
+        </td>
+        <td>{{ app.appName }}</td>
+        <td id="#{{app.id}}">
+            <ul>
+                <ol ng-repeat="uri in app.uris">
+                    {{uri.uriFunction}}
+                </ol>
+            </ul>
+        </td>
+        <td>
+            {{app.appFqdn}}
+        </td>
+        <td>
+            <ul>
+                <ol ng-repeat="uri in app.uris">
+                    {{uri.name}}
+                </ol>
+            </ul>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+</div>

@@ -73,7 +73,7 @@
                                 <div class="input-group-btn">
                                     <button class="btn btn-primary" type="button">Function</button>
                                 </div><!-- /btn-group -->
-                                <input type="text" class="form-control"  ng-model="uri.function" placeholder="Enter URI function">
+                                <input type="text" class="form-control"  ng-model="uri.uriFunction" placeholder="Enter URI function">
                             </div><!-- /input-group -->
                         </fieldset>
                         <button class="add_but" ng-if="selectedAppType.value === 1" ng-click="addNewUri()">+</button>
@@ -128,7 +128,7 @@
                 </div><!-- /input-group -->
             </div>
             <div class="col-sm-8">
-                <generic-table selected-app-type="selectedAppType" custom-options="customOptions" known-app-options="knownAppOptions" uris="uris" selected-known-app="selectedKnownApp"></generic-table>
+                <generic-table selected-app-type="selectedAppType" known-app-options="knownAppOptions" uris="uris" selected-known-app="selectedKnownApp"></generic-table>
             </div>
         </div>
     </div>
@@ -138,8 +138,10 @@
 
 
 <div class="button-align-right">
-    <button class="btn btn-success" ng-click="SaveappDefn()">Save</button>
+    <button class="btn btn-success" ng-click="updateTable()">Save</button>
 </div>
+
+
 
 
 

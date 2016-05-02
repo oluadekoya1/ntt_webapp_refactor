@@ -13,7 +13,7 @@ export default function HomePageController($scope ,$state, $stateParams, appServ
     $scope.assesspic = assesspic;
 
     $scope.create = function(){
-        $state.go('create-app', {username :$scope.user });
+        $state.go('review-app', {username :$scope.user });
     };
 
     $scope.define = function(){
