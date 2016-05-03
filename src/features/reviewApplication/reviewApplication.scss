@@ -9,3 +9,11 @@ tr td:first-child{
   text-align: center; /* center checkbox horizontally */
   vertical-align: middle; /* center checkbox vertically */
 }
+
+body {
+  font-size: 12px;
+}
+
+.editColumn{
+  border-left: none;
+}

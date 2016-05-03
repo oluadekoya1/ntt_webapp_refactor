@@ -14,7 +14,7 @@
                 <div class="input-group-btn">
                     <button class="btn btn-primary" type="button">Application Name</button>
                 </div><!-- /btn-group -->
-                <input type="text" class="form-control" id="textfield1" ng-model="appName">
+                <input type="text" class="form-control" id="textfield1" ng-model="appName" required autofocus>
             </div><!-- /input-group -->
         </div>
         <div class="col-sm-5">
@@ -32,7 +32,7 @@
                 <div class="input-group-btn">
                     <button class="btn btn-primary" type="button">Domain Name (FQDN)</button>
                 </div><!-- /btn-group -->
-                <input type="text" class="form-control" id="appFqdn" ng-model="appFqdn">
+                <input type="text" class="form-control" id="appFqdn" ng-model="appFqdn" required>
             </div><!-- /input-group -->
         </div>
         <div class="col-sm-5" ng-if="selectedAppType.value === 2">
@@ -134,7 +134,18 @@
     </div>
 </div>
 
-
+<div class="modal fade" id="errorModal1" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>To define an application you must enter both an application name and a fully qualified domain name. </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <div class="button-align-right">

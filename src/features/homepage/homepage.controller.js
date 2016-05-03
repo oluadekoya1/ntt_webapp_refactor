@@ -12,7 +12,7 @@ export default function HomePageController($scope ,$state, $stateParams, appServ
     $scope.thisPic3 = thisPic3;
     $scope.assesspic = assesspic;
 
-    $scope.create = function(){
+    $scope.myApps = function(){
         $state.go('review-app', {username :$scope.user });
     };
 

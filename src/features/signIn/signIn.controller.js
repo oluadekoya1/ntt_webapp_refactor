@@ -15,16 +15,15 @@ export default function signInController($scope, $state, $http, appServices) {
     $scope.userLogin = () => {
         $http.post('/api/sign-in', {username: $scope.username, password : $scope.password})
         .success(function(data){
-            if(data){
+            if(typeof data === "boolean" && data === true && data.toString().length === 4){
                 appServices.setCookie("loggedInUser", $scope.username);
                 appServices.setUserName($scope.username);
                 $state.go('homepage');
             } else {
                 $('#errorModal').modal('show');
-               // swal({   title: "Are you sure?",   text: "You will not be able to recover this imaginary file!",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   confirmButtonText: "Yes, delete it!",   closeOnConfirm: false }, function(){   swal("Deleted!", "Your imaginary file has been deleted.", "success"); });
             }
         }).error(function(data){
-            console.log(data);
+
 
         })
     }

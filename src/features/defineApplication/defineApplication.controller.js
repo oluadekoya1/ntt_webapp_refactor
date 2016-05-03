@@ -5,6 +5,7 @@ import KnownApplicationsOptions from './constants/policyDefinitions.json';
 import assessmentQuestions from '../createapplication/constants/assessment.json';
 import policyQuestions from '../createapplication/constants/policyDefine.json';
 import questionData1 from '../defineApplication/constants/constant1.json';
+import $ from'jquery';
 
 function makeid() {
     var text = "";
@@ -184,9 +185,13 @@ export default function DefineAppCtrl($scope ,$state, $stateParams, $http, appSe
     });
 
     $scope.updateTable = function() {
+        console.log($scope.appName);
+        console.log($scope.appFqdn);
 
-            if ($scope.appName == null || $scope.appName == "") {
-                alert("Application Name must be filled out");
+            if ($scope.appName == "" || $scope.appName  == null || $scope.appFqdn == "" || $scope.appFqdn  == null )
+            {
+
+                $('#errorModal1').modal('show');
             } else {
                 let date = new Date(),
                     assessmentQns = angular.copy(assessmentQuestions),

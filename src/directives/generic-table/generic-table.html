@@ -3,7 +3,7 @@
         <thead>
             <tr>
                 <th></th>
-                <th ng-repeat="uri in uris">{{uri.name}}</th>
+                <th  ng-repeat="uri in uris">{{uri.name}}</th>
             </tr>
         </thead>
         <tbody>
@@ -13,7 +13,7 @@
                        {{col.label}}
                    </div>
                 </td>
-                <td ng-repeat="uri in uris">
+                <td class="td_2" ng-repeat="uri in uris">
                    <div  class="table-div-td"  ng-repeat="(key, col) in uri.customOptions">
                         <div ng-if="col.type === 'dropdown'">
                             <div ng-dropdown-multiselect="" options="col.options" selected-model="col.optionsdata" ></div>
@@ -36,7 +36,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="(key,col) in knownAppOptions"  ng-if="selectedAppType.value * 1 === 2">
-            <td>{{col.label}}</td>
+            <td >{{col.label}}</td>
             <td class="td_2">
                 <div ng-if="col.type === 'dropdown'">
                     <div ng-dropdown-multiselect="" options="col.options" selected-model="col.optionsdata"></div>

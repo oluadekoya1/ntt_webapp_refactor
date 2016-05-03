@@ -8,16 +8,17 @@
         <th>Application Function</th>
         <th>FQDN</th>
         <th>URI</th>
-        <th>Application assessment</th>
-        <th>Policy Design</th>
-        <th>Download ASM Policy</th>
+        <th>Assess Application</th>
+        <th>Design Policy</th>
+        <th>Download XML </th>
         <th>Dashboard</th>
+        <th>Edit</th>
         <th>Delete</th>
     </tr>
     </thead>
     <tbody>
     <tr ng-repeat="app in allSavedApps">
-        <td>
+        <td >
             <a data-toggle="collapse" href="#{{app.id}}">
                 <i class="glyphicon glyphicon-collapse-down"></i>
             </a>
@@ -40,6 +41,7 @@
                 </ol>
             </ul>
         </td>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>
