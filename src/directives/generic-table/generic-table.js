@@ -11,10 +11,14 @@ function genericTable() {
             uris : "=",
             description : "=",
             selectedKnownApp : '=',
-            results: '='
+            results: '=',
+            useFqdn : '=',
+            appFqdn : '='
         },
         template: templateData,
         link: function(scope){
+
+            console.log("=============>>>>>>>>>>>", scope);
 
             scope.checkItems = function(obj){
                 obj.checked = !obj.checked;

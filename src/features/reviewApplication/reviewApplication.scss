@@ -10,10 +10,46 @@ tr td:first-child{
   vertical-align: middle; /* center checkbox vertically */
 }
 
-body {
+.tableFont{
   font-size: 12px;
+
 }
 
 .editColumn{
   border-left: none;
+}
+
+
+.positionList{
+list-style: none;
+  padding-left: 0;
+
+}
+
+.iconPosition{
+  horiz-align: center;
+}
+
+.tableWidth{
+  width: 100%;
+}
+
+.tableLines{
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.thFormat{
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 5px;
+  text-align: left;
+
+}
+
+.tdFormat{
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 5px;
+  text-align: left;
 }

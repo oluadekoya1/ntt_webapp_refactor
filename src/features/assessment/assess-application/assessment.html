@@ -1,8 +1,11 @@
 <!-- menu bar--->
 <menubar></menubar>
-<div ng-show="!showResult">
+<div class="AssessmentFont" ng-show="!showResult">
     <div class="row bottom-spaced-20">
-                <div class="col-lg-6">
+                <div class="col-lg-4">
+
+                </div><!-- /.col-lg-6 -->
+                <div class="col-lg-4">
                     <div class="input-group">
                         <div class="input-group-btn">
                             <button class="btn btn-primary" type="button">Application Name</button>
@@ -10,65 +13,118 @@
                         <input type="text" class="form-control" ng-model="appName" disabled />
                     </div><!-- /input-group -->
                 </div><!-- /.col-lg-6 -->
-                <div class="col-lg-6">
-                    <div class="input-group">
-
-                        <div class="input-group-btn">
-                            <button class="btn btn-primary" type="button">Application Description</button>
-                        </div><!-- /btn-group -->
-                        <input type="text" class="form-control" aria-label="..." ng-model="appDescription" disabled />
-                    </div><!-- /input-group -->
+                <div class="col-lg-4">
                 </div><!-- /.col-lg-6 -->
-            </div><!-- /.row -->
-    <div  class="AssessmentFont">
-        <!-- Nav tabs used to display the Tab Options retrieved from the question.json file "tabName" -->
-        <ul class="nav nav-tabs" role="tablist">
-            <li ng-repeat="tab in tabs" role="presentation" ng-class="{active: $index === 0}">
-                <a href= {{tab.href}} aria-controls={{tab.tabID}} role="tab" data-toggle="tab">
-                    {{tab.tabName}}
-                </a>
-            </li>
-        </ul>
-        <div class="alert alert-danger top-spaced-10" ng-show="!isValid() && buttonClicked">
-            <strong>Error!</strong> You have one or more question(s) unanswered.
-        </div>
-        <!-- Used to display the question retrieved from the question.json file   -->
-        <form class="row content-container">
-            <div class="col-md-12">
-                <div class="tab-content">
-                    <div ng-repeat="tab in tabs" role="tabpanel" class="tab-pane" id={{tab.tabID}} ng-class="{active: $index === 0}">
-                        <div ng-repeat="tabChild in tab.tabContent">
-                            <div class="form-group" ng-if="tabChild.type === 'text'">
-                                <label for="" class="font-weight-500">
-                                    {{tabChild.question}}
-                                    <i class="glyphicon glyphicon-question-sign question-sign-color" data-toggle="tooltip" title={{tabChild.description}}></i>
-                                </label>
-                                <input type="text" class="form-control" ng-model="tabChild.selectedAnswer">
-                            </div>
-                            <div ng-if="tabChild.type === 'radio'">
-                                <label class="font-weight-500">{{tabChild.question}}</label>
-                                <i class="glyphicon glyphicon-question-sign question-sign-color" data-toggle="tooltip" title={{tabChild.description}}></i>
-                                <div ng-repeat="option in tabChild.options">
-                                    <input id={{tabChild.name}}{{option}} class="radio-custom" name={{tabChild.name}} type="radio" value={{option}} ng-model="tabChild.selectedAnswer">
-                                    <label for={{tabChild.name}}{{option}} class="radio-custom-label font-weight-500">{{option}}</label>
+    </div><!-- /.row -->
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <ul class="nav nav-pills nav-stacked" role="tablist">
+                    <li ng-repeat="tab in tabs" role="presentation" ng-class="{active: $index === 0}" > <a href= {{tab.href}} aria-controls={{tab.tabID}} role="tab" data-toggle="tab"> <i class="fa fa-home fa-fw"></i> {{tab.tabName}} </a> </li>
+
+                </ul>
+            </div>
+            <div class="col-md-9 well">
+                <div class="alert alert-danger top-spaced-10" ng-show="!isValid() && buttonClicked">
+                    <strong>Error!</strong> You have one or more question(s) unanswered.
+                </div>
+                <form class="row content-container">
+                    <div class="col-md-12">
+                        <div class="tab-content">
+                            <div ng-repeat="tab in tabs" role="tabpanel" class="tab-pane" id={{tab.tabID}} ng-class="{active: $index === 0}">
+                                <div ng-repeat="tabChild in tab.tabContent">
+                                    <div class="form-group" ng-if="tabChild.type === 'text'">
+                                        <label for="" class="font-weight-500">
+                                            {{tabChild.question}}
+                                            <i class="glyphicon glyphicon-question-sign question-sign-color" data-toggle="tooltip" title={{tabChild.description}}></i>
+                                        </label>
+                                        <input type="text" class="form-control" ng-model="tabChild.selectedAnswer">
+                                    </div>
+                                    <div ng-if="tabChild.type === 'radio'">
+                                        <label class="font-weight-500">{{tabChild.question}}</label>
+                                        <i class="glyphicon glyphicon-question-sign question-sign-color" data-toggle="tooltip" title={{tabChild.description}}></i>
+                                        <div ng-repeat="option in tabChild.options">
+                                            <input id={{tabChild.name}}{{option}} class="radio-custom" name={{tabChild.name}} type="radio" value={{option}} ng-model="tabChild.selectedAnswer">
+                                            <label for={{tabChild.name}}{{option}} class="radio-custom-label font-weight-500">{{option}}</label>
+                                        </div>
+                                    </div>
+                                    <hr/>
                                 </div>
                             </div>
-                            <hr/>
                         </div>
                     </div>
-                </div>
+                    <div class="button-right">
+                        <input type="submit" value="cancel" class="btn btn-warning" ng-click="cancelAssessment()"/>
+                        <input type="submit" value="submit" class="btn btn-success" ng-click="submit()"/>
+                        <!--<input type="submit" value="Define Policy" class="btn btn-success" ng-click="CreatePolicy()"/>-->
+                        <!--<input type="submit" value="Generate PDF" class="btn btn-success" ng-click="generatePDF()"/>-->
+                    </div>
+                </form>
             </div>
-            <div class="button-right">
-                <input type="submit" value="cancel" class="btn btn-warning" ng-click="cancelAssessment()"/>
-                <input type="submit" value="submit" class="btn btn-success" ng-click="submit()"/>
-                <!--<input type="submit" value="Define Policy" class="btn btn-success" ng-click="CreatePolicy()"/>-->
-                <!--<input type="submit" value="Generate PDF" class="btn btn-success" ng-click="generatePDF()"/>-->
-            </div>
-        </form>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <!--<div  class="AssessmentFont">-->
+        <!-- Nav tabs used to display the Tab Options retrieved from the question.json file "tabName" -->
+        <!--<ul class="nav nav-tabs" role="tablist">-->
+            <!--<li ng-repeat="tab in tabs" role="presentation" ng-class="{active: $index === 0}">-->
+                <!--<a href= {{tab.href}} aria-controls={{tab.tabID}} role="tab" data-toggle="tab">-->
+                    <!--{{tab.tabName}}-->
+                <!--</a>-->
+            <!--</li>-->
+        <!--</ul>-->
+        <!--<div class="alert alert-danger top-spaced-10" ng-show="!isValid() && buttonClicked">-->
+            <!--<strong>Error!</strong> You have one or more question(s) unanswered.-->
+        <!--</div>-->
+        <!-- Used to display the question retrieved from the question.json file   -->
+        <!--<form class="row content-container">-->
+            <!--<div class="col-md-12">-->
+                <!--<div class="tab-content">-->
+                    <!--<div ng-repeat="tab in tabs" role="tabpanel" class="tab-pane" id={{tab.tabID}} ng-class="{active: $index === 0}">-->
+                        <!--<div ng-repeat="tabChild in tab.tabContent">-->
+                            <!--<div class="form-group" ng-if="tabChild.type === 'text'">-->
+                                <!--<label for="" class="font-weight-500">-->
+                                    <!--{{tabChild.question}}-->
+                                    <!--<i class="glyphicon glyphicon-question-sign question-sign-color" data-toggle="tooltip" title={{tabChild.description}}></i>-->
+                                <!--</label>-->
+                                <!--<input type="text" class="form-control" ng-model="tabChild.selectedAnswer">-->
+                            <!--</div>-->
+                            <!--<div ng-if="tabChild.type === 'radio'">-->
+                                <!--<label class="font-weight-500">{{tabChild.question}}</label>-->
+                                <!--<i class="glyphicon glyphicon-question-sign question-sign-color" data-toggle="tooltip" title={{tabChild.description}}></i>-->
+                                <!--<div ng-repeat="option in tabChild.options">-->
+                                    <!--<input id={{tabChild.name}}{{option}} class="radio-custom" name={{tabChild.name}} type="radio" value={{option}} ng-model="tabChild.selectedAnswer">-->
+                                    <!--<label for={{tabChild.name}}{{option}} class="radio-custom-label font-weight-500">{{option}}</label>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<hr/>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="button-right">-->
+                <!--<input type="submit" value="cancel" class="btn btn-warning" ng-click="cancelAssessment()"/>-->
+                <!--<input type="submit" value="submit" class="btn btn-success" ng-click="submit()"/>-->
+                <!--&lt;!&ndash;<input type="submit" value="Define Policy" class="btn btn-success" ng-click="CreatePolicy()"/>&ndash;&gt;-->
+                <!--&lt;!&ndash;<input type="submit" value="Generate PDF" class="btn btn-success" ng-click="generatePDF()"/>&ndash;&gt;-->
+            <!--</div>-->
+        <!--</form>-->
         <!-- Tab panes -->
 
-    </div>
+    <!--</div>-->
 </div>
+
+
+
 <div ng-show="showResult">
     <table class="table table-condensed" id="assessment-details">
         <thead>

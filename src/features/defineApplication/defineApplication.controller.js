@@ -64,6 +64,34 @@ export default function DefineAppCtrl($scope ,$state, $stateParams, $http, appSe
 
     //common questions
 
+    function resetAllParams(param){
+
+        if(param === "appFunc"){
+
+            $scope.uriFunc = angular.copy(questionData1.uriFunc);
+
+            $scope.multiHttpFunc = angular.copy(questionData1.multiHttpFunc);
+
+            $scope.specificHttpFunc = angular.copy(questionData1.specificHttpFunc);
+
+
+        } else if(param === "all"){
+            $scope.uriFunc = angular.copy(questionData1.uriFunc);
+
+            $scope.multiHttpFunc = angular.copy(questionData1.multiHttpFunc);
+
+            $scope.specificHttpFunc = angular.copy(questionData1.specificHttpFunc);
+
+            $scope.appFunc = angular.copy(questionData1.appFunc);
+        }
+
+        $scope.uris.length = 0;
+
+        $scope.parameters = [{id: 'parameter1'}];
+
+
+    }
+
     $scope.appFunc = angular.copy(questionData1.appFunc);
 
     $scope.uriFunc = angular.copy(questionData1.uriFunc);
@@ -120,77 +148,35 @@ export default function DefineAppCtrl($scope ,$state, $stateParams, $http, appSe
 
     };
 
-    $scope.SaveappDefn = function() {
-        if ($scope.appName == null || $scope.appName == "") {
-            alert("Application Name must be filled out");
-        }
-        else {
-            let date = new Date(),
-                id = date.getTime(),
-                assessmentQns = angular.copy(assessmentQuestions)
-                //policyQns = getPolicyCnt()
-                ;
+    $scope.useFqdn = $scope.appFunc.selectedAnswer === 'No' || $scope.uriFunc.selectedAnswer === 'No';
 
-            var stringifyNewApp = {
-                id : id,
-                username : appServices.username,
-                assessApp : 'false',
-                policyCheck: 'false',
-                appName : $scope.appName,
-                appDescription : JSON.stringify($scope.selectedKnownApp.label),
-                selectedAppType : JSON.stringify($scope.selectedAppType.value),
-                appFqdn : $scope.appFqdn,
-                customOptions : JSON.stringify($scope.customOptions),
-                knownAppOptions : JSON.stringify($scope.knownAppOptions),
-                assessmentList : JSON.stringify([assessmentQns]),
-                policyDefinition : JSON.stringify("") ,
-                uris : JSON.stringify($scope.uris),
-                parameters : JSON.stringify( $scope.parameters),
-                status : 'in progress'
-            };
+    function  updateFQDN() {
+        $scope.useFqdn = $scope.appFunc.selectedAnswer === 'No' || $scope.uriFunc.selectedAnswer === 'No';
+    }
 
-            $http.post('/api/save', stringifyNewApp)
-                .success(function(){
-                    //$scope.allList.push(newJSONApp);
-                   $state.go('review-app', { id : id });
-                })
-                .error(function(data){
-                    console.log(data);
-                });
-
-            //resetAll();
-        }
-
-
-    };
 
     $scope.$watch('selectedAppType.value', function() {
+        resetAllParams("all");
+    });
 
-        if($scope.selectedAppType.value === 1){
-
-            $scope.appFunc = angular.copy(questionData1.appFunc);
-
-            $scope.uriFunc = angular.copy(questionData1.uriFunc);
-
-            $scope.multiHttpFunc = angular.copy(questionData1.multiHttpFunc);
-
-            $scope.specificHttpFunc = angular.copy(questionData1.specificHttpFunc);
-
-            $scope.uris.length = 0;
-
-            $scope.parameters = [{id: 'parameter1'}];
-
+    $scope.$watch('appFunc.selectedAnswer', function(oldval, newVal) {
+        if( $scope.appFunc.selectedAnswer === "No"){
+            resetAllParams("appFunc");
         }
+        updateFQDN();
 
     });
 
+    $scope.$watch('uriFunc.selectedAnswer', function(oldval, newVal) {
+        if( $scope.uriFunc.selectedAnswer === "No"){
+            resetAllParams();
+        }
+        updateFQDN();
+    });
+
     $scope.updateTable = function() {
-        console.log($scope.appName);
-        console.log($scope.appFqdn);
 
-            if ($scope.appName == "" || $scope.appName  == null || $scope.appFqdn == "" || $scope.appFqdn  == null )
-            {
-
+            if ($scope.appName == "" || $scope.appName  == null || $scope.appFqdn == "" || $scope.appFqdn  == null ) {
                 $('#errorModal1').modal('show');
             } else {
                 let date = new Date(),
@@ -216,7 +202,7 @@ export default function DefineAppCtrl($scope ,$state, $stateParams, $http, appSe
                     };
 
 
-                $http.post('/api/save1', newApp)
+                $http.post('/api/save', newApp)
                     .success(function(){
                         console.log("Update successful!!!");
                         $state.go('review-app');

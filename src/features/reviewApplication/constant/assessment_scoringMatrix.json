@@ -1,0 +1,136 @@
+[
+
+  {
+    "tabID" : "App_Info",
+    "href" : "#App_Info",
+    "tabName": "Application Information",
+    "apinfo1" : [
+      {"label" : "yes", "value" : 0},
+      {"label" : "no", "value" : 0}
+    ],
+    "apinfo2" : [
+      {"label" : "yes", "value" : 0},
+      {"label" : "no", "value" : 0}
+    ],
+    "apinfo3":   [
+      {"label" : "yes", "value" : 0},
+      {"label" : "no", "value" : 0}
+    ],
+    "apinfo4" : [
+      {"label" : "yes", "value" : 0},
+      {"label" : "no", "value" : 0}
+    ],
+    "apinfo5" : [
+      {"label" : "Yes", "value" : 0},
+      {"label" : "No ", "value" : 0}
+    ]
+  },
+  {
+    "tabID" : "App_Comp",
+    "href" : "#App_Comp",
+    "tabName" : "Application Complexity",
+    "appcomp1": [
+      {"label" : "Public Internet", "value" : 2},
+      { "label" : "Private Internet", "value" : 1 }
+    ],
+    "appcomp2": [
+      {"label" : "Yes for all parts",                "value" : 0},
+      {"label" : "Yes for restricted parts",         "value" : 1 },
+      {"label" : "No authentication", "value" : 2 }
+    ],
+    "appcomp3": [
+      {"label" : "Username/Password",     "value" : 2},
+      {"label" : "Client Certificate",    "value" : 1},
+      {"label" : "PIN",                   "value" : 2},
+      {"label" : "One Time Password",     "value" : 1},
+      {"label" : "Domain Authentication", "value" : 2},
+      {"label" : "Multi-Factor",          "value" : 1},
+      {"label" : "None",                  "value" : 2}
+    ],
+    "appcomp4": [
+      {"label" : "Yes", "value" : 1 },
+      {"label" : "No", "value" : 3 }
+    ],
+    "appcomp5": [
+      {"label" : "Yes", "value" : 1 },
+      {"label" : "No", "value" : 2 }
+    ],
+    "appcomp6": [
+      {"label" : "Yes", "value" : 4 },
+      {"label" : "No", "value" : 1 }
+    ]
+  },
+  {
+    "tabID" : "App_Maint_Review",
+    "href" : "#App_Maint_Review",
+    "tabName" : "Application Maintenance Review",
+    "apmare1" : [
+      {"label" : "Yes", "value" : 1 },
+      {"label" : "No", "value" : 4 }
+    ],
+    "apmare2" : [
+      {"label" : "Yes", "value" : 1 },
+      {"label" : "No", "value" : 4 }
+    ],
+    "apmare3" : [
+      {"label" : "Yes", "value" : 1 },
+      {"label" : "No", "value" : 4 }
+    ],
+    "apmare4" : [
+      {"label" : "No management approval needed and no maintenance window needed", "value" : 0 },
+      {"label" : "Management approval needed and no maintenance window needed",   "value" : 3 },
+      {"label" : "No management approval needed and maintenance window needed",    "value" : 2 },
+      {"label" : "Management approval needed and maintenance window needed",      "value" : 5 }
+    ]
+  },
+  {
+    "tabID" : "App_Tech_Imp",
+    "href" : "#App_Tech_Imp",
+    "tabName" : "Application Technical Impact",
+    "aptecim1": [
+
+      {"label" : "Yes",  "value" : 9 },
+      {"label" : "No", "value" : 0 }
+    ],
+    "aptecim2": [
+
+      {"label" : "Yes",  "value" : 6 },
+      {"label" : "No",  "value" : 0 }
+    ],
+    "aptecim3": [
+
+      {"label" : "Yes", "value" : 15},
+      {"label" : "No",  "value" : 0 }
+    ]
+
+  },
+  {
+    "tabID" : "App_Buss_Imp",
+    "href" : "#App_Buss_Imp",
+    "tabName" : "Application Business Impact",
+    "apbuim1" : [
+      {"label" : "0-100",         "value" : 5 },
+      {"label" : "101-4999",      "value" : 3 },
+      {"label" : "5000 or more",  "value" : 1 }
+    ],
+    "apbuim2" : [
+      {"label" : "High Impact",   "value" : 15},
+      {"label" : "Medium Impact", "value" : 10},
+      {"label" : "Low Impact",    "value" : 5 },
+      {"label" : "No Impact",     "value" : 0 }
+    ],
+    "apbuim3" : [
+      {"label" : "High Impact",   "value" : 10},
+      {"label" : "Medium Impact", "value" : 7},
+      {"label" : "Low Impact",    "value" : 3 },
+      {"label" : "No Impact",     "value" : 0 }
+    ],
+    "apbuim4" : [
+      {"label" : "None",                "value" : 0},
+      {"label" : "One individual",      "value" : 2},
+      {"label" : "Hundreds of people",  "value" : 7 },
+      {"label" : "Thousands of people", "value" : 10}
+    ]
+  }
+
+]

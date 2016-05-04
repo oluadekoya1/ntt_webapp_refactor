@@ -80,6 +80,7 @@
                         <button class="remove" ng-if="selectedAppType.value === 1"  ng-click="removeUri()">-</button>
                     </div>
                 </div>
+
                 <div class="div-50-percent">
                     <label class="font-weight-500">{{multiHttpFunc.question}}</label>
                     <i class="glyphicon  question-sign-color" data-toggle="tooltip" title={{multiHttpFunc.description}}></i>
@@ -88,7 +89,7 @@
                         <label for={{multiHttpFunc.name}}{{option}} class="radio-custom-label font-weight-500">{{option}}</label>
                     </div>
                 </div>
-                <div class="div-50-percent" ng-if="multiHttpFunc.selectedAnswer === 'Yes'">
+                <div class="div-50-percent" ng-show="multiHttpFunc.selectedAnswer === 'Yes'">
                     <label class="font-weight-500">{{specificHttpFunc.question}}</label>
                     <i class="glyphicon glyphicon-question-sign question-sign-color" data-toggle="tooltip" title={{specificHttpFunc.description}}></i>
                     <div ng-repeat="option in specificHttpFunc.options">
@@ -128,7 +129,7 @@
                 </div><!-- /input-group -->
             </div>
             <div class="col-sm-8">
-                <generic-table selected-app-type="selectedAppType" known-app-options="knownAppOptions" uris="uris" selected-known-app="selectedKnownApp"></generic-table>
+                <generic-table selected-app-type="selectedAppType" known-app-options="knownAppOptions" uris="uris" selected-known-app="selectedKnownApp" use-fqdn="useFqdn" app-fqdn="appFqdn"></generic-table>
             </div>
         </div>
     </div>

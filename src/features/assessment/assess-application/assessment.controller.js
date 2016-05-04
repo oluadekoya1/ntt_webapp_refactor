@@ -3,7 +3,7 @@
 // exporting the contents of the Assessment Controller so that it ia available to other pages
 export default function AssessmentController($scope ,$state, $stateParams, pdfService, appServices, $timeout, $http) {
 
-    appServices.getAllApps().then((data) => {
+    appServices.getAllSavedApp().then((data) => {
        init(data);
     });
 
@@ -37,27 +37,30 @@ export default function AssessmentController($scope ,$state, $stateParams, pdfSe
         // Function Submit : It retrieves the content in the session storage (
         $scope.submit = function(){
             $scope.buttonClicked = true;
-            if($scope.isValid()){
+            //if($scope.isValid()){
                 var newApp = {
-                    assessApp : 'true',
+                    id:currentID,
+                    critcality_check : 'true',
                     appName : $scope.appName,
                     appDescription: $scope.appDescription,
-                    commonQuestions: JSON.stringify(toEdit.commonQuestions),
+                    general_questions: JSON.stringify(toEdit.general_questions),
                     assessmentList : JSON.stringify([$scope.tabs]),
-                    policyDefinition: JSON.stringify(toEdit.policyDefinition) ,
+                    policy_design_questions: JSON.stringify(toEdit.policy_design_questions) ,
                     status : 'criticality completed'
                 };
 
+            console.log(newApp);
+
                 appServices.updateAssessment(currentID, newApp).then(function(data){
                     //sessionStorage.allList = JSON.stringify(allList);
-                    $state.go('create-app', {redirect : true});
+                    $state.go('review-app', {redirect : true});
                 });
 
-            }
+            //}
         };
 
         $scope.cancelAssessment = function () {
-            $state.go('create-app', {redirect : true});
+            $state.go('review-app', {redirect : true});
         };
 
         //check if all options are selected

@@ -3,7 +3,7 @@
         <thead>
             <tr>
                 <th></th>
-                <th  ng-repeat="uri in uris">{{uri.name}}</th>
+                <th class="td_2" ng-repeat="uri in uris">{{uri.name}}</th>
             </tr>
         </thead>
         <tbody>
@@ -27,15 +27,38 @@
             </tr>
         </tbody>
     </table>
+
     <table class="table table-bordered " ng-if="selectedAppType.value * 1 === 2">
+    <thead>
+    <tr>
+        <th></th>
+        <th class="td_2">{{selectedKnownApp.label}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="(key,col) in knownAppOptions">
+        <td >{{col.label}}</td>
+        <td class="td_2">
+            <div ng-if="col.type === 'dropdown'">
+                <div ng-dropdown-multiselect="" options="col.options" selected-model="col.optionsdata"></div>
+            </div>
+            <div ng-if="col.type === 'checkbox'">
+                <input id={{col.label}}{{selectedKnownApp}} class="checkbox-custom " name={{selectedKnownApp}} type="checkbox">
+                <label for={{col.label}}{{selectedKnownApp}} class="checkbox-custom-label font-weight-500"></label>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+   </table>
+   <table class="table table-bordered " ng-if="useFqdn">
         <thead>
         <tr>
             <th></th>
-            <th>{{selectedKnownApp.label}}</th>
+            <th class="td_2">{{appFqdn}}</th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="(key,col) in knownAppOptions"  ng-if="selectedAppType.value * 1 === 2">
+        <tr ng-repeat="(key,col) in knownAppOptions">
             <td >{{col.label}}</td>
             <td class="td_2">
                 <div ng-if="col.type === 'dropdown'">

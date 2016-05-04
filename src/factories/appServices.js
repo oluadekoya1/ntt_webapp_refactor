@@ -123,7 +123,7 @@ function appServices($http, $q) {
     this.updateAssessment = function(currentID, newApp){
         var dfd = $q.defer();
 
-        this.$http.post('/api/update-assessment/' + currentID , newApp)
+        this.$http.post('/api/update-assessment1/' + currentID , newApp)
             .success(function(data){
                 dfd.resolve(data);
             })

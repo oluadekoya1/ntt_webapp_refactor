@@ -1,0 +1,172 @@
+[
+  {
+    "tabID" : "App_Comp",
+    "href" : "#App_Comp",
+    "tabName" : "Application Complexity",
+    "tabContent": [
+      {
+        "question" : "How is the web application accessed by its user base ?",
+        "description":"Is the web application publically accessible or accessible only over a private network?",
+        "type":"radio",
+        "options" : ["Public Internet", "Private Internet"],
+        "name": "appcomp1",
+        "selectedAnswer" : ""
+      },
+      {
+        "question" : "Does the web application require authentication ?",
+        "description":"Does the application require a user is authenticated for all or some parts of the web application, or is no authentication required at all ?",
+        "type":"radio",
+        "options" : ["Yes for all parts", "Yes for restricted parts", "No authentication"],
+        "name": "appcomp2",
+        "selectedAnswer" : ""
+      },
+      {
+        "question" : "What authentication mechanism is in place ?",
+        "description":"This will help judge the strength of the authentication and the possible policy blocking configurations",
+        "type":"radio",
+        "options" : ["Username/Password", "Client Certificate", "PIN", "One Time Password", "Domain Authentication", "Multi-Factor","None"],
+        "name": "appcomp3",
+        "selectedAnswer" : ""
+      },
+      {
+        "question" : "Does the web application have an access control mechanism in place ?",
+        "description":"An application might support numerous user roles, each involving different combination of specific priviledge",
+        "type":"radio",
+        "options" : ["Yes", "No"],
+        "name": "appcomp4",
+        "selectedAnswer" : ""
+      },
+      {
+        "question" : "Is the web application using SSL encryption ?",
+        "description":"This will help judge the encryption in place fo the web application",
+        "type":"radio",
+        "options" : ["Yes", "No"],
+        "name": "appcomp5",
+        "selectedAnswer" : ""
+      },
+      {
+        "question" : "Does the application integrate with other applications, on an extension/plug-in basis?",
+        "description":"Does the application interacts with another application, e.g. an auction application interacts with payment application accessed through",
+        "type":"radio",
+        "options" : ["Yes", "No"],
+        "name": "appcomp6",
+        "selectedAnswer" : ""
+
+      }
+    ]
+  },
+  {
+    "tabID" : "App_Maint_Review",
+    "href" : "#App_Maint_Review",
+    "tabName" : "Application Maintenance Review",
+    "tabContent": [
+
+      {
+        "question" : "Does the web application go through regular code reviews?",
+        "description":"This is to ascertain whether the web application has code reviews to mitigate against known vulnerabilities",
+        "type":"radio",
+        "options" : ["Yes", "No"],
+        "name": "apmare1",
+        "selectedAnswer" : ""
+
+
+      },
+      {
+        "question" : "Does the web application have scheduled vulnerability scans performed on it ? ",
+        "description":"For example, external penetration tests. This helps with vulnerability visibility",
+        "type":"radio",
+        "options" : ["Yes", "No"],
+        "name": "apmare2",
+        "selectedAnswer" : ""
+      },
+      {
+        "question" : "Are the web application logs monitored by a third party ? ",
+        "description":"Do the logs get correlated to a third party, i.e. a SIEM or an IPS device?",
+        "type":"radio",
+        "options" : ["Yes", "No"],
+        "name": "apmare3",
+        "selectedAnswer" : ""
+      },
+      {
+        "question" : "What is the Change management process, if exists ?",
+        "description":"Would a change to the application require a management approval, maintenance window, post-change tests.",
+        "type":"radio",
+        "options" : ["No management approval needed and no maintenance window needed", "Management approval needed and no maintenance window needed", "No management approval needed and maintenance window needed ", "Management approval needed and maintenance window needed"],
+        "name": "apmare4",
+        "selectedAnswer" : ""
+      }
+    ]
+  },
+  {
+    "tabID" : "App_Tech_Imp",
+    "href" : "#App_Tech_Imp",
+    "tabName" : "Application Technical Impact",
+    "tabContent": [
+      {
+        "question" : "If the web application is hacked, can it divulge Intellectual property ? ",
+        "description":"Intellectual Property: source code, product design documents, process documentation, internal price lists.",
+        "type":"radio",
+        "options" : ["Yes",  "No"],
+        "name": "aptecim1",
+        "selectedAnswer" : ""
+      },
+      {
+        "question" : "If the web application is hacked, can it divulge Corporate data ? ",
+        "description":"Corporate Data: Financial documents, strategic planning documents, due diligence research for mergers and acquisitions, employee information.",
+        "type":"radio",
+        "options" : ["Yes",  "No"],
+        "name": "aptecim2",
+        "selectedAnswer" : ""
+      },
+
+
+      {
+        "question" : "If the web application is hacked, can it divulge Customer data ? ",
+        "description":"Customer Data: Social Security numbers, credit card numbers, medical records, financial statements ",
+        "type":"radio",
+        "options" : ["Yes", "No"],
+        "name": "aptecim3",
+        "selectedAnswer" : ""
+      }
+    ]
+  },
+  {
+    "tabID" : "App_Buss_Imp",
+    "href" : "#App_Buss_Imp",
+    "tabName" : "Application Business Impact",
+    "tabContent": [
+      {
+        "question" : "How many users access this application on a daily basis?",
+        "description":"Rough estimates of user base",
+        "type":"radio",
+        "options" : ["0-100", "101-4999", "5000 or more"],
+        "name": "apbuim1",
+        "selectedAnswer" : ""
+      },
+      {
+        "question" : "What is the financially business impact if this web application is hacked? ",
+        "description":"For instance, you may want to base this on financial impact",
+        "type":"radio",
+        "options" : ["High Impact", "Medium Impact", "Low Impact", "No Impact"],
+        "name": "apbuim2",
+        "selectedAnswer" : ""
+      },
+      {
+        "question" : "If the web application is hacked what is actual, or perceived, damage to reputation?",
+        "description":"This is how we can judge an applications criticality based on a customer Reputation. An application with a large and varied user base may suffer greater Reputation impact than an application used by a smaller, but defined, user-base",
+        "type":"radio",
+        "options" : ["High Impact", "Medium Impact", "Low Impact", "No Impact"],
+        "name": "apbuim3",
+        "selectedAnswer" : ""
+      },
+      {
+        "question" : "What is the Change management process, if exists ?",
+        "description":" ",
+        "type":"radio",
+        "options" : ["None", "One individual", "Hundreds of people", "Thousands of people"],
+        "name": "apbuim4",
+        "selectedAnswer" : ""
+      }
+    ]
+  }
+]

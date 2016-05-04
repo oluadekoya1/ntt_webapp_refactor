@@ -1,6 +1,6 @@
 <menubar></menubar>
 <div data-ng-init="getAllSavedApp()">
-<table class="table table-bordered">
+<table class="table table-bordered tableFont">
     <thead>
     <tr>
         <th></th>
@@ -23,31 +23,39 @@
                 <i class="glyphicon glyphicon-collapse-down"></i>
             </a>
         </td>
-        <td>{{ app.appName }}</td>
+        <td >{{ app.appName }}</td>
         <td id="#{{app.id}}">
-            <ul>
-                <ol ng-repeat="uri in app.uris">
+            <ul class="positionList" ng-repeat="uri in app.uris">
                     {{uri.uriFunction}}
-                </ol>
             </ul>
         </td>
         <td>
             {{app.appFqdn}}
         </td>
         <td>
-            <ul>
-                <ol ng-repeat="uri in app.uris">
+            <ul class="positionList" ng-repeat="uri in app.uris" >
                     {{uri.name}}
-                </ol>
             </ul>
         </td>
+        <td class="iconPosition" ng-click="editAssessment(app.id)">
+            <a><i class='glyphicon glyphicon-wrench'></i></a>
+        </td>
+        <td >
+
+        </td>
         <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td class="iconPosition" ng-click="dashboard(app.id)">
+            <a><i class='glyphicon glyphicon-new-window'></i></a>
+        </td>
+        <td class="iconPosition" ng-click="editAppInfo(app.id)">
+            <a><i class='glyphicon glyphicon-pencil'></i></a>
+        </td>
+        <td class="iconPosition" ng-click="deleteApp(app.id)">
+            <a><i class='glyphicon glyphicon-trash'></i></a>
+        </td>
     </tr>
     </tbody>
 </table>
+
+
 </div>

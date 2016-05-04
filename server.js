@@ -72,40 +72,8 @@ app.post('/api/sign-in', function (request, response) {
     });
 });
 
+
 app.post('/api/save', function (request, response) {
-
-    pg.connect(connectionString, function(err, client, done) {
-        var id = request.body.id,
-            username = request.body.username,
-            criticalityComplete  = request.body.assessApp,
-            appName = request.body.appName,
-            appDescription = request.body.appDescription,
-            commonQns = request.body.commonQuestions,
-            criticality = request.body.assessmentList,
-            policy = request.body.policyDefinition,
-            status = request.body.status,
-            policyCheck = "false",
-            customOptions = request.body.customOptions,
-            uris = request.body.uris,
-            application_Fqdn = request.body.appFqdn,
-            application_type = request.body.selectedAppType,
-            parameters =request.body.parameters,
-            knownApp = request.body.knownAppOptions;
-
-        client.query( "INSERT INTO appdetails VALUES ('"+id+"','"+username+"','"+criticalityComplete+"','"+appName+"','"+appDescription+"','"+commonQns+"','"+criticality+"','"+policy+"', '"+status+"','"+policyCheck+"' ,'"+customOptions+"','"+uris+"','"+application_Fqdn+"','"+application_type+"', '"+parameters+"','"+knownApp+"' )", function(err, result) {
-            done();
-            if (err) {
-                console.error(err); response.send("Error " + err);
-            }
-            else { console.log("success");
-                response.send(result);
-            }
-        });
-    });
-});
-
-
-app.post('/api/save1', function (request, response) {
 
     pg.connect(connectionString, function(err, client, done) {
         var id = request.body.id,
@@ -146,6 +114,25 @@ app.get('/api/get-saved-app/:username', function (request, response) {
             }
             else {
                 response.send(result.rows);
+            }
+        });
+    });
+});
+
+app.post('/api/update-assessment1/:id', function (request, response) {
+
+    pg.connect(connectionString, function(err, client, done) {
+        var id = request.body.id,
+            criticalityQuestions = request.body.assessmentList,
+            criticalityCheck = request.body.assessCheck;
+
+        client.query( "UPDATE appinformation SET criticality_questions = '"+ criticalityQuestions +"', criticality_check = '"+ criticalityCheck +"'WHERE id = '"+ id +"'", function(err, result){
+            done();
+            if (err) {
+                console.error(err); response.send("Error " + err);
+            }
+            else {
+                response.send(result);
             }
         });
     });
