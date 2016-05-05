@@ -44,7 +44,7 @@
 
         </td>
         <td></td>
-        <td align="center" ng-click="dashboard(app.id)">
+        <td align="center" ng-click="dashboard(app.id)" ng-style="{'background-color': getCValue(app.id) >= 75 ?  'red': 'white'}">
             <a>{{getCValue(app.id)}} <i class='glyphicon glyphicon-new-window'></i></a>
         </td>
         <td align="center" ng-click="editAppInfo(app.id)">
