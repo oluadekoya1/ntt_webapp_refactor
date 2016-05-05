@@ -30,7 +30,7 @@
                      {"id":"3","label":"IIS "},
                      {"id":"4","label":"Other Web Server "},
                      {"id":"5","label":"Proxy Servers "}]},
-     "databaseServers" : {"label" : "Database", "value" : 10, "checked" : false, "type" : "dropdown" ,"optionsdata":[],
+     "databaseServers" : {"label" : "Database Servers", "value" : 10, "checked" : false, "type" : "dropdown" ,"optionsdata":[],
        "options": [ {"id":"1","label":"IBM DB2"},
                     {"id":"2","label":"Microsoft SQL Server"},
                     {"id":"3","label":"MySQL"},

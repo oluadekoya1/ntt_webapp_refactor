@@ -1,11 +1,13 @@
 'use strict';
 
+
+import $ from 'jquery';
+
 import assessmentQuestions from './constant/assessment_questions.json';
 import lookupAnswers from './constant/assessment_scoringMatrix.json';
 
 function  getResult(allList){
     var result = [],
-    // allList = (sessionStorage.allList) ? JSON.parse(sessionStorage.allList) : [],
         sampleresultObject = {
             "Application_Complexity" : 0,
             "Application_Maintenance_Review" : 0,
@@ -74,53 +76,37 @@ function  getResult(allList){
             }
         });
         result.push({appID : item.id, appName : item.appName, appDescription: item.appDescription, result : resultObject});
-    }); console.log(result);
+    }); console.log("Olu is a badddddhhhh boy",result);
 
     sessionStorage.computedAssessment = JSON.stringify(result);
 
 
 }
 
-export default function reviewAppCtrl($scope ,$state, $stateParams, appServices ) {
+export default function reviewAppCtrl($scope ,$state, $stateParams, $http, appServices, allApps) {
 
     $scope.currentAppData = {};
 
-    $scope.getAllSavedApp = function(){
+    $scope.allSavedApps = allApps;
 
-        appServices.getAllSavedApp().then(function(data){
+    $scope.computeResult = getResult(allApps);
 
-            $scope.allSavedApps = data;
-
-            console.log(data);
-
-
-
-
-            //data = data[0];
-            //data['application_type'] = data['application_type'] * 1;
-            //data.uris = JSON.parse(data.uris);
-            //data.parameters = JSON.parse(data.parameters);
-            //data.criticality = JSON.parse(data.criticality);
-            //data['custom_options'] = JSON.parse(data['custom_options']);
-            //data['known_applications'] = JSON.parse(data['known_applications']);
-            //
-            //$scope.appDescribe = data['application_description'];
-            //
-            //$scope.appType = data['application_type'];
-            //
-            //$scope.currentAppData = data;  console.log($scope);
-            //
-            //($scope.currentAppData['application_type'] === 1 )  ? customApp() : knownApp();
-        })
+    $scope.getCValue = function(id){
+        var allList = JSON.parse(sessionStorage.computedAssessment);
+        var cval = allList.filter(function (list) {
+            return list.appID === id
+        })[0];
+        var total = 0;
+        for (var prop in cval.result){
+            total = total + cval.result[prop];
+        }
+        return Math.ceil((total * 100)/98);
     };
 
     function customApp(){
         $scope.rowHeader = $scope.currentAppData.uris;
-        console.log(currentAppData.uris);
         $scope.colHeader = $scope.currentAppData['custom_options'];
-
     }
-
 
     function knownApp(){
         $scope.rowHeader = [];
@@ -135,8 +121,8 @@ export default function reviewAppCtrl($scope ,$state, $stateParams, appServices 
     };
 
 
-
-
 }
 
-reviewAppCtrl.$inject = ['$scope', '$state', '$stateParams', 'appServices'];
+
+reviewAppCtrl.$inject = ['$scope', '$state', '$stateParams', '$http', 'appServices', 'allApps'];
+

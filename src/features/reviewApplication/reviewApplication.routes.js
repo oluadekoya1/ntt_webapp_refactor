@@ -8,6 +8,11 @@ export default function routes($stateProvider) {
             url: '/review-app',
             template: require('./reviewApplication.html'),
             controller: 'reviewAppCtrl',
-            controllerAs: 'review-app'
+            controllerAs: 'review-app',
+            resolve: {
+                allApps : function(appServices){
+                   return appServices.getAllSavedApp();
+                }
+            }
         });
 }

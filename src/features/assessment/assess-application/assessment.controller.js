@@ -37,7 +37,7 @@ export default function AssessmentController($scope ,$state, $stateParams, pdfSe
         // Function Submit : It retrieves the content in the session storage (
         $scope.submit = function(){
             $scope.buttonClicked = true;
-            //if($scope.isValid()){
+            if($scope.isValid()){
                 var newApp = {
                     id:currentID,
                     critcality_check : 'true',
@@ -56,7 +56,7 @@ export default function AssessmentController($scope ,$state, $stateParams, pdfSe
                     $state.go('review-app', {redirect : true});
                 });
 
-            //}
+            }
         };
 
         $scope.cancelAssessment = function () {

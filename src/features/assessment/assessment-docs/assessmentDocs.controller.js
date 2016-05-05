@@ -33,7 +33,6 @@ export default function assessmentDocsCtrl($scope, $state, pdfService) {
 
      let id = $state.params.id;
      let sum = 0;
-
      let computedList = (sessionStorage.computedAssessment) ? JSON.parse(sessionStorage.computedAssessment) : [],
          currentApp = computedList.filter(function(list){
               return list.appID === id * 1;
@@ -46,8 +45,8 @@ export default function assessmentDocsCtrl($scope, $state, pdfService) {
                     sum = sum + currentApp.result[prop];
                }
           }
-
           currentApp.result.total = sum;
+          console.log(sum);
 
           $scope.dashboardData = [];
 
@@ -66,6 +65,8 @@ export default function assessmentDocsCtrl($scope, $state, pdfService) {
                }
           }
 
+
+
           $scope.criticalityValue = Math.round((currentApp.result.total * 100)/98);
 
           //draw guage chart
@@ -75,9 +76,9 @@ export default function assessmentDocsCtrl($scope, $state, pdfService) {
               ]),
               options = {
                    width: 400, height: 250,
-                   redFrom: 0, redTo: 30,
+                   redFrom: 70, redTo: 100,
                    yellowFrom:30, yellowTo: 70,
-                   greenFrom:70, greenTo: 100,
+                   greenFrom:0, greenTo: 30,
                    minorTicks: 5,
                    greenColor: '#00ff11',
                    yellowColor: '#ffc200',

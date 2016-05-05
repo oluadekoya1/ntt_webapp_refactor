@@ -84,7 +84,6 @@ function  getResult(allList){
 
     sessionStorage.computedAssessment = JSON.stringify(result);
 
-
 }
 
 // exporting the contents of the Create App Controller so that it is available to other pages

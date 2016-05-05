@@ -45,8 +45,8 @@
         "selectedAnswer" : ""
       },
       {
-        "question" : "Does the application integrate with other applications, on an extension/plug-in basis? If so, please provide information regarding the associated application(s) ?",
-        "description":"Does the application interacts with another application, e.g. an auction application interacts with payment applicationn accessed through",
+        "question" : "Does the application integrate with other applications, on an extension/plug-in basis? ",
+        "description":"Does the application interacts with another application, e.g. an auction application interacts with payment application accessed through",
         "type":"radio",
         "options" : ["Yes", "No"],
         "name": "appcomp6",
