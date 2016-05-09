@@ -40,11 +40,22 @@
         <td align="center" ng-click="editAssessment(app.id)">
             <a><i class='glyphicon glyphicon-wrench'></i></a>
         </td>
-        <td >
-
+        <td align="center">
+            <ul class="positionList" ng-if="app.uris.length > 0" ng-repeat="uri in app.uris">
+                <a ng-click="editPolicy(app.id, uri.id)">
+                    <i class='glyphicon glyphicon-cog'></i>
+                </a>
+            </ul>
+            <ul class="positionList" ng-if="app.uris.length === 0" >
+                <a ng-click="editPolicy(app.id)">
+                    <i class='glyphicon glyphicon-cog'></i>
+                </a>
+            </ul>
         </td>
-        <td></td>
-        <td align="center" ng-click="dashboard(app.id)" ng-style="{'background-color': getCValue(app.id) >= 75 ?  'red': 'white'}">
+        <td ng-click="downloadXML()">
+            <i class="glyphicon glyphicon-paperclip"></i>
+        </td>
+        <td align="center" ng-click="dashboard(app.id)" ng-style="{'background-color': getCValue(app.id) >= 75 ?  'red': 'white'}" >
             <a>{{getCValue(app.id)}} <i class='glyphicon glyphicon-new-window'></i></a>
         </td>
         <td align="center" ng-click="editAppInfo(app.id)">
@@ -56,6 +67,8 @@
     </tr>
     </tbody>
 </table>
+
+
 
 
 </div>

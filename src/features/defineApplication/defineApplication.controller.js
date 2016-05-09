@@ -92,6 +92,8 @@ export default function DefineAppCtrl($scope ,$state, $stateParams, $http, appSe
 
     }
 
+    var policies = {};
+
     $scope.appFunc = angular.copy(questionData1.appFunc);
 
     $scope.uriFunc = angular.copy(questionData1.uriFunc);
@@ -136,9 +138,11 @@ export default function DefineAppCtrl($scope ,$state, $stateParams, $http, appSe
 
     $scope.addNewUri = function() {
 
-        var newItemNo = $scope.uris.length+1;
+        var newItemNo = makeid();
 
-        $scope.uris.push({'id':'uri'+newItemNo, name: "", uriFunction: "", customOptions : createCustomOption()});
+        policies[newItemNo] = angular.copy(policyQuestions);
+
+        $scope.uris.push({'id':newItemNo, name: "", uriFunction: "", customOptions : createCustomOption()});
     };
 
     $scope.removeUri = function(){
@@ -193,7 +197,7 @@ export default function DefineAppCtrl($scope ,$state, $stateParams, $http, appSe
                         selectedKnownApp :  JSON.stringify($scope.selectedKnownApp),
                         general_questions : "",
                         assessmentList : JSON.stringify([assessmentQns]),
-                        policyDefinition:  "" ,
+                        policyDefinition:  ($scope.selectedAppType.value === 2) ? JSON.stringify(policyQns) : JSON.stringify(policies) ,
                         assessCheck : 'false',
                         policyCheck: 'false',
                         uris :  JSON.stringify($scope.uris),

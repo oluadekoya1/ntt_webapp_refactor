@@ -1,7 +1,9 @@
 'use strict';
 
 // exporting the contents of the Assessment Controller so that it is available to other pages
-export default function PolicyController($scope ,$state, $stateParams, pdfService, appServices) {
+export default function PolicyController($scope ,$state, $stateParams, pdfService, appServices, allApps) {
+
+    console.log($state, allApps);
 
     var getResults = function(option){
         var results = {};
@@ -46,14 +48,16 @@ export default function PolicyController($scope ,$state, $stateParams, pdfServic
         return allIDs;
     };
 
-    appServices.getAllApps().then((data) => {
-        init(data);
-    });
+    var allList = allApps;
 
-    function  init(allList){
+    //appServices.getAllApps().then((data) => {
+    //    init(data);
+    //});
 
-        let currentID = $stateParams.id * 1,
-            currentCnt = $stateParams.cnt * 1;
+    //function  init(allList){
+
+        let currentID = $stateParams.appID * 1,
+            currentCnt = $stateParams.uriID;
 
         //var allList = JSON.parse(sessionStorage.allList);
 
@@ -61,12 +65,7 @@ export default function PolicyController($scope ,$state, $stateParams, pdfServic
             return list.id === currentID
         })[0];
 
-        var currentPolicy = currentApp.policyDefinition.filter(function(policy){
-            return policy.cnt === currentCnt;
-        })[0];
-
-
-        $scope.newPolicy = currentPolicy.pd;
+        $scope.newPolicy = (currentCnt.length > 0) ? currentApp.policyDefinition[currentCnt] : currentApp.policyDefinition;
 
         $scope.appName = currentApp.appName;
 
@@ -103,17 +102,16 @@ export default function PolicyController($scope ,$state, $stateParams, pdfServic
                 policyCheck: true
             };
 
-
             appServices.updatePolicy(currentID, newApp).then(function(data){
                 //sessionStorage.allList = JSON.stringify(allList);
-                $state.go('create-app', {redirect : true});
+                $state.go('review-app', {redirect : true});
             });
             sessionStorage.allList = JSON.stringify(allList);
-            $state.go('create-app', {redirect : true});
+            $state.go('review-app', {redirect : true});
         };
 
         $scope.cancelPolicy = function(){
-            $state.go('create-app', {redirect : true});
+            $state.go('review-app', {redirect : true});
         };
 
         $scope.generatePDF = function(){ console.log($scope);
@@ -146,10 +144,10 @@ export default function PolicyController($scope ,$state, $stateParams, pdfServic
             pdfService.generatePolicyPDF($scope.appName, allTables);
 
         };
-    }
+    //}
 
 
 
 };
 
-PolicyController.$inject = [ '$scope', '$state', '$stateParams', 'pdfService', 'appServices'];
+PolicyController.$inject = [ '$scope', '$state', '$stateParams', 'pdfService', 'appServices', "allApps"];

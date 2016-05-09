@@ -174,18 +174,17 @@ export default function CreateAppCtrl($scope ,$state, $stateParams, $http, allAp
     // //   sessionStorage.allList = JSON.stringify($scope.allList);
     //};
     //
-    ////$scope.downloadXML = function(){
-    ////
-    ////    var jsonString = JSON.stringify(xmlfile);
-    ////
-    ////    var xmlString = js2xmlparser("policy", jsonString);
-    ////
-    ////    var a = document.createElement('a');
-    ////    a.setAttribute("href", "data:application/xml;charset=utf-8," + xmlString);
-    ////    a.setAttribute("download", "my.xml");
-    ////    a.click();
-    ////
-    ////};
+    //$scope.downloadXML = function(){
+    //
+    //    var jsonString = JSON.stringify(xmlfile);
+    //
+    //    var xmlString = js2xmlparser("policy", jsonString);
+    //
+    //    var a = document.createElement('a');
+    //    a.setAttribute("href", "data:application/xml;charset=utf-8," + xmlString);
+    //    a.setAttribute("download", "my.xml");
+    //    a.click();
+    //};
     //
     //$scope.TableUpdate = function() { console.log(appServices);
     //

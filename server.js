@@ -218,10 +218,10 @@ app.get('/api/get-app-with-id/:id', function (request, response) {
 
 app.post('/api/delete/:id', function (request, response) {
 
-    var id = request.params.id.toString();
+    var id = request.params.id;
 
     pg.connect(connectionString, function(err, client, done) {
-        client.query( "DELETE FROM appdetails WHERE id = '" + id + "'", function(err, result) {
+        client.query( "DELETE FROM appinformation WHERE id = '" + id + "'", function(err, result) {
             done();
             if (err) {
                 console.error(err); response.send("Error " + err);

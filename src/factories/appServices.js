@@ -9,6 +9,8 @@ function appServices($http, $q) {
 
     this.$http = $http;
 
+    this.allSavedApplications = [];
+
     this.setCookie = function(cname, cvalue, exdays) {
         var d = new Date();
 
@@ -108,7 +110,7 @@ function appServices($http, $q) {
 
         this.$http.get('/api/delete/' + id)
                 .success(function (data) {
-                     //   result.push(data);
+                     //  result.push(data);
                    dfd.resolve(data);
                 })
                 .error(function (error) {
@@ -154,7 +156,7 @@ function appServices($http, $q) {
         var dfd = $q.defer();
 
         this.$http.get('/api/get-saved-app/' + this.username)
-            .success(function (data) {
+            .success((data) => {
                 var result = [];
                 data.forEach(function (app) {
                     var newApp = {
@@ -166,19 +168,23 @@ function appServices($http, $q) {
                         selectedKnownApp: app["application_description"],
                         general_questions: app["general_questions"],
                         assessmentList: JSON.parse(app["criticality_questions"]),
-                        policyDefinition: app["policy_design_questions"],
+                        policyDefinition: JSON.parse(app["policy_design_questions"]),
                         assessCheck: app["criticality_check"],
                         policyCheck: app["policy_check"],
                         uris: JSON.parse(app["uris"]),
                         parameters: JSON.parse(app["parameters"]),
                         knownAppOptions: JSON.parse(app["known_application"])
                     };
-                    result.push(newApp);
 
-                    dfd.resolve(result);
-                })
+                    result.push(newApp);
+                });
+
+                this.allSavedApplications = result;
+
+                dfd.resolve(result);
+
             })
-            .error(function (error) {
+            .error( (error) => {
                 dfd.reject(error)
             });
 

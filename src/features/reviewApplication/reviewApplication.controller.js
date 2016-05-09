@@ -2,9 +2,11 @@
 
 
 import $ from 'jquery';
-
 import assessmentQuestions from './constant/assessment_questions.json';
 import lookupAnswers from './constant/assessment_scoringMatrix.json';
+import xmlfile from '../../files/nttWebApp.xml';
+import js2xmlparser from 'js2xmlparser';
+//import policyQuestions from '../createapplication/constants/policyDefine.json';
 
 function  getResult(allList){
     var result = [],
@@ -76,7 +78,7 @@ function  getResult(allList){
             }
         });
         result.push({appID : item.id, appName : item.appName, appDescription: item.appDescription, result : resultObject});
-    }); console.log("Olu is a badddddhhhh boy",result);
+    });
 
     sessionStorage.computedAssessment = JSON.stringify(result);
 
@@ -84,6 +86,8 @@ function  getResult(allList){
 }
 
 export default function reviewAppCtrl($scope ,$state, $stateParams, $http, appServices, allApps) {
+
+    console.log(allApps);
 
     $scope.currentAppData = {};
 
@@ -116,9 +120,41 @@ export default function reviewAppCtrl($scope ,$state, $stateParams, $http, appSe
     $scope.editAssessment = function(id){
         $state.go('edit-assessment', {redirect : true, id : id});
     };
+
+
     $scope.dashboard = function(id){
         $state.go('assess-doc', {id : id });
     };
+
+
+    $scope.deleteApp = function(id){
+        $http.post('/api/delete/' +id)
+        .success(function (data){ console.log(data);
+            $scope.allSavedApps = $scope.allSavedApps.filter(function(list){
+                return list.id != id
+            })
+        }).error(function(error){
+            console.log(error);
+        })
+    };
+
+    $scope.editPolicy = function(appID, uriID){
+        $state.go('edit-policy', {redirect : true, appID: appID, uriID : uriID });
+    };
+
+    $scope.downloadXML = function(){
+
+        var jsonString = JSON.stringify(xmlfile);
+
+        var xmlString = js2xmlparser("policy", jsonString);
+
+        var a = document.createElement('a');
+        a.setAttribute("href", "data:application/xml;charset=utf-8," + xmlString);
+        a.setAttribute("download",  "download.xml");
+        a.click();
+
+    };
+
 
 
 }
