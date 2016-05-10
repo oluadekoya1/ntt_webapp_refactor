@@ -102,28 +102,7 @@ export default function reviewAppCtrl($scope ,$state, $stateParams, $http, appSe
 
     $scope.computeResult = getResult(allApps);
 
-    //$scope.getCValue = function(id){
-    //    var allList = JSON.parse(sessionStorage.computedAssessment);
-    //    var cval = allList.filter(function (list) {
-    //        return list.appID === id
-    //    })[0];
-    //    var total = 0;
-    //    for (var prop in cval.result){
-    //        total = total + cval.result[prop];
-    //    }
-    //    var val = Math.ceil((total * 100)/98);
-    //
-    //    if(val <= 40){
-    //        return ['green', val]
-    //    } else if(val < 75 && val > 40){
-    //        return ['orange', val]
-    //    } else {
-    //        return ['red', val]
-    //    }
-    //};
-
     $scope.getCValue = function(id){
-
         var allList = JSON.parse(sessionStorage.computedAssessment);
         var cval = allList.filter(function (list) {
             return list.appID === id
@@ -132,9 +111,30 @@ export default function reviewAppCtrl($scope ,$state, $stateParams, $http, appSe
         for (var prop in cval.result){
             total = total + cval.result[prop];
         }
-        return Math.ceil((total * 100)/98);
+        var val = Math.ceil((total * 100)/98);
 
+        if(val <= 40){
+            return ['green', val]
+        } else if(val < 75 && val > 40){
+            return ['orange', val]
+        } else {
+            return ['red', val]
+        }
     };
+
+    //$scope.getCValue = function(id){
+    //
+    //    var allList = JSON.parse(sessionStorage.computedAssessment);
+    //    var cval = allList.filter(function (list) {
+    //        return list.appID === id
+    //    })[0];
+    //    var total = 0;
+    //    for (var prop in cval.result){
+    //        total = total + cval.result[prop];
+    //    }
+    //    return Math.ceil((total * 100)/98);
+    //
+    //};
 
     function customApp(){
         $scope.rowHeader = $scope.currentAppData.uris;

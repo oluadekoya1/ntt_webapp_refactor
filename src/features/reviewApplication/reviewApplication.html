@@ -53,27 +53,27 @@
             </ul>
         </td>
         <td>
-            <a ng-show="app.policyCheck === 'true'" ng-click="readFile()">
-                <i class="glyphicon glyphicon-paperclip"></i>
-            </a>
-            <!--<ul class="positionList" ng-if="app.uris.length > 0" ng-repeat="uri in app.uris">-->
-                <!--<a ng-show="app.policyCheck === 'true'" ng-click="readFile()">-->
-                    <!--<i class="glyphicon glyphicon-paperclip"></i>-->
-                <!--</a>-->
-            <!--</ul>-->
-            <!--<ul class="positionList" ng-if="app.uris.length === 0" >-->
-                <!--<a ng-show="app.policyCheck === 'true'" ng-click="readFile()">-->
-                    <!--<i class="glyphicon glyphicon-paperclip"></i>-->
-                <!--</a>-->
-            <!--</ul>-->
+            <!--<a ng-show="app.policyCheck === 'true'" ng-click="readFile()">-->
+                <!--<i class="glyphicon glyphicon-paperclip"></i>-->
+            <!--</a>-->
+            <ul class="positionList" ng-if="app.uris.length > 0" ng-repeat="uri in app.uris">
+                <a ng-show="app.policyCheck === 'true'" ng-click="readFile()">
+                    <i class="glyphicon glyphicon-paperclip"></i>
+                </a>
+            </ul>
+            <ul class="positionList" ng-if="app.uris.length === 0" >
+                <a ng-show="app.policyCheck === 'true'" ng-click="readFile()">
+                    <i class="glyphicon glyphicon-paperclip"></i>
+                </a>
+            </ul>
         </td>
-        <td align="center" ng-click="dashboard(app.id)" ng-style="{'background-color': getCValue(app.id) >= 75 ?  'red': 'amber'}" >
-            <a>{{getCValue(app.id)}} <i class='glyphicon glyphicon-new-window'></i></a>
-        </td>
-
-        <!--<td align="center" ng-click="dashboard(app.id)" ng-style="{'background-color': getCValue(app.id)[0] }" >-->
-            <!--<a>{{getCValue(app.id)[1]}} <i class='glyphicon glyphicon-new-window'></i></a>-->
+        <!--<td align="center" ng-click="dashboard(app.id)" ng-style="{'background-color': getCValue(app.id) >= 75 ?  'red': 'amber'}" >-->
+            <!--<a>{{getCValue(app.id)}} <i class='glyphicon glyphicon-new-window'></i></a>-->
         <!--</td>-->
+
+        <td align="center" ng-click="dashboard(app.id)" ng-style="{'background-color': getCValue(app.id)[0] }" >
+            <a>{{getCValue(app.id)[1]}} <i class='glyphicon glyphicon-new-window'></i></a>
+        </td>
 
         <td align="center" ng-click="editAppInfo(app.id)">
             <a><i class='glyphicon glyphicon-pencil'></i></a>
