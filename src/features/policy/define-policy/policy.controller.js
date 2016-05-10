@@ -111,8 +111,6 @@ export default function PolicyController($scope ,$state, $stateParams, pdfServic
                 //sessionStorage.allList = JSON.stringify(allList);
                 $state.go('review-app', {redirect : true});
             });
-            sessionStorage.allList = JSON.stringify(allList);
-            $state.go('review-app', {redirect : true});
         };
 
         $scope.cancelPolicy = function(){
