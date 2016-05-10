@@ -171,33 +171,6 @@
       "tabName": "Deployment Type Related Question",
       "tabContent": [
         {
-          "question" : "What server Operating Systems are in use across the web application architecture?",
-          "description":"Examples: Windows, Unix/Linux",
-          "type":"checkbox",
-          "options" : ["Microsoft Windows","Unix/Linux","Others"],
-          "name": "depQues1",
-          "ASM_Feature": "Negative security - attack signatures",
-          "selectedAnswer" : []
-        },
-        {
-          "question" : "What type and version of Application Server is used?",
-          "description":"Examples: WebSphere, Apache Tomcat6",
-          "type":"checkbox",
-          "options" : ["Apache", "Apache Tomcat","Proxy Servers","Other Web Server"],
-          "name": "depQues2",
-          "ASM_Feature": "Negative security - attack signatures",
-          "selectedAnswer" : []
-        },
-        {
-          "question" : "Does the application use XML, SOAP, or both?",
-          "description":" ",
-          "type":"radio",
-          "options": ["XML only", "SOAP only", "Both XML and SOAP" ],
-          "name": "depQues3",
-          "ASM_Feature": "General",
-          "selectedAnswer" : ""
-        },
-        {
           "question" : "Is a current definition or schema XSD file available and can it be provided?",
           "description":" ",
           "type":"radio",
@@ -533,43 +506,7 @@
       "href" : "#knownAttackDep_Ques",
       "tabName": "Deployment Type Related Question",
       "tabContent": [
-        {
-          "question" : "What server Operating Systems are in use across the web application architecture?",
-          "description":"Examples: Windows, Unix/Linux",
-          "type":"checkbox",
-          "options": ["Microsoft Windows","Unix/Linux", "Others"],
-          "name": "knownAttackdepQues1",
-          "ASM_Feature": "",
-          "selectedAnswer" : []
-        },
-        {
-          "question" : "What type and version of Web Server is used?",
-          "description":"Examples: WebSphere, Apache Tomcat6",
-          "type":"checkbox",
-          "options": ["Apache", "Apache Tomcat", "IIS", "Proxy Servers", "Other Web Servers"],
-          "name": "knownAttackdepQues2",
-          "ASM_Feature": "",
-          "selectedAnswer" : []
-        },
-        {
-          "question" : "What programming language(s) does the application use?",
-          "description":"Examples: J2EE, ASPX, PHP",
-          "type":"checkbox",
-          "options":["ASP","ASP.NET","BEA Systems WebLogic Server", "CGI", "Front Page Server Extension (FPSE)","Java Servlets/JSP",
-            "Lotus Domino", "MacroMedia ColdFusion", "MacroMedia JRun", "Outlook Web Access", "PHP", "SSI(Server Side Includes)", "WebDAV", "XML"],
-          "name": "knownAttackdepQues3",
-          "ASM_Feature": "",
-          "selectedAnswer" : []
-        },
-        {
-          "question" : "What type and version of database server is used?",
-          "description":"Examples: Oracle 11g, MS SQL Server 2005",
-          "type":"checkbox",
-          "options": ["IBM DB2", "Microsoft SQL Server", "MySQL", "Oracle", "PostgreSQL", "Sybase/ASE", "Others"],
-          "name": "knownAttackdepQues4",
-          "ASM_Feature": "",
-          "selectedAnswer" : []
-        },
+
         {
           "question" : "Does the application use any custom or non-RFC HTTP headers?",
           "description":"",
@@ -694,43 +631,7 @@
       "href" : "#unknownAttackDep_Ques",
       "tabName": "Deployment Type Related Question",
       "tabContent": [
-        {
-          "question" : "What server Operating Systems are in use across the web application architecture?",
-          "description":"Examples: Windows, Unix/Linux",
-          "type":"checkbox",
-          "options": ["Microsoft Windows","Unix/Linux", "Others"],
-          "name": "unknownAttackdepQues1",
-          "ASM_Feature": "",
-          "selectedAnswer" : []
-        },
-        {
-          "question" : "What type and version of Web Server is used?",
-          "description":"Examples: WebSphere, Apache Tomcat6",
-          "type":"checkbox",
-          "options": ["Apache", "Apache Tomcat", "IIS", "Proxy Servers", "Other Web Servers"],
-          "name": "unknownAttackdepQues2",
-          "ASM_Feature": "",
-          "selectedAnswer" : []
-        },
-        {
-          "question" : "What programming language(s) does the application use?",
-          "description":"Examples: J2EE, ASPX, PHP",
-          "type":"checkbox",
-          "options":["ASP","ASP.NET","BEA Systems WebLogic Server", "CGI", "Front Page Server Extension (FPSE)","Java Servlets/JSP",
-            "Lotus Domino", "MacroMedia ColdFusion", "MacroMedia JRun", "Outlook Web Access", "PHP", "SSI(Server Side Includes)", "WebDAV", "XML"],
-          "name": "unknownAttackdepQues3",
-          "ASM_Feature": "",
-          "selectedAnswer" : []
-        },
-        {
-          "question" : "What type and version of database server is used?",
-          "description":"Examples: Oracle 11g, MS SQL Server 2005",
-          "type":"checkbox",
-          "options": ["IBM DB2", "Microsoft SQL Server", "MySQL", "Oracle", "PostgreSQL", "Sybase/ASE", "Others"],
-          "name": "unknownAttackdepQues4",
-          "ASM_Feature": "",
-          "selectedAnswer" : []
-        },
+
         {
           "question" : "Does the application use any HTTP methods other than GET and POST? ",
           "description":"Example: OPTIONS, DELETE, PUT etc.",

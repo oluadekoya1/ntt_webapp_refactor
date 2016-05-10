@@ -168,10 +168,10 @@ app.post('/api/update-policy/:id', function (request, response) {
 
     pg.connect(connectionString, function(err, client, done) {
         var id = request.params.id.toString(),
-            policy = request.body.policyDefinition,
+            policy_design_questions = request.body.policyDefinition,
             policyCheck = request.body.policyCheck;
 
-        client.query( "UPDATE appdetails SET policy = '"+ policy +"' ,policy_check = '"+ policyCheck +"'  WHERE id = '"+ id +"'", function(err, result){
+        client.query( "UPDATE appinformation SET policy_design_questions = '"+ policy_design_questions +"' ,policy_check = '"+ policyCheck +"'  WHERE id = '"+ id +"'", function(err, result){
             done();
             if (err) {
                 console.error(err); response.send("Error " + err);

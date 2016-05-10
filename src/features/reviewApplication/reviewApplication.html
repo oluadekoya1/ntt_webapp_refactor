@@ -52,11 +52,14 @@
                 </a>
             </ul>
         </td>
-        <td ng-click="downloadXML()">
-            <i class="glyphicon glyphicon-paperclip"></i>
+        <td>
+            <a ng-show="app.policyCheck === 'true'" ng-click="downloadXML()">
+                <i class="glyphicon glyphicon-paperclip"></i>
+            </a>
         </td>
         <td align="center" ng-click="dashboard(app.id)" ng-style="{'background-color': getCValue(app.id) >= 75 ?  'red': 'white'}" >
             <a>{{getCValue(app.id)}} <i class='glyphicon glyphicon-new-window'></i></a>
+
         </td>
         <td align="center" ng-click="editAppInfo(app.id)">
             <a><i class='glyphicon glyphicon-pencil'></i></a>

@@ -8,6 +8,8 @@ export default function PolicyController($scope ,$state, $stateParams, pdfServic
     var getResults = function(option){
         var results = {};
 
+        option = option.toLowerCase();
+
         results.appName = $scope.appName;
         results.appDescription = $scope.appDescription;
 
@@ -91,16 +93,19 @@ export default function PolicyController($scope ,$state, $stateParams, pdfServic
 
         $scope.submit = function(){
 
-            currentApp.policyDefinition.filter(function(policy){
-               if(policy.cnt === currentCnt){
-                   policy = $scope.newPolicy;
-               }
-            });
+            //currentApp.policyDefinition.filter(function(policy){
+            //   if(policy.cnt === currentCnt){
+            //       policy = $scope.newPolicy;
+            //   }
+            //});
 
             var newApp = {
                 policyDefinition: JSON.stringify(currentApp.policyDefinition),
                 policyCheck: true
             };
+            console.log("Olu testing");
+            console.log(newApp);
+            console.log("Olu testing");
 
             appServices.updatePolicy(currentID, newApp).then(function(data){
                 //sessionStorage.allList = JSON.stringify(allList);
