@@ -1,11 +1,7 @@
 'use strict';
-
-
 import $ from 'jquery';
 import assessmentQuestions from './constant/assessment_questions.json';
 import lookupAnswers from './constant/assessment_scoringMatrix.json';
-import xmlfile from '../../files/nttWebApp.xml';
-import js2xmlparser from 'js2xmlparser';
 //import policyQuestions from '../createapplication/constants/policyDefine.json';
 
 function  getResult(allList){
@@ -89,13 +85,45 @@ export default function reviewAppCtrl($scope ,$state, $stateParams, $http, appSe
 
     console.log(allApps);
 
+    $scope.readFile = function () {
+        $http.get('/api/getxml').success(function (data) {
+            var xmlfile = '<?xml version="1.0" encoding="utf-8"?>' + data.xmlfile;
+            //var parser = new DOMParser();
+            // var xmlDoc = parser.parseFromString( xmlfile ,"text/xml");
+            window.open('data:text/xml,' + encodeURIComponent(xmlfile));
+        }).error(function (error) {
+            console.log(error);
+        });
+    };
+
     $scope.currentAppData = {};
 
     $scope.allSavedApps = allApps;
 
     $scope.computeResult = getResult(allApps);
 
+    //$scope.getCValue = function(id){
+    //    var allList = JSON.parse(sessionStorage.computedAssessment);
+    //    var cval = allList.filter(function (list) {
+    //        return list.appID === id
+    //    })[0];
+    //    var total = 0;
+    //    for (var prop in cval.result){
+    //        total = total + cval.result[prop];
+    //    }
+    //    var val = Math.ceil((total * 100)/98);
+    //
+    //    if(val <= 40){
+    //        return ['green', val]
+    //    } else if(val < 75 && val > 40){
+    //        return ['orange', val]
+    //    } else {
+    //        return ['red', val]
+    //    }
+    //};
+
     $scope.getCValue = function(id){
+
         var allList = JSON.parse(sessionStorage.computedAssessment);
         var cval = allList.filter(function (list) {
             return list.appID === id
@@ -105,6 +133,7 @@ export default function reviewAppCtrl($scope ,$state, $stateParams, $http, appSe
             total = total + cval.result[prop];
         }
         return Math.ceil((total * 100)/98);
+
     };
 
     function customApp(){
@@ -141,20 +170,6 @@ export default function reviewAppCtrl($scope ,$state, $stateParams, $http, appSe
     $scope.editPolicy = function(appID, uriID){
         $state.go('edit-policy', {redirect : true, appID: appID, uriID : uriID });
     };
-
-    $scope.downloadXML = function(){
-
-        var jsonString = JSON.stringify(xmlfile);
-
-        var xmlString = js2xmlparser("policy", jsonString);
-
-        var a = document.createElement('a');
-        a.setAttribute("href", "data:application/xml;charset=utf-8," + xmlString);
-        a.setAttribute("download",  "download.xml");
-        a.click();
-
-    };
-
 
 
 }
