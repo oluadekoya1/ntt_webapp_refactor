@@ -1,6 +1,6 @@
 {
   "questionFeatures" : {
-     "owasp" : {"label" : "OWASP Top 10 Application Vulnerability", "value" : 1, "checked" : false, "type" : "checkbox"},
+     "owasp" : {"label" : "OWASP Top 10 Application Vulnerabilities", "value" : 1, "checked" : true, "type" : "checkbox"},
      "api" : {"label" : "Web Services (SOAP and REST)", "value" : 2, "checked" : false, "type" : "checkbox"},
      "loginPage" : {"label" : "Login Page (Brute Force Protection)", "value" : 3, "checked" : false, "type" : "checkbox"},
      "harvestedData" : {"label" : "Harvested Data (Web Scraping)", "value" : 4, "checked" : false, "type" : "checkbox"},

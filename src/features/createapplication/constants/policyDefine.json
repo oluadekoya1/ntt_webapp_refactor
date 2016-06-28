@@ -6,10 +6,6 @@
     "question": "Does this application use ONLY web services (XML/SOAP)?",
     "options" : [
       {
-        "label" : "Please Select",
-        "value" : -1
-      },
-      {
         "label" : "Yes",
         "value" : 1
       },
@@ -23,10 +19,6 @@
   "category2": {
     "question": "Is the application a known Application, for which ASM has an Application-Ready Security Policy Template? If so, please select from the available templates.",
     "options" : [
-      {
-        "label" : "please select",
-        "value" : -1
-      },
       {
         "label" : "no",
         "value" : 0
@@ -147,24 +139,161 @@
     "description":"ASM contains predefined templates for known applications to allow easy deployment of ASM policy."
   },
   "category3" : {
-    "question" : "Does the Application require protection only from known attacks, or does the application require protection from both known and unknown attacks?",
+    "question" : "Does the Application require protection only from known attacks, or from both known and unknown attacks?",
     "options": [
       {
-        "label" : "Please Select",
-        "value": "-1"
-      },
-      {
-        "label" : "Yes",
+        "label" : "Protection from known attacks only",
         "value": 1
       },
       {
-        "label" : "No",
+        "label" : "Protection from known and unknown attacks",
         "value" : 0
       }
     ],
     "description": "Protection against known attacks only would require deployment of an ASM policy based on negative security concept, where all traffic is allowed except what was configured to be blocked (often known as blacklist). Protection against unknonwn attacks would require deploment of an ASM policy based on positive security policy concept, where all traffic is blocked except what has been configured to be allowed (often known as whitelist)."
   },
   "webServices" : [
+    {
+      "tabID" : "Gen_Ques",
+      "href"  : "#Gen_Ques",
+      "tabName": "General Question",
+      "tabContent": [
+        {
+          "question": "Are there any portions of the application that send back data to the user that you would want to mask, so that the user cannot see the data displayed in their browser or within the response content?",
+          "description": "Example: account numbers, sort codes or other private details",
+          "type": "radio",
+          "hasFurtherOptions" : {
+            "0" : false
+          },
+          "options": [
+            "Yes - Masking sensitive data is needed",
+            "No - Masking sensitive data is not needed"
+          ],
+          "name": "gQues1",
+          "selectedAnswer": ""
+        },
+        {
+          "question": "Does the application require Geolocation Enforcement? If so, please list the countries to block/allow (shorter list applies)?",
+          "description": "Geolocation feature allows to configure which countries can access the web application, based on source IP address.",
+          "type": "radio",
+          "options": [
+            "Yes - Geolocation enforcement is required",
+            "No - Geolocation enforcement is not required"
+          ],
+          "name": "gQues2",
+          "selectedAnswer": "",
+          "hasFurtherOptions" : {
+            "1" : true
+          },
+          "furtherOptions" : {
+            "yes" : [
+              [
+                { "label" : "Select allowed geo-locations", "countryOption":[
+                  "Nigeria","Ghana"
+                ], "type" : "dropdownSelect", "answer" : "" }]
+            ]
+          }
+        },
+        {
+          "question": "Is there a need to protect the application from large number of failed login attempts? If so, please specify login URLs to protect?",
+          "description": "Brute force protection feature allows to limit the number of  failed attempts to reach the configured login URL. If this feature is required than please provide the following information in the Comments/Details box.Login URL - Specifies a URL in the web application that users must pass through in order to access a certain authenticated URL.Authentication Type - None, HTML Form, HTTP Basic Authentication, HTTP Digest Authentication, NTLMExpected HTTP response status code - Type an HTTP response code that the server must return to the user to allow access to the authenticated URL, after the user’s request to the authenticated URL.",
+          "type": "radio",
+          "options": [
+            "No - failed login attempts protection is not required",
+            "Yes - failed login attempts protection is required - please fill in details"
+          ],
+          "name": "gQues3",
+          "selectedAnswer": "",
+          "hasFurtherOptions" : {
+            "2" : true
+          },
+          "furtherOptions" : {
+            "yes" : [
+              [{ "label" : "Login Url", "type" : "textbox", "answer" : "" },
+              { "label" : "Authentication type", "type" : "select", "options" : [], "answer" : "" },
+              { "label" : "Expected HTTP Response status code",  "type" : "textbox", "answer" : "" }]
+            ]
+          }
+        },
+        {
+          "question": "Does the application require Denial of Service (DoS) protection?",
+          "description" : "Anamoly detection can be applied to the application to identify and mitigate DoS attacks",
+          "type": "radio",
+          "options": [
+            "No - DoS protection is not required",
+            "Yes - DoS protection is required"
+          ],
+          "hasFurtherOptions" : {
+            "3" : false
+          },
+          "name": "gQues4",
+          "selectedAnswer": ""
+        },
+        {
+          "question": "Does the application require Cross-Site Request Forgery (CSRF) protection? If so, please specify the URLs which require CSRF protection.",
+          "description" : "Cross-site request forgery (CSRF) is an attack which forces a user to execute unwanted actions on a web application in which the user is currently authenticated.",
+          "type": "radio",
+          "options": [
+            "No - CSRF protection is not required",
+            "Yes - CSRF protection is required"
+          ],
+          "name": "gQues5",
+          "selectedAnswer": "",
+          "hasFurtherOptions" : {
+            "4" : true
+          },
+          "furtherOptions" : {
+            "yes" : [
+              [{ "label" : "URL", "type" : "textbox", "answer" : "" }]
+            ]
+          }
+        },
+        {
+          "question": "Does the application generate content which is likely to be harvested?",
+          "description" : "Web harvesting/Web Scraping is a software technique of extracting information from a website by a web crawler.",
+          "type": "radio",
+          "options": [
+            "Yes - content is likely to be harvested",
+            "No - content is unlikely to be harvested"
+          ],
+          "name": "gQues6",
+          "hasFurtherOptions" : {
+            "5" : false
+          },
+          "selectedAnswer": ""
+        },
+        {
+          "question": "Is there a requirement for ASM to send log records to a remote syslog facility or SIEM? If so, please specify remote syslog/SIEM type",
+          "description" : "It is recommended to use remote logging for logging illegal requests only, to prevent the remote logging facility from overfilling. It is possible to set remote logging instead of, or in addition to local logging on ASM. Example of logging facilities: Syslog Server, ArcSight, Splunk.",
+          "type": "radio",
+          "options": [
+            "No - Remote logging is not required",
+            "Yes - Remote logging is required - please specify.."
+          ],
+          "name": "gQues7",
+          "hasFurtherOptions" : {
+            "6" : true
+          },
+          "selectedAnswer": "",
+          "furtherOptions" : {
+            "yes" : [
+              [{ "label" : "Syslog/SIEM Type", "type" : "textbox", "answer" : "" }]
+            ]
+          }
+        },
+        {
+          "question": "Are there any areas of the web application that you are aware of, where security needs to be enhanced? Please outline these areas.",
+          "description" : "",
+          "type": "text",
+          "name": "gQues8",
+          "hasFurtherOptions" : {
+            "7" : false
+          },
+          "selectedAnswer": ""
+        }
+
+      ]
+    },
     {
       "tabID" : "Dep_Ques",
       "href" : "#Dep_Ques",
@@ -293,96 +422,147 @@
 
 
   ],
-  "generalQuestions": {
-    "tabName": "General Questions",
-    "tabContent": [
-      {
-        "question": "Are there any portions of the application that send back data to the user that you would want to mask, so that the user cannot see the data displayed in their browser or within the response content?",
-        "description": "Example: account numbers, sort codes or other private details",
-        "type": "radio",
-        "options": [
-          "Yes - Masking sensitive data is needed",
-          "No - Masking sensitive data is not needed"
-        ],
-        "name": "gQues1",
-        "selectedAnswer": ""
-      },
-      {
-        "question": "Does the application require Geolocation Enforcement? If so, please list the countries to block/allow (shorter list applies)?",
-        "description": "Geolocation feature allows to configure which countries can access the web application, based on source IP address.",
-        "type": "radio",
-        "options": [
-          "Yes - Geolocation enforcement is required",
-          "No - Geolocation enforcement is not required"
-        ],
-        "name": "gQues2",
-        "selectedAnswer": ""
-      },
-      {
-        "question": "Is there a need to protect the application from large number of failed login attempts? If so, please specify login URLs to protect?",
-        "description": "Brute force protection feature allows to limit the number of  failed attempts to reach the configured login URL. If this feature is required than please provide the following information in the Comments/Details box.Login URL - Specifies a URL in the web application that users must pass through in order to access a certain authenticated URL.Authentication Type - None, HTML Form, HTTP Basic Authentication, HTTP Digest Authentication, NTLMExpected HTTP response status code - Type an HTTP response code that the server must return to the user to allow access to the authenticated URL, after the user’s request to the authenticated URL.",
-        "type": "radio",
-        "options": [
-          "No need for failed login attempts protection",
-          "Yes - failed login attempts protection is required - please fill in details"
-        ],
-        "name": "gQues3",
-        "selectedAnswer": ""
-      },
-      {
-        "question": "Does the application require Denial of Service (DoS) protection?",
-        "description" : "Anamoly detection can be applied to the application to identify and mitigate DoS attacks",
-        "type": "radio",
-        "options": [
-          "No - DoS protection is not required",
-          "Yes - DoS protection is required"
-        ],
-        "name": "gQues4",
-        "selectedAnswer": ""
-      },
-      {
-        "question": "Does the application require Cross-Site Request Forgery (CSRF) protection? If so, please specify the URLs which require CSRF protection.",
-        "description" : "Cross-site request forgery (CSRF) is an attack which forces a user to execute unwanted actions on a web application in which the user is currently authenticated.",
-        "type": "radio",
-        "options": [
-          "No - DoS protection is not required",
-          "Yes - DoS protection is required"
-        ],
-        "name": "gQues5",
-        "selectedAnswer": ""
-      },
-      {
-        "question": "Does the application generate content which is likely to be harvested?",
-        "description" : "Web harvesting/Web Scraping is a software technique of extracting information from a website by a web crawler.",
-        "type": "radio",
-        "options": [
-          "Yes - content is likely to be harvested",
-          "No - content is unlikely to be harvested"
-        ],
-        "name": "gQues6",
-        "selectedAnswer": ""
-      },
-      {
-        "question": "Is there a requirement for ASM to send log records to a remote syslog facility or SIEM? If so, please specify remote syslog/SIEM type",
-        "description" : "It is recommended to use remote logging for logging illegal requests only, to prevent the remote logging facility from overfilling. It is possible to set remote logging instead of, or in addition to local logging on ASM. Example of logging facilities: Syslog Server, ArcSight, Splunk.",
-        "type": "radio",
-        "options": [
-          "Remote logging is not required",
-          "Remote logging is required - please specify.."
-        ],
-        "name": "gQues7",
-        "selectedAnswer": ""
-      },
-      {
-        "question": "Are there any areas of the web application that you are aware of, where security needs to be enhanced? Please outline these areas.",
-        "description" : "",
-        "type": "text",
-        "name": "gQues8",
-        "selectedAnswer": ""
-      }
-    ]
-  },
   "knownApp" : [
+    {
+      "tabID" : "Gen_Ques",
+      "href"  : "#Gen_Ques",
+      "tabName": "General Question",
+      "tabContent": [
+        {
+          "question": "Are there any portions of the application that send back data to the user that you would want to mask, so that the user cannot see the data displayed in their browser or within the response content?",
+          "description": "Example: account numbers, sort codes or other private details",
+          "type": "radio",
+          "hasFurtherOptions" : {
+            "0" : false
+          },
+          "options": [
+            "Yes - Masking sensitive data is needed",
+            "No - Masking sensitive data is not needed"
+          ],
+          "name": "gQues11",
+          "selectedAnswer": ""
+        },
+        {
+          "question": "Does the application require Geolocation Enforcement? If so, please list the countries to block/allow (shorter list applies)?",
+          "description": "Geolocation feature allows to configure which countries can access the web application, based on source IP address.",
+          "type": "radio",
+          "options": [
+            "Yes - Geolocation enforcement is required",
+            "No - Geolocation enforcement is not required"
+          ],
+          "name": "gQues21",
+          "selectedAnswer": "",
+          "hasFurtherOptions" : {
+            "1" : true
+          },
+          "furtherOptions" : {
+            "yes" : [
+              [
+                { "label" : "Select allowed geo-locations", "countryOption":[
+                  "Nigeria","Ghana"
+                ], "type" : "dropdownSelect", "answer" : "" }]
+            ]
+          }
+        },
+        {
+          "question": "Is there a need to protect the application from large number of failed login attempts? If so, please specify login URLs to protect?",
+          "description": "Brute force protection feature allows to limit the number of  failed attempts to reach the configured login URL. If this feature is required than please provide the following information in the Comments/Details box.Login URL - Specifies a URL in the web application that users must pass through in order to access a certain authenticated URL.Authentication Type - None, HTML Form, HTTP Basic Authentication, HTTP Digest Authentication, NTLMExpected HTTP response status code - Type an HTTP response code that the server must return to the user to allow access to the authenticated URL, after the user’s request to the authenticated URL.",
+          "type": "radio",
+          "options": [
+            "No - failed login attempts protection is not required",
+            "Yes - failed login attempts protection is required - please fill in details"
+          ],
+          "name": "gQues31",
+          "selectedAnswer": "",
+          "hasFurtherOptions" : {
+            "2" : true
+          },
+          "furtherOptions" : {
+            "yes" : [
+              [{ "label" : "Login Url", "type" : "textbox", "answer" : "" },
+                { "label" : "Authentication type", "type" : "select", "options" : [], "answer" : "" },
+                { "label" : "Expected HTTP Response status code",  "type" : "textbox", "answer" : "" }]
+            ]
+          }
+        },
+        {
+          "question": "Does the application require Denial of Service (DoS) protection?",
+          "description" : "Anamoly detection can be applied to the application to identify and mitigate DoS attacks",
+          "type": "radio",
+          "options": [
+            "No - DoS protection is not required",
+            "Yes - DoS protection is required"
+          ],
+          "hasFurtherOptions" : {
+            "3" : false
+          },
+          "name": "gQues41",
+          "selectedAnswer": ""
+        },
+        {
+          "question": "Does the application require Cross-Site Request Forgery (CSRF) protection? If so, please specify the URLs which require CSRF protection.",
+          "description" : "Cross-site request forgery (CSRF) is an attack which forces a user to execute unwanted actions on a web application in which the user is currently authenticated.",
+          "type": "radio",
+          "options": [
+            "No - CSRF protection is not required",
+            "Yes - CSRF protection is required"
+          ],
+          "name": "gQues51",
+          "selectedAnswer": "",
+          "hasFurtherOptions" : {
+            "4" : true
+          },
+          "furtherOptions" : {
+            "yes" : [
+              [{ "label" : "URL", "type" : "textbox", "answer" : "" }]
+            ]
+          }
+        },
+        {
+          "question": "Does the application generate content which is likely to be harvested?",
+          "description" : "Web harvesting/Web Scraping is a software technique of extracting information from a website by a web crawler.",
+          "type": "radio",
+          "options": [
+            "Yes - content is likely to be harvested",
+            "No - content is unlikely to be harvested"
+          ],
+          "name": "gQues61",
+          "hasFurtherOptions" : {
+            "5" : false
+          },
+          "selectedAnswer": ""
+        },
+        {
+          "question": "Is there a requirement for ASM to send log records to a remote syslog facility or SIEM? If so, please specify remote syslog/SIEM type",
+          "description" : "It is recommended to use remote logging for logging illegal requests only, to prevent the remote logging facility from overfilling. It is possible to set remote logging instead of, or in addition to local logging on ASM. Example of logging facilities: Syslog Server, ArcSight, Splunk.",
+          "type": "radio",
+          "options": [
+            "No - Remote logging is not required",
+            "Yes - Remote logging is required - please specify.."
+          ],
+          "name": "gQues71",
+          "hasFurtherOptions" : {
+            "6" : true
+          },
+          "selectedAnswer": "",
+          "furtherOptions" : {
+            "yes" : [
+              [{ "label" : "Syslog/SIEM Type", "type" : "textbox", "answer" : "" }]
+            ]
+          }
+        },
+        {
+          "question": "Are there any areas of the web application that you are aware of, where security needs to be enhanced? Please outline these areas.",
+          "description" : "",
+          "type": "text",
+          "name": "gQues81",
+          "hasFurtherOptions" : {
+            "7" : false
+          },
+          "selectedAnswer": ""
+        }
+      ]
+    },
     {
       "tabID" : "knownAppDep_Ques",
       "href" : "#knownAppDep_Ques",
@@ -501,6 +681,146 @@
 
   ],
   "knownAttacks" : [
+    {
+      "tabID" : "knownAttackGen_Ques",
+      "href"  : "#knownAttackGen_Ques",
+      "tabName": "General Question",
+      "tabContent": [
+        {
+          "question": "Are there any portions of the application that send back data to the user that you would want to mask, so that the user cannot see the data displayed in their browser or within the response content?",
+          "description": "Example: account numbers, sort codes or other private details",
+          "type": "radio",
+          "hasFurtherOptions" : {
+            "10" : false
+          },
+          "options": [
+            "Yes - Masking sensitive data is needed",
+            "No - Masking sensitive data is not needed"
+          ],
+          "name": "gQues121",
+          "selectedAnswer": ""
+        },
+        {
+          "question": "Does the application require Geolocation Enforcement? If so, please list the countries to block/allow (shorter list applies)?",
+          "description": "Geolocation feature allows to configure which countries can access the web application, based on source IP address.",
+          "type": "radio",
+          "options": [
+            "Yes - Geolocation enforcement is required",
+            "No - Geolocation enforcement is not required"
+          ],
+          "name": "gQues221",
+          "selectedAnswer": "",
+          "hasFurtherOptions" : {
+            "11" : true
+          },
+          "furtherOptions" : {
+            "yes" : [
+              [
+                { "label" : "Select allowed geo-locations", "countryOption":[
+                  "Nigeria","Ghana"
+                ], "type" : "dropdownSelect", "answer" : "" }]
+            ]
+          }
+        },
+        {
+          "question": "Is there a need to protect the application from large number of failed login attempts? If so, please specify login URLs to protect?",
+          "description": "Brute force protection feature allows to limit the number of  failed attempts to reach the configured login URL. If this feature is required than please provide the following information in the Comments/Details box.Login URL - Specifies a URL in the web application that users must pass through in order to access a certain authenticated URL.Authentication Type - None, HTML Form, HTTP Basic Authentication, HTTP Digest Authentication, NTLMExpected HTTP response status code - Type an HTTP response code that the server must return to the user to allow access to the authenticated URL, after the user’s request to the authenticated URL.",
+          "type": "radio",
+          "options": [
+            "No - failed login attempts protection is not required",
+            "Yes - failed login attempts protection is required - please fill in details"
+          ],
+          "name": "gQues321",
+          "selectedAnswer": "",
+          "hasFurtherOptions" : {
+            "12" : true
+          },
+          "furtherOptions" : {
+            "yes" : [
+              [{ "label" : "Login Url", "type" : "textbox", "answer" : "" },
+                { "label" : "Authentication type", "type" : "select", "options" : [], "answer" : "" },
+                { "label" : "Expected HTTP Response status code",  "type" : "textbox", "answer" : "" }]
+            ]
+          }
+        },
+        {
+          "question": "Does the application require Denial of Service (DoS) protection?",
+          "description" : "Anamoly detection can be applied to the application to identify and mitigate DoS attacks",
+          "type": "radio",
+          "options": [
+            "No - DoS protection is not required",
+            "Yes - DoS protection is required"
+          ],
+          "hasFurtherOptions" : {
+            "13" : false
+          },
+          "name": "gQues421",
+          "selectedAnswer": ""
+        },
+        {
+          "question": "Does the application require Cross-Site Request Forgery (CSRF) protection? If so, please specify the URLs which require CSRF protection.",
+          "description" : "Cross-site request forgery (CSRF) is an attack which forces a user to execute unwanted actions on a web application in which the user is currently authenticated.",
+          "type": "radio",
+          "options": [
+            "No - CSRF protection is not required",
+            "Yes - CSRF protection is required"
+          ],
+          "name": "gQues521",
+          "selectedAnswer": "",
+          "hasFurtherOptions" : {
+            "14" : true
+          },
+          "furtherOptions" : {
+            "yes" : [
+              [{ "label" : "URL", "type" : "textbox", "answer" : "" }]
+            ]
+          }
+        },
+        {
+          "question": "Does the application generate content which is likely to be harvested?",
+          "description" : "Web harvesting/Web Scraping is a software technique of extracting information from a website by a web crawler.",
+          "type": "radio",
+          "options": [
+            "Yes - content is likely to be harvested",
+            "No - content is unlikely to be harvested"
+          ],
+          "name": "gQues621",
+          "hasFurtherOptions" : {
+            "15" : false
+          },
+          "selectedAnswer": ""
+        },
+        {
+          "question": "Is there a requirement for ASM to send log records to a remote syslog facility or SIEM? If so, please specify remote syslog/SIEM type",
+          "description" : "It is recommended to use remote logging for logging illegal requests only, to prevent the remote logging facility from overfilling. It is possible to set remote logging instead of, or in addition to local logging on ASM. Example of logging facilities: Syslog Server, ArcSight, Splunk.",
+          "type": "radio",
+          "options": [
+            "No - Remote logging is not required",
+            "Yes - Remote logging is required - please specify.."
+          ],
+          "name": "gQues721",
+          "hasFurtherOptions" : {
+            "16" : true
+          },
+          "selectedAnswer": "",
+          "furtherOptions" : {
+            "yes" : [
+              [{ "label" : "Syslog/SIEM Type", "type" : "textbox", "answer" : "" }]
+            ]
+          }
+        },
+        {
+          "question": "Are there any areas of the web application that you are aware of, where security needs to be enhanced? Please outline these areas.",
+          "description" : "",
+          "type": "text",
+          "name": "gQues821",
+          "hasFurtherOptions" : {
+            "17" : false
+          },
+          "selectedAnswer": ""
+        }
+      ]
+    },
     {
       "tabID" : "knownAttackDep_Ques",
       "href" : "#knownAttackDep_Ques",
@@ -626,6 +946,146 @@
 
   ],
   "unknownAttacks" : [
+    {
+      "tabID" : "unknownAttackGen_Ques",
+      "href"  : "#unknownAttackGen_Ques",
+      "tabName": "General Question",
+      "tabContent": [
+        {
+          "question": "Are there any portions of the application that send back data to the user that you would want to mask, so that the user cannot see the data displayed in their browser or within the response content?",
+          "description": "Example: account numbers, sort codes or other private details",
+          "type": "radio",
+          "hasFurtherOptions" : {
+            "20" : false
+          },
+          "options": [
+            "Yes - Masking sensitive data is needed",
+            "No - Masking sensitive data is not needed"
+          ],
+          "name": "gQues111",
+          "selectedAnswer": ""
+        },
+        {
+          "question": "Does the application require Geolocation Enforcement? If so, please list the countries to block/allow (shorter list applies)?",
+          "description": "Geolocation feature allows to configure which countries can access the web application, based on source IP address.",
+          "type": "radio",
+          "options": [
+            "Yes - Geolocation enforcement is required",
+            "No - Geolocation enforcement is not required"
+          ],
+          "name": "gQues112",
+          "selectedAnswer": "",
+          "hasFurtherOptions" : {
+            "21" : true
+          },
+          "furtherOptions" : {
+            "yes" : [
+              [
+                { "label" : "Select allowed geo-locations", "countryOption":[
+                  "Nigeria","Ghana"
+                ], "type" : "dropdownSelect", "answer" : "" }]
+            ]
+          }
+        },
+        {
+          "question": "Is there a need to protect the application from large number of failed login attempts? If so, please specify login URLs to protect?",
+          "description": "Brute force protection feature allows to limit the number of  failed attempts to reach the configured login URL. If this feature is required than please provide the following information in the Comments/Details box.Login URL - Specifies a URL in the web application that users must pass through in order to access a certain authenticated URL.Authentication Type - None, HTML Form, HTTP Basic Authentication, HTTP Digest Authentication, NTLMExpected HTTP response status code - Type an HTTP response code that the server must return to the user to allow access to the authenticated URL, after the user’s request to the authenticated URL.",
+          "type": "radio",
+          "options": [
+            "No - failed login attempts protection is not required",
+            "Yes - failed login attempts protection is required - please fill in details"
+          ],
+          "name": "gQues113",
+          "selectedAnswer": "",
+          "hasFurtherOptions" : {
+            "22" : true
+          },
+          "furtherOptions" : {
+            "yes" : [
+              [{ "label" : "Login Url", "type" : "textbox", "answer" : "" },
+                { "label" : "Authentication type", "type" : "select", "options" : [], "answer" : "" },
+                { "label" : "Expected HTTP Response status code",  "type" : "textbox", "answer" : "" }]
+            ]
+          }
+        },
+        {
+          "question": "Does the application require Denial of Service (DoS) protection?",
+          "description" : "Anamoly detection can be applied to the application to identify and mitigate DoS attacks",
+          "type": "radio",
+          "options": [
+            "No - DoS protection is not required",
+            "Yes - DoS protection is required"
+          ],
+          "hasFurtherOptions" : {
+            "23" : false
+          },
+          "name": "gQues114",
+          "selectedAnswer": ""
+        },
+        {
+          "question": "Does the application require Cross-Site Request Forgery (CSRF) protection? If so, please specify the URLs which require CSRF protection.",
+          "description" : "Cross-site request forgery (CSRF) is an attack which forces a user to execute unwanted actions on a web application in which the user is currently authenticated.",
+          "type": "radio",
+          "options": [
+            "No - CSRF protection is not required",
+            "Yes - CSRF protection is required"
+          ],
+          "name": "gQues115",
+          "selectedAnswer": "",
+          "hasFurtherOptions" : {
+            "24" : true
+          },
+          "furtherOptions" : {
+            "yes" : [
+              [{ "label" : "URL", "type" : "textbox", "answer" : "" }]
+            ]
+          }
+        },
+        {
+          "question": "Does the application generate content which is likely to be harvested?",
+          "description" : "Web harvesting/Web Scraping is a software technique of extracting information from a website by a web crawler.",
+          "type": "radio",
+          "options": [
+            "Yes - content is likely to be harvested",
+            "No - content is unlikely to be harvested"
+          ],
+          "name": "gQues116",
+          "hasFurtherOptions" : {
+            "25" : false
+          },
+          "selectedAnswer": ""
+        },
+        {
+          "question": "Is there a requirement for ASM to send log records to a remote syslog facility or SIEM? If so, please specify remote syslog/SIEM type",
+          "description" : "It is recommended to use remote logging for logging illegal requests only, to prevent the remote logging facility from overfilling. It is possible to set remote logging instead of, or in addition to local logging on ASM. Example of logging facilities: Syslog Server, ArcSight, Splunk.",
+          "type": "radio",
+          "options": [
+            "No - Remote logging is not required",
+            "Yes - Remote logging is required - please specify.."
+          ],
+          "name": "gQues117",
+          "hasFurtherOptions" : {
+            "26" : true
+          },
+          "selectedAnswer": "",
+          "furtherOptions" : {
+            "yes" : [
+              [{ "label" : "Syslog/SIEM Type", "type" : "textbox", "answer" : "" }]
+            ]
+          }
+        },
+        {
+          "question": "Are there any areas of the web application that you are aware of, where security needs to be enhanced? Please outline these areas.",
+          "description" : "",
+          "type": "text",
+          "name": "gQues118",
+          "hasFurtherOptions" : {
+            "27" : false
+          },
+          "selectedAnswer": ""
+        }
+      ]
+    },
     {
       "tabID" : "unknownAttackDep_Ques",
       "href" : "#unknownAttackDep_Ques",
@@ -833,6 +1293,5 @@
 
       ]
     }
-
   ]
 }

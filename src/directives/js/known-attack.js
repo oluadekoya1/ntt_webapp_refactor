@@ -1,11 +1,10 @@
 /**
  * Created by adekoyao on 11/02/2016.
  */
-
 import angular from 'angular';
 import templateData from "../template/known-attack.html";
 import '../css/main-menu.css';
-import questionData from '../../features/createapplication/constants/policyDefine.json';
+
 
 function knownAttack() {
     return {
@@ -14,14 +13,12 @@ function knownAttack() {
             newPolicy: '='
         },
         template: templateData,
-        link: function(scope){ console.log("known attack");
-            scope.$watch('newPolicy.knownAttack', function(newValue, oldValue) { console.log("----->>>>>> known",newValue, oldValue);
-                if(newValue && oldValue && newValue * 1 != oldValue * 1){
-                    scope.newPolicy.knownAttacks = angular.copy(questionData.knownAttacks);
-                }
-            });
-        },
+
         controller: function($scope){
+            $scope.boolOption = {};
+
+            $scope.showFurtherOption = false;
+
             $scope.toggleSelection = function(data, option) {
                 var idx = data.selectedAnswer.indexOf(option);
                 // is currently selected
@@ -33,6 +30,50 @@ function knownAttack() {
                     data.selectedAnswer.push(option);
                 }
             };
+
+            $scope.currentIndex = "";
+
+            $scope.processSelectedAnswer = function(option, idx){ console.log(idx);
+
+                $scope.currentIndex = idx;
+
+                $scope.boolOption = option.selectedAnswer.substring(0,3);
+
+                $scope.boolOption = $scope.boolOption.trim().toLowerCase();
+
+                if($scope.boolOption === 'yes'){
+                    return 'yes'
+                } else if($scope.boolOption === 'no'){
+                    return 'no'
+                } else {
+                    return "other"
+                }
+
+            };
+
+            $scope.geolocaCount1 =[];
+            $scope.geolocaCount =[{id:1, label:"Nigeria"},{id:2, label:"Ghana"},{id:3, label:"United Kingdom"}];
+
+            $scope.addFurtherOption = function(option){
+                if(option.furtherOptions){
+                    var newOption = angular.copy(option.furtherOptions[$scope.boolOption][0]);
+
+                    newOption.forEach(function(opt){
+                        opt.answer = "";
+                    });
+
+                    option.furtherOptions[$scope.boolOption].push(newOption);
+
+                    console.log( option.furtherOptions[$scope.boolOption]);
+                }
+            };
+
+            $scope.removeFurtherOption = function(option){
+                if(option.furtherOptions && option.furtherOptions[$scope.boolOption].length > 1){
+                   option.furtherOptions[$scope.boolOption].pop();
+                }
+            };
+
 
         }
     }

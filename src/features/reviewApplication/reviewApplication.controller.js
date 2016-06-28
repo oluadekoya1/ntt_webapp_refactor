@@ -113,9 +113,12 @@ export default function reviewAppCtrl($scope ,$state, $stateParams, $http, appSe
         }
         var val = Math.ceil((total * 100)/98);
 
-        if(val <= 40){
+        if(val <= 0){
+            return ['white', val]
+        } else if(val<40 && val >1){
             return ['green', val]
-        } else if(val < 75 && val > 40){
+        }
+          else if(val < 75 && val > 40){
             return ['orange', val]
         } else {
             return ['red', val]

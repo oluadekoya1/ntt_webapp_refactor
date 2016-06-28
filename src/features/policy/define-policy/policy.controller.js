@@ -3,8 +3,6 @@
 // exporting the contents of the Assessment Controller so that it is available to other pages
 export default function PolicyController($scope ,$state, $stateParams, pdfService, appServices, allApps) {
 
-    console.log($state, allApps);
-
     var getResults = function(option){
         var results = {};
 
@@ -67,6 +65,9 @@ export default function PolicyController($scope ,$state, $stateParams, pdfServic
             return list.id === currentID
         })[0];
 
+        $scope.currentApplication = currentApp;
+
+console.log(currentApp);
         $scope.newPolicy = (currentCnt.length > 0) ? currentApp.policyDefinition[currentCnt] : currentApp.policyDefinition;
 
         $scope.appName = currentApp.appName;
@@ -92,12 +93,6 @@ export default function PolicyController($scope ,$state, $stateParams, pdfServic
 
 
         $scope.submit = function(){
-
-            //currentApp.policyDefinition.filter(function(policy){
-            //   if(policy.cnt === currentCnt){
-            //       policy = $scope.newPolicy;
-            //   }
-            //});
 
             var newApp = {
                 policyDefinition: JSON.stringify(currentApp.policyDefinition),

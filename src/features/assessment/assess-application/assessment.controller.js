@@ -40,7 +40,7 @@ export default function AssessmentController($scope ,$state, $stateParams, pdfSe
             if($scope.isValid()){
                 var newApp = {
                     id:currentID,
-                    critcality_check : 'true',
+                    assessCheck: 'true',
                     appName : $scope.appName,
                     appDescription: $scope.appDescription,
                     general_questions: JSON.stringify(toEdit.general_questions),

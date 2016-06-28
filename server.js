@@ -138,31 +138,7 @@ app.post('/api/update-assessment1/:id', function (request, response) {
     });
 });
 
-app.post('/api/update-assessment/:id', function (request, response) {
 
-    pg.connect(connectionString, function(err, client, done) {
-        var id = request.params.id.toString(),
-            username = request.body.username,
-            criticalityComplete  = request.body.assessApp,
-            appName = request.body.appName,
-            appDescription = request.body.appDescription,
-            commonQns = request.body.commonQuestions,
-            criticality = request.body.assessmentList,
-            policy = request.body.policyDefinition,
-            status = request.body.status,
-            policyCheck = request.body.policyCheck;
-
-        client.query( "UPDATE appdetails SET criticality_complete = '"+ criticalityComplete +"', application_name = '"+ appName +"', application_description = '"+ appDescription +"', common_questions = '"+ commonQns +"', criticality = '"+ criticality +"', policy = '"+ policy +"', application_status = '"+ status +"', policy_check = '"+ policyCheck +"'  WHERE id = '"+ id +"'", function(err, result){
-            done();
-            if (err) {
-                console.error(err); response.send("Error " + err);
-            }
-            else {
-                response.send(result);
-            }
-        });
-    });
-});
 
 app.post('/api/update-policy/:id', function (request, response) {
 

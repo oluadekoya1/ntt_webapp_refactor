@@ -18,10 +18,16 @@
                         <div ng-if="col.type === 'dropdown'">
                             <div ng-dropdown-multiselect="" options="col.options" selected-model="col.optionsdata" ></div>
                         </div>
-                        <div ng-if="col.type === 'checkbox'">
-                            <input id={{key}}{{uri.id}} class="checkbox-custom " name={{uri.id}} type="checkbox" ng-click="checkItems(col)">
-                            <label for={{key}}{{uri.id}} class="checkbox-custom-label font-weight-500"></label>
-                        </div>
+                       <div ng-if="col.type === 'checkbox'">
+                            <span ng-if="col.checked">
+                                <input id={{key}}+'checked'+{{uri.id}} class="checkbox-custom " name={{uri.id}} type="checkbox" checked>
+                                 <label for={{key}}+'checked'+{{uri.id}} class="checkbox-custom-label font-weight-500"></label>
+                            </span>
+                            <span ng-if="!col.checked">
+                                 <input id={{key}}+'notchecked'+{{uri.id}} class="checkbox-custom " name={{uri.id}} type="checkbox" >
+                                 <label for={{key}}+'notchecked'+{{uri.id}} class="checkbox-custom-label font-weight-500"></label>
+                            </span>
+                       </div>
                    </div>
                 </td>
             </tr>
@@ -43,8 +49,14 @@
                 <div ng-dropdown-multiselect="" options="col.options" selected-model="col.optionsdata"></div>
             </div>
             <div ng-if="col.type === 'checkbox'">
-                <input id={{col.label}}{{selectedKnownApp}} class="checkbox-custom " name={{selectedKnownApp}} type="checkbox">
-                <label for={{col.label}}{{selectedKnownApp}} class="checkbox-custom-label font-weight-500"></label>
+                <span ng-if="col.checked">
+                    <input id={{col.label}}+'checked'+{{$index}} class="checkbox-custom " name={{$index}}{{col.label}} type="checkbox" checked>
+                     <label for={{col.label}}+'checked'+{{$index}} class="checkbox-custom-label font-weight-500"></label>
+                </span>
+                <span ng-if="!col.checked">
+                     <input id={{col.label}}+'notchecked'+{{$index}} class="checkbox-custom " name={{$index}}{{col.label}} type="checkbox" >
+                     <label for={{col.label}}+'notchecked'+{{$index}} class="checkbox-custom-label font-weight-500"></label>
+                </span>
             </div>
         </td>
     </tr>
@@ -65,8 +77,14 @@
                     <div ng-dropdown-multiselect="" options="col.options" selected-model="col.optionsdata"></div>
                 </div>
                 <div ng-if="col.type === 'checkbox'">
-                    <input id={{col.label}}{{selectedKnownApp}} class="checkbox-custom " name={{selectedKnownApp}} type="checkbox">
-                    <label for={{col.label}}{{selectedKnownApp}} class="checkbox-custom-label font-weight-500"></label>
+                     <span ng-if="col.checked">
+                        <input id={{col.label}}+'checked'+{{$index}} class="checkbox-custom " name={{$index}}{{col.label}} type="checkbox" checked>
+                         <label for={{col.label}}+'checked'+{{$index}} class="checkbox-custom-label font-weight-500"></label>
+                    </span>
+                    <span ng-if="!col.checked">
+                         <input id={{col.label}}+'notchecked'+{{$index}} class="checkbox-custom " name={{$index}}{{col.label}} type="checkbox" >
+                         <label for={{col.label}}+'notchecked'+{{$index}} class="checkbox-custom-label font-weight-500"></label>
+                    </span>
                 </div>
             </td>
         </tr>

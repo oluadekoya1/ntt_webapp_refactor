@@ -7,6 +7,8 @@ import policyQuestions from '../createapplication/constants/policyDefine.json';
 import questionData1 from '../defineApplication/constants/constant1.json';
 import $ from'jquery';
 
+console.log(features);
+
 function makeid() {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -52,9 +54,9 @@ function createKnowAppOptions(){
 
     }
 
-    kOption.owasp.checked = true;
-
-    kOption.api.checked = true;
+    //kOption.owasp.checked = true;
+    //
+    //kOption.api.checked = true;
 
     return angular.copy(kOption);
 }
@@ -197,7 +199,7 @@ export default function DefineAppCtrl($scope ,$state, $stateParams, $http, appSe
                         selectedKnownApp :  JSON.stringify($scope.selectedKnownApp),
                         general_questions : "",
                         assessmentList : JSON.stringify([assessmentQns]),
-                        policyDefinition:  ($scope.selectedAppType.value === 2) ? JSON.stringify(policyQns) : JSON.stringify(policies) ,
+                        policyDefinition:  ($scope.selectedAppType.value === 2 || _.isEmpty(policies) ) ? JSON.stringify(policyQns) : JSON.stringify(policies) ,
                         assessCheck : 'false',
                         policyCheck: 'false',
                         uris :  JSON.stringify($scope.uris),

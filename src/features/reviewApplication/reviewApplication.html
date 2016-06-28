@@ -10,6 +10,7 @@
         <th>URI</th>
         <th>Assess Application</th>
         <th>Design Policy</th>
+        <th>PDF</th>
         <th>Download XML </th>
         <th>Dashboard</th>
         <th>Edit</th>
@@ -17,16 +18,83 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="app in allSavedApps">
+    <!--code to test collapse function!-->
+    <!--<tr ng-repeat="app in allSavedApps">-->
+        <!--<td >-->
+            <!--<a data-toggle="collapse" href="#{{app.id}}">-->
+                <!--<i class="glyphicon glyphicon-collapse-down"></i>-->
+            <!--</a>-->
+        <!--</td>-->
+        <!--<td >{{ app.appName }}</td>-->
+        <!--<td id="#{{app.id}}">-->
+            <!--<ul class="positionList" ng-repeat="uri in app.uris">-->
+                    <!--{{uri.uriFunction}}-->
+            <!--</ul>-->
+        <!--</td>-->
+        <!--<td>-->
+            <!--{{app.appFqdn}}-->
+        <!--</td>-->
+        <!--<td>-->
+            <!--<ul class="positionList" ng-repeat="uri in app.uris" >-->
+                    <!--{{uri.name}}-->
+            <!--</ul>-->
+        <!--</td>-->
+        <!--<td align="center" ng-click="editAssessment(app.id)">-->
+            <!--<a><i class='glyphicon glyphicon-wrench'></i></a>-->
+        <!--</td>-->
+        <!--<td align="center">-->
+            <!--<ul class="positionList" ng-if="app.uris.length > 0" ng-repeat="uri in app.uris">-->
+                <!--<a ng-click="editPolicy(app.id, uri.id)">-->
+                    <!--<i class='glyphicon glyphicon-cog'></i>-->
+                <!--</a>-->
+            <!--</ul>-->
+            <!--<ul class="positionList" ng-if="app.uris.length === 0" >-->
+                <!--<a ng-click="editPolicy(app.id)">-->
+                    <!--<i class='glyphicon glyphicon-cog'></i>-->
+                <!--</a>-->
+            <!--</ul>-->
+        <!--</td>-->
+        <!--<td>-->
+            <!--&lt;!&ndash;<a ng-show="app.policyCheck === 'true'" ng-click="readFile()">&ndash;&gt;-->
+                <!--&lt;!&ndash;<i class="glyphicon glyphicon-paperclip"></i>&ndash;&gt;-->
+            <!--&lt;!&ndash;</a>&ndash;&gt;-->
+            <!--<ul class="positionList" ng-if="app.uris.length > 0" ng-repeat="uri in app.uris">-->
+                <!--<a ng-show="app.policyCheck === 'true'" ng-click="readFile()">-->
+                    <!--<i class="glyphicon glyphicon-paperclip"></i>-->
+                <!--</a>-->
+            <!--</ul>-->
+            <!--<ul class="positionList" ng-if="app.uris.length === 0" >-->
+                <!--<a ng-show="app.policyCheck === 'true'" ng-click="readFile()">-->
+                    <!--<i class="glyphicon glyphicon-paperclip"></i>-->
+                <!--</a>-->
+            <!--</ul>-->
+        <!--</td>-->
+        <!--&lt;!&ndash;<td align="center" ng-click="dashboard(app.id)" ng-style="{'background-color': getCValue(app.id) >= 75 ?  'red': 'amber'}" >&ndash;&gt;-->
+            <!--&lt;!&ndash;<a>{{getCValue(app.id)}} <i class='glyphicon glyphicon-new-window'></i></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;</td>&ndash;&gt;-->
+
+        <!--<td align="center" ng-click="dashboard(app.id)" ng-style="{'background-color': getCValue(app.id)[0] }" >-->
+            <!--<a>{{getCValue(app.id)[1]}} <i class='glyphicon glyphicon-new-window'></i></a>-->
+        <!--</td>-->
+
+        <!--<td align="center" ng-click="editAppInfo(app.id)">-->
+            <!--<a><i class='glyphicon glyphicon-pencil'></i></a>-->
+        <!--</td>-->
+        <!--<td align="center" ng-click="deleteApp(app.id)">-->
+            <!--<a><i class='glyphicon glyphicon-trash'></i></a>-->
+        <!--</td>-->
+    <!--</tr>-->
+    <!--&lt;!&ndash;code to test collapse function!&ndash;&gt;-->
+
+    <tr ng-repeat-start="app in allSavedApps">
         <td >
-            <a data-toggle="collapse" href="#{{app.id}}">
-                <i class="glyphicon glyphicon-collapse-down"></i>
-            </a>
+            <button ng-if="app.expanded" ng-click="app.expanded = false">-</button>
+            <button ng-if="!app.expanded" ng-click="app.expanded = true">+</button>
         </td>
         <td >{{ app.appName }}</td>
         <td id="#{{app.id}}">
             <ul class="positionList" ng-repeat="uri in app.uris">
-                    {{uri.uriFunction}}
+                {{uri.uriFunction}}
             </ul>
         </td>
         <td>
@@ -34,7 +102,7 @@
         </td>
         <td>
             <ul class="positionList" ng-repeat="uri in app.uris" >
-                    {{uri.name}}
+                {{uri.name}}
             </ul>
         </td>
         <td align="center" ng-click="editAssessment(app.id)">
@@ -42,20 +110,20 @@
         </td>
         <td align="center">
             <ul class="positionList" ng-if="app.uris.length > 0" ng-repeat="uri in app.uris">
-                <a ng-click="editPolicy(app.id, uri.id)">
+                <a ng-show="app.assessCheck === 'true'" ng-click="editPolicy(app.id, uri.id)">
                     <i class='glyphicon glyphicon-cog'></i>
                 </a>
             </ul>
             <ul class="positionList" ng-if="app.uris.length === 0" >
-                <a ng-click="editPolicy(app.id)">
+                <a ng-show="app.assessCheck === 'true'" ng-click="editPolicy(app.id)">
                     <i class='glyphicon glyphicon-cog'></i>
                 </a>
             </ul>
         </td>
+        <td align="center" ng-click=" ">
+            <a><i class= "glyphicon glyphicons-file-cloud-download"></i></a>
+        </td>
         <td>
-            <!--<a ng-show="app.policyCheck === 'true'" ng-click="readFile()">-->
-                <!--<i class="glyphicon glyphicon-paperclip"></i>-->
-            <!--</a>-->
             <ul class="positionList" ng-if="app.uris.length > 0" ng-repeat="uri in app.uris">
                 <a ng-show="app.policyCheck === 'true'" ng-click="readFile()">
                     <i class="glyphicon glyphicon-paperclip"></i>
@@ -67,9 +135,7 @@
                 </a>
             </ul>
         </td>
-        <!--<td align="center" ng-click="dashboard(app.id)" ng-style="{'background-color': getCValue(app.id) >= 75 ?  'red': 'amber'}" >-->
-            <!--<a>{{getCValue(app.id)}} <i class='glyphicon glyphicon-new-window'></i></a>-->
-        <!--</td>-->
+
 
         <td align="center" ng-click="dashboard(app.id)" ng-style="{'background-color': getCValue(app.id)[0] }" >
             <a>{{getCValue(app.id)[1]}} <i class='glyphicon glyphicon-new-window'></i></a>
@@ -82,6 +148,13 @@
             <a><i class='glyphicon glyphicon-trash'></i></a>
         </td>
     </tr>
+
+    <tr ng-if="app.expanded" ng-repeat-end=" ">
+        <td colspan="12"></td>
+
+    </tr>
+
+
     </tbody>
 </table>
 
