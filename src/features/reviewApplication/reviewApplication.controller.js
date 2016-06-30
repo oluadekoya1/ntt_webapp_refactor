@@ -81,7 +81,7 @@ function  getResult(allList){
 
 }
 
-export default function reviewAppCtrl($scope ,$state, $stateParams, $http, appServices, allApps) {
+export default function reviewAppCtrl($scope ,$state, $stateParams, $http, appServices, allApps, pdfService) {
 
     console.log(allApps);
 
@@ -174,9 +174,40 @@ export default function reviewAppCtrl($scope ,$state, $stateParams, $http, appSe
         $state.go('edit-policy', {redirect : true, appID: appID, uriID : uriID });
     };
 
+    $scope.generatePDF = function (app) {
+        $scope.showPDF = true;
+        $scope.selectedApplication = app;
+
+        $scope.pdfName = app.appName;
+
+        console.log(app);
+    };
+
+    $scope.Cancel = function(){
+        $scope.showPDF = false;
+    };
+
+
+    $scope.htmlToPDF = function(){
+        var allTables = getAllTables(); console.log(allTables);
+        pdfService.generateCurrentAssmntPDF($scope.pdfName, allTables);
+    };
+
+
+    var getAllTables = function(){
+        var allIDs = [];
+        var listTables = document.getElementsByClassName('pdf-tables')[0],
+            tables = listTables.getElementsByClassName("table");
+
+        for(var i = 0; i < tables.length; i++){
+            allIDs.push(tables[i].id);
+        }
+
+        return allIDs;
+    };
 
 }
 
 
-reviewAppCtrl.$inject = ['$scope', '$state', '$stateParams', '$http', 'appServices', 'allApps'];
+reviewAppCtrl.$inject = ['$scope', '$state', '$stateParams', '$http', 'appServices', 'allApps', 'pdfService'];
 

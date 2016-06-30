@@ -578,7 +578,7 @@
           "selectedAnswer" : ""
         },
         {
-          "question" : "Does any part of the application use JSON? If so, please specify the URL or parameter which use JSON?",
+          "question" : "Does any part of the application use JSON? If so, please specify the URLs or parameters which use JSON?",
           "description":"A JSON profile can be assigned to URL or parameter to allow protection of the POST request  body or protection of parameter value of a GET or a POST request",
           "type":"radio",
           "options" : ["No - JSON is not in use by the application", "Yes - JSON is in use by the application"],
@@ -691,7 +691,7 @@
           "description": "Example: account numbers, sort codes or other private details",
           "type": "radio",
           "hasFurtherOptions" : {
-            "10" : false
+            "0" : false
           },
           "options": [
             "Yes - Masking sensitive data is needed",
@@ -711,7 +711,7 @@
           "name": "gQues221",
           "selectedAnswer": "",
           "hasFurtherOptions" : {
-            "11" : true
+            "1" : true
           },
           "furtherOptions" : {
             "yes" : [
@@ -733,7 +733,7 @@
           "name": "gQues321",
           "selectedAnswer": "",
           "hasFurtherOptions" : {
-            "12" : true
+            "2" : true
           },
           "furtherOptions" : {
             "yes" : [
@@ -752,7 +752,7 @@
             "Yes - DoS protection is required"
           ],
           "hasFurtherOptions" : {
-            "13" : false
+            "3" : false
           },
           "name": "gQues421",
           "selectedAnswer": ""
@@ -768,7 +768,7 @@
           "name": "gQues521",
           "selectedAnswer": "",
           "hasFurtherOptions" : {
-            "14" : true
+            "4" : true
           },
           "furtherOptions" : {
             "yes" : [
@@ -786,7 +786,7 @@
           ],
           "name": "gQues621",
           "hasFurtherOptions" : {
-            "15" : false
+            "5" : false
           },
           "selectedAnswer": ""
         },
@@ -800,7 +800,7 @@
           ],
           "name": "gQues721",
           "hasFurtherOptions" : {
-            "16" : true
+            "6" : true
           },
           "selectedAnswer": "",
           "furtherOptions" : {
@@ -815,7 +815,7 @@
           "type": "text",
           "name": "gQues821",
           "hasFurtherOptions" : {
-            "17" : false
+            "7" : false
           },
           "selectedAnswer": ""
         }
@@ -846,7 +846,7 @@
           "selectedAnswer" : ""
         },
         {
-          "question" : "Does any part of the application use JSON? If so, please specify the URL or parameter which use JSON?",
+          "question" : "Does any part of the application use JSON? If so, please specify the URLs or parameters which use JSON?",
           "description":"A JSON profile can be assigned to URL or parameter to allow protection of the POST request  body or protection of parameter value of a GET or a POST request",
           "type":"radio",
           "options" : ["No - JSON is not in use by the application", "Yes - JSON is in use by the application"],
@@ -956,7 +956,7 @@
           "description": "Example: account numbers, sort codes or other private details",
           "type": "radio",
           "hasFurtherOptions" : {
-            "20" : false
+            "0" : false
           },
           "options": [
             "Yes - Masking sensitive data is needed",
@@ -976,7 +976,7 @@
           "name": "gQues112",
           "selectedAnswer": "",
           "hasFurtherOptions" : {
-            "21" : true
+            "1" : true
           },
           "furtherOptions" : {
             "yes" : [
@@ -998,7 +998,7 @@
           "name": "gQues113",
           "selectedAnswer": "",
           "hasFurtherOptions" : {
-            "22" : true
+            "2" : true
           },
           "furtherOptions" : {
             "yes" : [
@@ -1017,7 +1017,7 @@
             "Yes - DoS protection is required"
           ],
           "hasFurtherOptions" : {
-            "23" : false
+            "3" : false
           },
           "name": "gQues114",
           "selectedAnswer": ""
@@ -1033,7 +1033,7 @@
           "name": "gQues115",
           "selectedAnswer": "",
           "hasFurtherOptions" : {
-            "24" : true
+            "4" : true
           },
           "furtherOptions" : {
             "yes" : [
@@ -1051,7 +1051,7 @@
           ],
           "name": "gQues116",
           "hasFurtherOptions" : {
-            "25" : false
+            "5" : false
           },
           "selectedAnswer": ""
         },
@@ -1065,7 +1065,7 @@
           ],
           "name": "gQues117",
           "hasFurtherOptions" : {
-            "26" : true
+            "6" : true
           },
           "selectedAnswer": "",
           "furtherOptions" : {
@@ -1080,7 +1080,7 @@
           "type": "text",
           "name": "gQues118",
           "hasFurtherOptions" : {
-            "27" : false
+            "7" : false
           },
           "selectedAnswer": ""
         }
@@ -1102,7 +1102,7 @@
           "selectedAnswer" : ""
         },
         {
-          "question" : "Does any part of the application use JSON? If so, please specify the URL or parameter which use JSON?",
+          "question" : "Does any part of the application use JSON? If so, please specify the URLs or parameters which use JSON?",
           "description":"A JSON profile can be assigned to URL or parameter to allow protection of the POST request  body or protection of parameter value of a GET or a POST request",
           "type":"radio",
           "options" : ["No - JSON is not in use by the application", "Yes - JSON is in use by the application"],
@@ -1139,7 +1139,7 @@
           "selectedAnswer" : ""
         },
         {
-          "question" : "Does the application perfrom any control on the parameter? If not, is it required to prevent Parameter Tampering?",
+          "question" : "Does the application perform any control on the parameter? If not, is it required to prevent Parameter Tampering?",
           "description":"Example: If a user tampers  with a parameter value like changing a value form £10 to -£10000. Is there a protection mechanism such as logging off the user, or locking the account?",
           "type":"radio",
           "options" : ["Yes - application performs parameter control", "No - parameter control is needed - please specify…", "No - parameter control is not needed"],
@@ -1167,9 +1167,9 @@
         },
         {
           "question" : "Does any part of the application use XML, SOAP, or both? If so, is a current definition or schema xsd or wsdl file available?",
-          "description":"ASM is able to parse specific requests with an XML parser or SOAP parser. Critiria for parsing can be a specific HTTP header name and value, or specific parameter.",
+          "description":"ASM is able to parse specific requests with an XML parser or SOAP parser. Criteria for parsing can be a specific HTTP header name and value, or specific parameter.",
           "type":"radio",
-          "options" : ["No - XML/SOAP are not in use within the application", "Yes - SOAP is used within the application - wsd file is available", "XML is in use within the application - wsdl file is available"],
+          "options" : ["No - XML/SOAP are not in use within the application", "Yes - SOAP is used within the application - wsdl file is available", "XML is in use within the application - wsdl file is available"],
           "name": "unknownAttackdepQues13",
           "ASM_Feature": "",
           "selectedAnswer" : ""
@@ -1178,7 +1178,7 @@
           "question" : "Does the application enforce any navigational  flows between pages? If so, how is it enforced?",
           "description":"A flow could be defined as a specific route through the application that a user cannot deviate from. This could be something like A -> B -> C -> D, where A is the login page, B is the PIN code validation, C is the disclaimer and D is the account information page. The implication of this flow is that it is impossible for a user to start at B, C, or D  without passing via page A first.",
           "type":"radio",
-          "options" : ["Navigational flows are not enforced by the application", "There is no need for navigaional flows enforcement" , "Navigational flows enforcement is needed"],
+          "options" : ["Navigational flows are not enforced by the application", "There is no need for navigational flows enforcement" , "Navigational flows enforcement is needed"],
           "name": "unknownAttackdepQues14",
           "ASM_Feature": "",
           "selectedAnswer" : ""

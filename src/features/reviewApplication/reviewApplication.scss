@@ -49,3 +49,24 @@ list-style: none;
   padding: 5px;
   text-align: left;
 }
+
+.centerHeading{
+  text-align: center;
+}
+
+.pdf-tables{
+
+  margin-left: 25px;
+  margin-right: 25px;
+  border: solid 3px lightgray;
+  margin-bottom: 25px;
+
+  table{
+    thead{
+      th{
+        background-color: steelblue;
+        color : white;
+      };
+    }
+  }
+}

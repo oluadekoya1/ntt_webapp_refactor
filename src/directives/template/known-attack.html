@@ -1,7 +1,7 @@
 <div class="col-md-12">
     <div class="tab-content">
         <div ng-repeat="tab in newPolicy.knownAttacks" role="tabpanel" class="tab-pane" id={{tab.tabID}} ng-class="{active: $index === 0}">
-            <div ng-repeat="tabChild in tab.tabContent" ng-click="processSelectedAnswer(tabChild, $index)" >
+            <div ng-repeat="tabChild in tab.tabContent" ng-click="processSelectedAnswer(tabChild, $index)">
                 <div class="form-group" ng-if="tabChild.type === 'text'">
                     <label for="" class="font-weight-500">
                         {{tabChild.question}}
@@ -16,44 +16,42 @@
                         <input id={{tabChild.name}}{{option}} class="radio-custom" name={{tabChild.name}} type="radio" value={{option}} ng-model="tabChild.selectedAnswer">
                         <label for={{tabChild.name}}{{option}} class="radio-custom-label font-weight-500">{{option}}</label>
                     </div>
-                    <div ng-if="tabChild['hasFurtherOptions'][currentIndex]">
+                    {{tabChild['hasFurtherOptions'][currentIndex] }}{{ tabChild['hasFurtherOptions'][$index]}}
 
+                    <div ng-if="tabChild['hasFurtherOptions'][currentIndex] && tabChild['hasFurtherOptions'][$index]">
                         <div class="panel panel-default" ng-repeat="furtherOpt in tabChild.furtherOptions[boolOption]">
                             <div class=" " ng-repeat="opt in furtherOpt">
                                     <div  ng-if="opt.type === 'textbox'">
-
                                             <div class="input-group  ">
                                                 <div class="input-group-btn">
                                                     <button class="btn btn-primary" type="button">{{opt.label}}</button>
                                                 </div><!-- /btn-group -->
                                                 <input type="text" class="form-control"placeholder="">
                                             </div><!-- /input-group -->
-
                                     </div>
                                     <div ng-if="opt.type === 'select'">
-
                                             <div class="input-group ">
                                                 <div class="input-group-btn">
                                                     <button class="btn btn-primary" type="button">{{opt.label}}</button>
                                                 </div><!-- /btn-group -->
                                                 <div class="form-control">
                                                     <select>
-                                                        <option value="">123432423</option>
+                                                        <option value="None">None</option>
+                                                        <option value="Form">HTML Form</option>
+                                                        <option value="HTTP Basic Authentication">HTTP Basic Authentication</option>
+                                                        <option value="HTTP Digest Authentication">HTTP Digest Authentication</option>
+                                                        <option value="NTLM">NTLM</option>
                                                     </select>
                                                 </div>
                                             </div><!-- /input-group -->
-
-
                                     </div>
                                     <div ng-if="opt.type === 'dropdownSelect'">
-
                                             <div class="input-group ">
                                                 <div class="input-group-btn">
                                                     <button class="btn btn-primary" type="button">{{opt.label}}</button>
                                                 </div><!-- /btn-group -->
                                                 <div ng-dropdown-multiselect="" options="geolocaCount" selected-model="geolocaCount1"></div>
                                             </div><!-- /input-group -->
-
                                     </div>
                             </div>
                             <div>
