@@ -120,8 +120,9 @@
                 </a>
             </ul>
         </td>
-        <td align="center" ng-click="generatePDF(app)">
-            <a>
+        <td  ng-click="generatePDF(app)">
+            <!--add ng-show="app.policyCheck === 'true' to synchronise the appearance of this icon-->
+            <a ng-show="app.policyCheck === 'true'">
                 <i class="glyphicon glyphicon-file"></i>
             </a>
         </td>
@@ -133,7 +134,7 @@
             </ul>
             <ul class="positionList" ng-if="app.uris.length === 0" >
                 <a ng-show="app.policyCheck === 'true'" ng-click="readFile()">
-                    <i class="glyphicon glyphicon-paperclip"></i>
+                    <i class="glyphicon glyphicon-download-alt"></i>
                 </a>
             </ul>
         </td>
