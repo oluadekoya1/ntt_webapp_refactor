@@ -33,26 +33,8 @@ function unknownAttack() {
 
             $scope.currentIndex = "";
 
-            $scope.processSelectedAnswer = function(option, idx){ console.log(idx);
+            $scope.geolocaCount1 = [];
 
-                $scope.currentIndex = idx;
-
-
-                $scope.boolOption = option.selectedAnswer.substring(0,3);
-
-                $scope.boolOption = $scope.boolOption.trim().toLowerCase();
-
-                if($scope.boolOption === 'yes'){
-                    return 'yes'
-                } else if($scope.boolOption === 'no'){
-                    return 'no'
-                } else {
-                    return "other"
-                }
-
-            };
-
-            $scope.geolocaCount1 =[];
             $scope.geolocaCount =[{id:1, label:"Albania"}, {id:2, label:"Andorra"}, {id:3, label:"Armenia"}, {id:4, label:"Austria"},
                 {id:5, label:"Azerbaijan"}, {id:6, label:"Belarus"}, {id:7, label:"Belgium"}, {id:8, label:"Bosnia and Herzegovina"},
                 {id:9, label:"Bulgaria"}, {id:10, label:"Croatia"}, {id:11, label:"Cyprus"}, {id:12, label:"Czech Republic"},
@@ -64,24 +46,65 @@ function unknownAttack() {
                 {id:33, label:"Portugal"}, {id:34, label:"Russia"}, {id:35, label:"United Kingdom (UK)"}, {id:36, label:"United States of America (USA)"},
             ];
 
-            $scope.addFurtherOption = function(option){
-                if(option.furtherOptions){
-                    var newOption = angular.copy(option.furtherOptions[$scope.boolOption][0]);
+            $scope.addFurtherOption = function(option, bool, otherBool){
+                if(option.hasFurtherOptions){
+
+                    var newOption = (otherBool) ? angular.copy(option.hasFurtherOptions.furtherAnswers.data[0]) : angular.copy(option.hasFurtherOptions[bool][0]);
 
                     newOption.forEach(function(opt){
                         opt.answer = "";
                     });
 
-                    option.furtherOptions[$scope.boolOption].push(newOption);
 
-                    console.log( option.furtherOptions[$scope.boolOption]);
+                    (otherBool) ? option.hasFurtherOptions.furtherAnswers.data.push(newOption) : option.hasFurtherOptions[bool].push(newOption);
+
+                  //  console.log( option.furtherOptions[$scope.boolOption]);
                 }
             };
 
-            $scope.removeFurtherOption = function(option){
-                if(option.furtherOptions && option.furtherOptions[$scope.boolOption].length > 1){
-                   option.furtherOptions[$scope.boolOption].pop();
+            $scope.removeFurtherOption = function(option, bool, otherBool){
+                if(otherBool){
+                    if(option.hasFurtherOptions && option.hasFurtherOptions.furtherAnswers.data.length > 1){
+                        option.hasFurtherOptions.furtherAnswers.data.pop();
+                    }
+                }else{
+                    if(option.hasFurtherOptions && option.hasFurtherOptions[bool].length > 1){
+                        option.hasFurtherOptions[bool].pop();
+                    }
                 }
+
+            };
+
+            $scope.showMore = function(selectedContent){
+               selectedContent.showMore = true;
+            };
+
+            $scope.updateFurtherAnswers = function(x,y){
+                y.furtherAnswers.selectedOpt = x;
+
+                y.furtherAnswers.data.length = 0; //reset array
+
+                var opt = (x === 'url') ? [{ "label" : "Request Header Name", "type" : "textbox", "answer" : "" },
+                    { "label" : "Request Header Value", "type" : "textbox", "answer" : "" }] :
+                    [{ "label" : "Parameter Name", "type" : "textbox", "answer" : "" }];
+
+                y.furtherAnswers.data.push(opt);
+            }
+
+            $scope.processSelectedAnswer = function(selectedAnswer){
+
+                $scope.boolOption = selectedAnswer.substring(0,3);
+
+                $scope.boolOption = $scope.boolOption.trim().toLowerCase();
+
+                if($scope.boolOption === 'yes'){
+                    return 'yes'
+                } else if($scope.boolOption === 'no'){
+                    return 'no'
+                } else {
+                    return "other"
+                }
+
             };
 
 

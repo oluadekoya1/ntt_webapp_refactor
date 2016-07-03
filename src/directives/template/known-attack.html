@@ -1,7 +1,7 @@
 <div class="col-md-12">
     <div class="tab-content">
         <div ng-repeat="tab in newPolicy.knownAttacks" role="tabpanel" class="tab-pane" id={{tab.tabID}} ng-class="{active: $index === 0}">
-            <div ng-repeat="tabChild in tab.tabContent" ng-click="processSelectedAnswer(tabChild, $index)">
+            <div ng-repeat="tabChild in tab.tabContent" >
                 <div class="form-group" ng-if="tabChild.type === 'text'">
                     <label for="" class="font-weight-500">
                         {{tabChild.question}}
@@ -9,27 +9,51 @@
                     </label>
                     <input type="text" class="form-control" ng-model="tabChild.selectedAnswer">
                 </div>
-                <div ng-if="tabChild.type === 'radio'">
+                <div ng-if="tabChild.type === 'radio'" ng-click="showMore(tabChild)">
                     <label class="font-weight-500">{{tabChild.question}}</label>
                     <i class="glyphicon glyphicon-question-sign question-sign-color" data-toggle="tooltip" title={{tabChild.description}}></i>
                     <div ng-repeat="option in tabChild.options">
                         <input id={{tabChild.name}}{{option}} class="radio-custom" name={{tabChild.name}} type="radio" value={{option}} ng-model="tabChild.selectedAnswer">
                         <label for={{tabChild.name}}{{option}} class="radio-custom-label font-weight-500">{{option}}</label>
                     </div>
-                    {{tabChild['hasFurtherOptions'][currentIndex] }}{{ tabChild['hasFurtherOptions'][$index]}}
+                    <div ng-if="tabChild.showMore" class="width-60">
+                        <div ng-if="processSelectedAnswer(tabChild.selectedAnswer) === 'yes' ">
+                            <div ng-if="tabChild.hasFurtherOptions.hasMore">
+                                <div ng-repeat="opt in tabChild.hasFurtherOptions.yes">
+                                    <label for="">{{opt[0].label}}</label>
+                                    <select ng-model="opt[0].answer" ng-options="x for x in opt[0].options" ng-change="updateFurtherAnswers(opt[0].answer,tabChild.hasFurtherOptions)">
+                                    </select>
+                                    <div ng-repeat="dt in tabChild.hasFurtherOptions.furtherAnswers.data">
+                                        <div ng-repeat="child in dt">
+                                            <div class="input-group  ">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-primary" type="button">{{child.label}}</button>
+                                                </div><!-- /btn-group -->
+                                                <input type="text" class="form-control"placeholder="{{child.label}}">
+                                            </div><!-- /input-group -->
+                                        </div>
+                                    </div>
+                                    <div ng-if="tabChild.hasFurtherOptions.furtherAnswers.data.length > 0" >
+                                        <button class=add_but ng-click="addFurtherOption(tabChild, 'yes', true)">+</button>
+                                        <button class=remove ng-click="removeFurtherOption(tabChild, 'yes', true)">-</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="!tabChild.hasFurtherOptions.hasMore">
+                                <div ng-repeat="furtherOpt in tabChild.hasFurtherOptions.yes">
+                                    <div class=" " ng-repeat="opt in furtherOpt">
+                                        <div  ng-if="opt.type === 'textbox'">
 
-                    <div ng-if="tabChild['hasFurtherOptions'][currentIndex] && tabChild['hasFurtherOptions'][$index]">
-                        <div class="panel panel-default" ng-repeat="furtherOpt in tabChild.furtherOptions[boolOption]">
-                            <div class=" " ng-repeat="opt in furtherOpt">
-                                    <div  ng-if="opt.type === 'textbox'">
                                             <div class="input-group  ">
                                                 <div class="input-group-btn">
                                                     <button class="btn btn-primary" type="button">{{opt.label}}</button>
                                                 </div><!-- /btn-group -->
                                                 <input type="text" class="form-control"placeholder="">
                                             </div><!-- /input-group -->
-                                    </div>
-                                    <div ng-if="opt.type === 'select'">
+
+                                        </div>
+                                        <div ng-if="opt.type === 'select'">
+
                                             <div class="input-group ">
                                                 <div class="input-group-btn">
                                                     <button class="btn btn-primary" type="button">{{opt.label}}</button>
@@ -44,23 +68,215 @@
                                                     </select>
                                                 </div>
                                             </div><!-- /input-group -->
-                                    </div>
-                                    <div ng-if="opt.type === 'dropdownSelect'">
+
+
+                                        </div>
+                                        <div ng-if="opt.type === 'dropdownSelect'">
+
                                             <div class="input-group ">
                                                 <div class="input-group-btn">
                                                     <button class="btn btn-primary" type="button">{{opt.label}}</button>
                                                 </div><!-- /btn-group -->
                                                 <div ng-dropdown-multiselect="" options="geolocaCount" selected-model="geolocaCount1"></div>
                                             </div><!-- /input-group -->
+
+                                        </div>
                                     </div>
-                            </div>
-                            <div>
-                                <button class=add_but ng-click="addFurtherOption(tabChild)">+</button>
-                                <button class=remove ng-click="removeFurtherOption(tabChild)">-</button>
+                                    <div>
+                                        <button class=add_but ng-click="addFurtherOption(tabChild, 'yes')">+</button>
+                                        <button class=remove ng-click="removeFurtherOption(tabChild, 'yes')">-</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <div ng-if="processSelectedAnswer(tabChild.selectedAnswer) === 'no' ">
+                            <div ng-if="tabChild.hasFurtherOptions.hasMore">
+                                <div ng-repeat="opt in tabChild.hasFurtherOptions.no">
+                                    <label for="">{{opt[0].label}}</label>
+                                    <select ng-model="opt[0].answer" ng-options="x for x in opt[0].options" ng-change="updateFurtherAnswers(opt[0].answer,tabChild.hasFurtherOptions)">
+                                    </select>
+                                    <div ng-repeat="dt in tabChild.hasFurtherOptions.furtherAnswers.data">
+                                        <div ng-repeat="child in dt">
+                                            <div class="input-group  ">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-primary" type="button">{{child.label}}</button>
+                                                </div><!-- /btn-group -->
+                                                <input type="text" class="form-control"placeholder="{{child.label}}">
+                                            </div><!-- /input-group -->
+                                        </div>
+                                    </div>
+                                    <div ng-if="tabChild.hasFurtherOptions.furtherAnswers.data.length > 0" >
+                                        <button class=add_but ng-click="addFurtherOption(tabChild, 'no', true)">+</button>
+                                        <button class=remove ng-click="removeFurtherOption(tabChild, 'no', true)">-</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="!tabChild.hasFurtherOptions.hasMore">
+                                <div ng-repeat="furtherOpt in tabChild.hasFurtherOptions.no">
+                                    <div class=" " ng-repeat="opt in furtherOpt">
+                                        <div  ng-if="opt.type === 'textbox'">
 
+                                            <div class="input-group  ">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-primary" type="button">{{opt.label}}</button>
+                                                </div><!-- /btn-group -->
+                                                <input type="text" class="form-control"placeholder="">
+                                            </div><!-- /input-group -->
+
+                                        </div>
+                                        <div ng-if="opt.type === 'select'">
+
+                                            <div class="input-group ">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-primary" type="button">{{opt.label}}</button>
+                                                </div><!-- /btn-group -->
+                                                <div class="form-control">
+                                                    <select>
+                                                        <option value="None">None</option>
+                                                        <option value="Form">HTML Form</option>
+                                                        <option value="HTTP Basic Authentication">HTTP Basic Authentication</option>
+                                                        <option value="HTTP Digest Authentication">HTTP Digest Authentication</option>
+                                                        <option value="NTLM">NTLM</option>
+                                                    </select>
+                                                </div>
+                                            </div><!-- /input-group -->
+
+
+                                        </div>
+                                        <div ng-if="opt.type === 'dropdownSelect'">
+
+                                            <div class="input-group ">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-primary" type="button">{{opt.label}}</button>
+                                                </div><!-- /btn-group -->
+                                                <div ng-dropdown-multiselect="" options="geolocaCount" selected-model="geolocaCount1"></div>
+                                            </div><!-- /input-group -->
+
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button class=add_but ng-click="addFurtherOption(tabChild, 'no')">+</button>
+                                        <button class=remove ng-click="removeFurtherOption(tabChild, 'no')">-</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="processSelectedAnswer(tabChild.selectedAnswer) === 'other' ">
+                            <div ng-if="tabChild.hasFurtherOptions.hasMore">
+                                <div ng-repeat="opt in tabChild.hasFurtherOptions.other">
+                                    <label for="">{{opt[0].label}}</label>
+                                    <select ng-model="opt[0].answer" ng-options="x for x in opt[0].options" ng-change="updateFurtherAnswers(opt[0].answer,tabChild.hasFurtherOptions)">
+                                    </select>
+                                    <div ng-repeat="dt in tabChild.hasFurtherOptions.furtherAnswers.data">
+                                        <div ng-repeat="child in dt">
+                                            <div class="input-group  ">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-primary" type="button">{{child.label}}</button>
+                                                </div><!-- /btn-group -->
+                                                <input type="text" class="form-control"placeholder="{{child.label}}">
+                                            </div><!-- /input-group -->
+                                        </div>
+                                    </div>
+                                    <div ng-if="tabChild.hasFurtherOptions.furtherAnswers.data.length > 0" >
+                                        <button class=add_but ng-click="addFurtherOption(tabChild, 'other', true)">+</button>
+                                        <button class=remove ng-click="removeFurtherOption(tabChild, 'other', true)">-</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="!tabChild.hasFurtherOptions.hasMore">
+                                <div ng-repeat="furtherOpt in tabChild.hasFurtherOptions.other">
+                                    <div class=" " ng-repeat="opt in furtherOpt">
+                                        <div  ng-if="opt.type === 'textbox'">
+
+                                            <div class="input-group  ">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-primary" type="button">{{opt.label}}</button>
+                                                </div><!-- /btn-group -->
+                                                <input type="text" class="form-control"placeholder="">
+                                            </div><!-- /input-group -->
+
+                                        </div>
+                                        <div ng-if="opt.type === 'select'">
+
+                                            <div class="input-group ">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-primary" type="button">{{opt.label}}</button>
+                                                </div><!-- /btn-group -->
+                                                <div class="form-control">
+                                                    <select>
+                                                        <option value="None">None</option>
+                                                        <option value="Form">HTML Form</option>
+                                                        <option value="HTTP Basic Authentication">HTTP Basic Authentication</option>
+                                                        <option value="HTTP Digest Authentication">HTTP Digest Authentication</option>
+                                                        <option value="NTLM">NTLM</option>
+                                                    </select>
+                                                </div>
+                                            </div><!-- /input-group -->
+
+
+                                        </div>
+                                        <div ng-if="opt.type === 'dropdownSelect'">
+
+                                            <div class="input-group ">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-primary" type="button">{{opt.label}}</button>
+                                                </div><!-- /btn-group -->
+                                                <div ng-dropdown-multiselect="" options="geolocaCount" selected-model="geolocaCount1"></div>
+                                            </div><!-- /input-group -->
+
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button class=add_but ng-click="addFurtherOption(tabChild, 'other')">+</button>
+                                        <button class=remove ng-click="removeFurtherOption(tabChild, 'other')">-</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <!--<div ng-if="tabChild['hasFurtherOptions'][currentIndex] && tabChild['hasFurtherOptions'][$index]">-->
+                        <!--<div class="panel panel-default" ng-repeat="furtherOpt in tabChild.furtherOptions[boolOption]">-->
+                            <!--<div class=" " ng-repeat="opt in furtherOpt">-->
+                                    <!--<div  ng-if="opt.type === 'textbox'">-->
+                                            <!--<div class="input-group  ">-->
+                                                <!--<div class="input-group-btn">-->
+                                                    <!--<button class="btn btn-primary" type="button">{{opt.label}}</button>-->
+                                                <!--</div>&lt;!&ndash; /btn-group &ndash;&gt;-->
+                                                <!--<input type="text" class="form-control"placeholder="">-->
+                                            <!--</div>&lt;!&ndash; /input-group &ndash;&gt;-->
+                                    <!--</div>-->
+                                    <!--<div ng-if="opt.type === 'select'">-->
+                                            <!--<div class="input-group ">-->
+                                                <!--<div class="input-group-btn">-->
+                                                    <!--<button class="btn btn-primary" type="button">{{opt.label}}</button>-->
+                                                <!--</div>&lt;!&ndash; /btn-group &ndash;&gt;-->
+                                                <!--<div class="form-control">-->
+                                                    <!--<select>-->
+                                                        <!--<option value="None">None</option>-->
+                                                        <!--<option value="Form">HTML Form</option>-->
+                                                        <!--<option value="HTTP Basic Authentication">HTTP Basic Authentication</option>-->
+                                                        <!--<option value="HTTP Digest Authentication">HTTP Digest Authentication</option>-->
+                                                        <!--<option value="NTLM">NTLM</option>-->
+                                                    <!--</select>-->
+                                                <!--</div>-->
+                                            <!--</div>&lt;!&ndash; /input-group &ndash;&gt;-->
+                                    <!--</div>-->
+                                    <!--<div ng-if="opt.type === 'dropdownSelect'">-->
+                                            <!--<div class="input-group ">-->
+                                                <!--<div class="input-group-btn">-->
+                                                    <!--<button class="btn btn-primary" type="button">{{opt.label}}</button>-->
+                                                <!--</div>&lt;!&ndash; /btn-group &ndash;&gt;-->
+                                                <!--<div ng-dropdown-multiselect="" options="geolocaCount" selected-model="geolocaCount1"></div>-->
+                                            <!--</div>&lt;!&ndash; /input-group &ndash;&gt;-->
+                                    <!--</div>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<button class=add_but ng-click="addFurtherOption(tabChild)">+</button>-->
+                                <!--<button class=remove ng-click="removeFurtherOption(tabChild)">-</button>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                    <!--</div>-->
                 </div>
                 <div ng-if="tabChild.type === 'checkbox'">
                     <label class="font-weight-500">{{tabChild.question}}</label>

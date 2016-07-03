@@ -183,6 +183,12 @@ export default function reviewAppCtrl($scope ,$state, $stateParams, $http, appSe
         console.log(app);
     };
 
+    $scope.getOptionDataLabel = function(optID, app){
+        return app.options.filter(function(selApp){
+            return selApp.id === optID
+        })[0].label;
+    };
+
     $scope.Cancel = function(){
         $scope.showPDF = false;
     };

@@ -18,73 +18,6 @@
     </tr>
     </thead>
     <tbody>
-    <!--code to test collapse function!-->
-    <!--<tr ng-repeat="app in allSavedApps">-->
-        <!--<td >-->
-            <!--<a data-toggle="collapse" href="#{{app.id}}">-->
-                <!--<i class="glyphicon glyphicon-collapse-down"></i>-->
-            <!--</a>-->
-        <!--</td>-->
-        <!--<td >{{ app.appName }}</td>-->
-        <!--<td id="#{{app.id}}">-->
-            <!--<ul class="positionList" ng-repeat="uri in app.uris">-->
-                    <!--{{uri.uriFunction}}-->
-            <!--</ul>-->
-        <!--</td>-->
-        <!--<td>-->
-            <!--{{app.appFqdn}}-->
-        <!--</td>-->
-        <!--<td>-->
-            <!--<ul class="positionList" ng-repeat="uri in app.uris" >-->
-                    <!--{{uri.name}}-->
-            <!--</ul>-->
-        <!--</td>-->
-        <!--<td align="center" ng-click="editAssessment(app.id)">-->
-            <!--<a><i class='glyphicon glyphicon-wrench'></i></a>-->
-        <!--</td>-->
-        <!--<td align="center">-->
-            <!--<ul class="positionList" ng-if="app.uris.length > 0" ng-repeat="uri in app.uris">-->
-                <!--<a ng-click="editPolicy(app.id, uri.id)">-->
-                    <!--<i class='glyphicon glyphicon-cog'></i>-->
-                <!--</a>-->
-            <!--</ul>-->
-            <!--<ul class="positionList" ng-if="app.uris.length === 0" >-->
-                <!--<a ng-click="editPolicy(app.id)">-->
-                    <!--<i class='glyphicon glyphicon-cog'></i>-->
-                <!--</a>-->
-            <!--</ul>-->
-        <!--</td>-->
-        <!--<td>-->
-            <!--&lt;!&ndash;<a ng-show="app.policyCheck === 'true'" ng-click="readFile()">&ndash;&gt;-->
-                <!--&lt;!&ndash;<i class="glyphicon glyphicon-paperclip"></i>&ndash;&gt;-->
-            <!--&lt;!&ndash;</a>&ndash;&gt;-->
-            <!--<ul class="positionList" ng-if="app.uris.length > 0" ng-repeat="uri in app.uris">-->
-                <!--<a ng-show="app.policyCheck === 'true'" ng-click="readFile()">-->
-                    <!--<i class="glyphicon glyphicon-paperclip"></i>-->
-                <!--</a>-->
-            <!--</ul>-->
-            <!--<ul class="positionList" ng-if="app.uris.length === 0" >-->
-                <!--<a ng-show="app.policyCheck === 'true'" ng-click="readFile()">-->
-                    <!--<i class="glyphicon glyphicon-paperclip"></i>-->
-                <!--</a>-->
-            <!--</ul>-->
-        <!--</td>-->
-        <!--&lt;!&ndash;<td align="center" ng-click="dashboard(app.id)" ng-style="{'background-color': getCValue(app.id) >= 75 ?  'red': 'amber'}" >&ndash;&gt;-->
-            <!--&lt;!&ndash;<a>{{getCValue(app.id)}} <i class='glyphicon glyphicon-new-window'></i></a>&ndash;&gt;-->
-        <!--&lt;!&ndash;</td>&ndash;&gt;-->
-
-        <!--<td align="center" ng-click="dashboard(app.id)" ng-style="{'background-color': getCValue(app.id)[0] }" >-->
-            <!--<a>{{getCValue(app.id)[1]}} <i class='glyphicon glyphicon-new-window'></i></a>-->
-        <!--</td>-->
-
-        <!--<td align="center" ng-click="editAppInfo(app.id)">-->
-            <!--<a><i class='glyphicon glyphicon-pencil'></i></a>-->
-        <!--</td>-->
-        <!--<td align="center" ng-click="deleteApp(app.id)">-->
-            <!--<a><i class='glyphicon glyphicon-trash'></i></a>-->
-        <!--</td>-->
-    <!--</tr>-->
-    <!--&lt;!&ndash;code to test collapse function!&ndash;&gt;-->
 
     <tr ng-repeat-start="app in allSavedApps">
         <td >
@@ -120,13 +53,12 @@
                 </a>
             </ul>
         </td>
-        <td  ng-click="generatePDF(app)">
-            <!--add ng-show="app.policyCheck === 'true' to synchronise the appearance of this icon-->
+        <td  align="center" ng-click="generatePDF(app)">git
             <a ng-show="app.policyCheck === 'true'">
                 <i class="glyphicon glyphicon-file"></i>
             </a>
         </td>
-        <td>
+        <td align="center">
             <ul class="positionList" ng-if="app.uris.length > 0" ng-repeat="uri in app.uris">
                 <a ng-show="app.policyCheck === 'true'" ng-click="readFile()">
                     <i class="glyphicon glyphicon-download-alt"></i>
@@ -203,7 +135,7 @@
             </tr>
             </tbody>
         </table>
-        <table class="table table-condensed" id="security-features-custom" ng-if="selectedApplication.selectedAppType.toLowerCase() === 'custom application'">
+        <table class="table table-condensed" id="security-features-custom" ng-if=" selectedApplication.uris.length > 0 ">
             <thead>
             <tr>
                 <th>Securities Features</th>
@@ -256,7 +188,7 @@
             </tr>
             </tbody>
         </table>
-        <table class="table table-condensed" id="infrastructure-information-custom" ng-if="selectedApplication.selectedAppType.toLowerCase() === 'custom application'">
+        <table class="table table-condensed" id="infrastructure-information-custom" ng-if=" selectedApplication.uris.length > 0 ">
             <thead>
             <tr>
                 <th>Infrastructure Information</th>
@@ -268,30 +200,38 @@
             <tr>
                 <td>Operating Systems</td>
                 <td ng-repeat="uri in selectedApplication.uris">
-                    {{uri.customOptions.opSystems.checked}}
+                    <div ng-repeat="opt in uri.customOptions.opSystems.optionsdata">
+                        {{ getOptionDataLabel(opt.id, uri.customOptions.opSystems ) }}
+                    </div>
                 </td>
             </tr>
             <tr>
                 <td>Languages, Frameworks and Applications</td>
                 <td ng-repeat="uri in selectedApplication.uris">
-                    {{uri.customOptions.langFrameApp.checked}}
+                    <div ng-repeat="opt in uri.customOptions.langFrameApp.optionsdata">
+                        {{ getOptionDataLabel(opt.id, uri.customOptions.langFrameApp ) }}
+                    </div>
                 </td>
             </tr>
             <tr>
                 <td>Web Servers</td>
                 <td ng-repeat="uri in selectedApplication.uris">
-                    {{uri.customOptions.webServers.checked}}
+                    <div ng-repeat="opt in uri.customOptions.webServers.optionsdata">
+                        {{ getOptionDataLabel(opt.id, uri.customOptions.webServers ) }}
+                    </div>
                 </td>
             </tr>
             <tr>
                 <td>Database Servers</td>
                 <td ng-repeat="uri in selectedApplication.uris">
-                    {{uri.customOptions.databaseServers.checked}}
+                    <div ng-repeat="opt in uri.customOptions.databaseServers.optionsdata">
+                        {{ getOptionDataLabel(opt.id, uri.customOptions.databaseServers ) }}
+                    </div>
                 </td>
             </tr>
             </tbody>
         </table>
-        <table class="table table-condensed" id="security-features" ng-if="selectedApplication.selectedAppType.toLowerCase() === 'f5 asm template application'">
+        <table class="table table-condensed" id="security-features" ng-if=" selectedApplication.uris.length === 0 ">
             <thead>
             <tr>
                 <th>Securities Features</th>
@@ -308,42 +248,42 @@
             <tr>
                 <td>OWASP Top 10 Application Vulnerabilities</td>
                 <td>
-                    {{app.knownAppOptions.owasp.checked}}
+                    {{selectedApplication.knownAppOptions.owasp.checked}}
                 </td>
             </tr>
             <tr>
                 <td>Web Services (SOAP and REST)</td>
                 <td >
-                    {{app.knownAppOptions.api.checked}}
+                    {{selectedApplication.knownAppOptions.api.checked}}
                 </td>
             </tr>
             <tr>
                 <td>Login Page (Brute Force Protection)</td>
                 <td >
-                    {{app.knownAppOptions.loginPage.checked}}
+                    {{selectedApplication.knownAppOptions.loginPage.checked}}
                 </td>
             </tr>
             <tr>
                 <td>Harvested Data (Web Scraping)</td>
                 <td >
-                    {{app.knownAppOptions.harvestedData.checked}}
+                    {{selectedApplication.knownAppOptions.harvestedData.checked}}
                 </td>
             </tr>
             <tr>
                 <td>File Upload (Anti-Virus)</td>
                 <td>
-                    {{app.knownAppOptions.fileUpload.checked}}
+                    {{selectedApplication.knownAppOptions.fileUpload.checked}}
                 </td>
             </tr>
             <tr>
                 <td>Resource Consumption (Denial-of-Service)</td>
                 <td >
-                    {{resConsumption.checked}}
+                    {{selectedApplication.knownAppOptions.resConsumption.checked}}
                 </td>
             </tr>
             </tbody>
         </table>
-        <table class="table table-condensed" id="infrastructure-information" ng-if="selectedApplication.selectedAppType.toLowerCase() === 'f5 asm template application'">
+        <table class="table table-condensed" id="infrastructure-information" ng-if="selectedApplication.uris.length === 0">
             <thead>
             <tr>
                 <th>Infrastructure Information</th>
@@ -354,25 +294,33 @@
             <tr>
                 <td>Operating Systems</td>
                 <td>
-                    {{app.knownAppOptions.opSystems.checked}}
+                    <div ng-repeat="opt in selectedApplication.knownAppOptions.opSystems.optionsdata" >
+                        {{ getOptionDataLabel(opt.id, selectedApplication.knownAppOptions.opSystems ) }}
+                    </div>
                 </td>
             </tr>
             <tr>
                 <td>Languages, Frameworks and Applications</td>
                 <td>
-                    {{app.knownAppOptions.langFrameApp.checked}}
+                    <div ng-repeat="opt in selectedApplication.knownAppOptions.langFrameApp.optionsdata">
+                        {{ getOptionDataLabel(opt.id, selectedApplication.knownAppOptions.langFrameApp ) }}
+                    </div>
                 </td>
             </tr>
             <tr>
                 <td>Web Servers</td>
                 <td>
-                    {{app.knownAppOptions.webServers.checked}}
+                    <div ng-repeat="opt in selectedApplication.knownAppOptions.webServers.optionsdata">
+                        {{ getOptionDataLabel(opt.id, selectedApplication.knownAppOptions.webServers ) }}
+                    </div>
                 </td>
             </tr>
             <tr>
                 <td>Database Servers</td>
-                <td >
-                    {{app.knownAppOptions.databaseServers.checked}}
+                <td>
+                    <div ng-repeat="opt in selectedApplication.knownAppOptions.databaseServers.optionsdata">
+                        {{ getOptionDataLabel(opt.id, selectedApplication.knownAppOptions.databaseServers ) }}
+                    </div>
                 </td>
             </tr>
             </tbody>
@@ -392,7 +340,7 @@
             </tr>
             </tbody>
         </table>
-        <div ng-if="selectedApplication.selectedAppType.toLowerCase() === 'f5 asm template application'">
+        <div ng-if="selectedApplication.uris.length === 0">
             <div ng-if="selectedApplication.policyDefinition.webServiceOnly === '1'">
                 <table  ng-repeat="policy in selectedApplication.policyDefinition.webServices" class="table table-condensed" id={{key+'-'+$index}} >
                     <thead>
@@ -442,7 +390,7 @@
                 </table>
             </div>
         </div>
-        <div ng-repeat="(key,policies) in selectedApplication.policyDefinition" ng-if="selectedApplication.selectedAppType.toLowerCase() === 'custom application'">
+        <div ng-repeat="(key,policies) in selectedApplication.policyDefinition" ng-if="selectedApplication.uris.length > 0">
             <div style="font-size: 15px; font-weight: bold">POLICY {{$index + 1}}</div>
             <div ng-if="policies.webServiceOnly === '1'">
                 <table  ng-repeat="policy in policies.webServices" class="table table-condensed" id={{key+'-'+$index}} >
