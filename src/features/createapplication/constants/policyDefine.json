@@ -565,7 +565,7 @@
         },
         {
           "question" : "Does any part of the application use JSON? If so, please specify the URLs or parameters which use JSON?",
-          "description":"A JSON profile can be assigned to URL or parameter to allow protection of the POST request  body or protection of parameter value of a GET or a POST request",
+          "description":"A JSON profile can be assigned to URLs or parameters to allow protection of the POST request  body or protection of parameter value of a GET or a POST request",
           "type":"radio",
           "options" : ["No - JSON is not in use by the application", "Yes - JSON is in use by the application"],
           "name": "knownAppdepQues2",
@@ -822,7 +822,7 @@
         },
         {
           "question" : "Does any part of the application use JSON? If so, please specify the URLs or parameters which use JSON?",
-          "description":"A JSON profile can be assigned to URL or parameter to allow protection of the POST request  body or protection of parameter value of a GET or a POST request",
+          "description":"A JSON profile can be assigned to URLs or parameters to allow protection of the POST request  body or protection of parameter value of a GET or a POST request",
           "type":"radio",
           "options" : ["No - JSON is not in use by the application", "Yes - JSON is in use by the application"],
           "name": "knownAttackdepQues7",
@@ -834,8 +834,8 @@
             "hasMore" : true,
             "yes" : [
               [
-                { "label" : "Is it applied to URL(s) or Parameter",
-                  "options":[ "url","parameter"], "type" : "radio", "answer" : "" }]
+                { "label" : "Is it applied to URL(s) or Parameter(s)",
+                  "options":[ "URL","Parameter"], "type" : "radio", "answer" : "" }]
             ],
             "furtherAnswers" : {
               "selectedOpt" : "",
@@ -861,12 +861,26 @@
       "tabContent": [
         {
           "question" : "What type of character encoding does the application use?",
-          "description":"Examples: UTF-8, Unicode, ISO-8859-1",
+          "description": "Examples: UTF-8, Unicode, ISO-8859-1",
           "type":"radio",
           "options" : ["Unicode (utf-8)", "Western European (iso-8859-1)","Western European (iso-8859-15)", "Western European (windows-1252)", "Central European (iso-8859-2)","Central European (windows-1250)","South European (iso-8859-3)","Others"],
           "name": "knownAttackappOver1",
           "ASM_Feature": "General",
-          "selectedAnswer" : ""
+          "selectedAnswer" : "",
+          "hasFurtherOptions" : {
+            "id" : "knownAttackappOver1",
+            "showMore" : false,
+            "hasMore" : true,
+            "yes" : [
+              [
+                { "label" : "Please specify other encoding here", "type" : "textbox", "answer" : "" }
+                ]
+            ],
+            "furtherAnswers" : {
+              "selectedOpt" : "",
+              "data" : []
+            }
+          }
         },
         {
           "question" : "Which layer 7 protocols does the application use? Are there any bespoke or atypical protocols used?",
@@ -986,7 +1000,7 @@
             "showMore" : true,
             "hasMore" : false,
             "yes" : [
-              [{ "label" : "Login Url", "type" : "textbox", "answer" : "" },
+              [{ "label" : "Login URL", "type" : "textbox", "answer" : "" },
                 { "label" : "Authentication type", "type" : "select", "options" : [], "answer" : "" },
                 { "label" : "Expected HTTP Response status code",  "type" : "textbox", "answer" : "" }]
             ]
@@ -1078,7 +1092,7 @@
         },
         {
           "question" : "Does any part of the application use JSON? If so, please specify the URLs or parameters which use JSON?",
-          "description":"A JSON profile can be assigned to URL or parameter to allow protection of the POST request  body or protection of parameter value of a GET or a POST request",
+          "description":"A JSON profile can be assigned to URLs or parameters to allow protection of the POST request  body or protection of parameter value of a GET or a POST request",
           "type":"radio",
           "options" : ["No - JSON is not in use by the application", "Yes - JSON is in use by the application"],
           "name": "unknownAttackdepQues6",
