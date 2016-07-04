@@ -331,21 +331,41 @@
       "tabContent": [
         {
           "question" : "What type of character encoding does the application use?",
-          "description":"Examples: UTF-8, Unicode, ISO-8859-1",
+          "description": "Examples: UTF-8, Unicode, ISO-8859-1",
           "type":"radio",
-          "options" : ["Unicode (utf-8)", "Western European (iso-8859-1)","Western European (iso-8859-15)", "Western European (windows-1252)", "Central European (iso-8859-2)","Central European (windows-1250)","South European (iso-8859-3)","Others"],
+          "options" : ["Unicode (utf-8)", "Western European (iso-8859-1)","Western European (iso-8859-15)", "Western European (windows-1252)", "Central European (iso-8859-2)","Central European (windows-1250)","South European (iso-8859-3)","Other"],
           "name": "appOver1",
           "ASM_Feature": "General",
-          "selectedAnswer" : ""
+          "selectedAnswer" : "",
+          "hasFurtherOptions" : {
+            "id" : "appOver1",
+            "showMore" : false,
+            "hasMore" : false,
+            "other" : [
+              [
+                { "label" : "Please specify other encoding here", "type" : "textbox", "answer" : "" }
+              ]
+            ]
+          }
         },
         {
           "question" : "Which layer 7 protocols does the application use? Are there any bespoke or atypical protocols used?",
           "description":"Examples: Standard HTTP, Standard HTTPS",
           "type":"radio",
-          "options" : ["Stanadard HTTP only", "Stanadard HTTPS only", "Standard HTTP and HTTPS", "Non standard HTTP/HTTPS - please specify.."],
+          "options" : ["Standard HTTP only", "Standard HTTPS only", "Standard HTTP and HTTPS", "Non standard HTTP/HTTPS", "Other "],
           "name": "appOver2",
           "ASM_Feature": "General",
-          "selectedAnswer" : ""
+          "selectedAnswer" : "",
+          "hasFurtherOptions" : {
+            "id" : "appOver2",
+            "showMore" : false,
+            "hasMore" : false,
+            "other" : [
+              [
+                { "label" : "Please specify other layer 7 protocols", "type" : "textbox", "answer" : "" }
+              ]
+            ]
+          }
         },
         {
           "question" : "If custom error pages are used, how are they implemented ?",
@@ -863,33 +883,39 @@
           "question" : "What type of character encoding does the application use?",
           "description": "Examples: UTF-8, Unicode, ISO-8859-1",
           "type":"radio",
-          "options" : ["Unicode (utf-8)", "Western European (iso-8859-1)","Western European (iso-8859-15)", "Western European (windows-1252)", "Central European (iso-8859-2)","Central European (windows-1250)","South European (iso-8859-3)","Others"],
+          "options" : ["Unicode (utf-8)", "Western European (iso-8859-1)","Western European (iso-8859-15)", "Western European (windows-1252)", "Central European (iso-8859-2)","Central European (windows-1250)","South European (iso-8859-3)","Other"],
           "name": "knownAttackappOver1",
           "ASM_Feature": "General",
           "selectedAnswer" : "",
           "hasFurtherOptions" : {
             "id" : "knownAttackappOver1",
             "showMore" : false,
-            "hasMore" : true,
-            "yes" : [
+            "hasMore" : false,
+            "other" : [
               [
                 { "label" : "Please specify other encoding here", "type" : "textbox", "answer" : "" }
                 ]
-            ],
-            "furtherAnswers" : {
-              "selectedOpt" : "",
-              "data" : []
-            }
+            ]
           }
         },
         {
           "question" : "Which layer 7 protocols does the application use? Are there any bespoke or atypical protocols used?",
           "description":"Examples: Standard HTTP, Standard HTTPS",
           "type":"radio",
-          "options" : ["Stanadard HTTP only", "Stanadard HTTPS only", "Standard HTTP and HTTPS", "Non standard HTTP/HTTPS - please specify.."],
+          "options" : ["Standard HTTP only", "Standard HTTPS only", "Standard HTTP and HTTPS", "Non standard HTTP/HTTPS ", "Other"],
           "name": "knownAttackappOver2",
           "ASM_Feature": "General",
-          "selectedAnswer" : ""
+          "selectedAnswer" : "",
+          "hasFurtherOptions" : {
+            "id" : "knownAttackappOver2",
+            "showMore" : false,
+            "hasMore" : false,
+            "other" : [
+              [
+                { "label" : "Please specify layer 7 protocols", "type" : "textbox", "answer" : "" }
+              ]
+            ]
+          }
         },
         {
           "question" : "If custom error pages are used, how are they implemented ?",
@@ -1209,7 +1235,7 @@
           "selectedAnswer" : ""
         },
         {
-          "question" : "Does the application use any kind of dynamic parameter names?",
+          "question" : "Does the application use any kind of dynamic parameter(s) names?",
           "description":"For example a parameter might have a base name of PARA and a variable component of numbers from 0000 to 9999, which will create a 10,000 parameter names of PARA0000 to PARA9999",
           "type":"radio",
           "options" : ["Dynamic parameter names are not in use", "Dynamic parameter names are in used"],
@@ -1246,19 +1272,40 @@
           "question" : "What type of character encoding does the application use?",
           "description":"Examples: UTF-8, Unicode, ISO-8859-1",
           "type":"radio",
-          "options" : ["Unicode (utf-8)", "Western European (iso-8859-1)","Western European (iso-8859-15)", "Western European (windows-1252)", "Central European (iso-8859-2)","Central European (windows-1250)","South European (iso-8859-3)","Others"],
+          "options" : ["Unicode (utf-8)", "Western European (iso-8859-1)","Western European (iso-8859-15)", "Western European (windows-1252)", "Central European (iso-8859-2)","Central European (windows-1250)","South European (iso-8859-3)","Other"],
           "name": "unknownAttackappOver1",
           "ASM_Feature": "General",
-          "selectedAnswer" : ""
+          "selectedAnswer" : "",
+          "hasFurtherOptions" : {
+            "id" : "unknownAttackappOver1",
+            "showMore" : false,
+            "hasMore" : false,
+            "other" : [
+              [
+                { "label" : "Please specify other encoding here", "type" : "textbox", "answer" : "" }
+              ]
+            ]
+          }
         },
         {
           "question" : "Which layer 7 protocols does the application use? Are there any bespoke or atypical protocols used?",
           "description":"Examples: Standard HTTP, Standard HTTPS",
           "type":"radio",
-          "options" : ["Stanadard HTTP only", "Stanadard HTTPS only", "Standard HTTP and HTTPS", "Non standard HTTP/HTTPS - please specify.."],
+          "options" : ["Stanadard HTTP only", "Stanadard HTTPS only", "Standard HTTP and HTTPS", "Non standard HTTP/HTTPS", "Other"],
           "name": "unknownAttackappOver2",
           "ASM_Feature": "General",
-          "selectedAnswer" : ""
+          "selectedAnswer" : "",
+          "hasFurtherOptions" : {
+            "id" : "unknownAttackappOver2",
+            "showMore" : false,
+            "hasMore" : false,
+            "other" : [
+              [
+                { "label" : "Please specify other layer 7 protocols", "type" : "textbox", "answer" : "" }
+              ]
+            ]
+          }
+
         },
         {
           "question" : "If custom error pages are used, how are they implemented ?",
