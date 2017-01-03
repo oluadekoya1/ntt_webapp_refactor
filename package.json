@@ -48,6 +48,8 @@
     "xml-loader": "^1.1.0"
   },
   "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
     "webpack-dev-server": "^1.14.1"
   }
 }
