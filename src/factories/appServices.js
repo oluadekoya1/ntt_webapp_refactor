@@ -55,7 +55,7 @@ function appServices($http, $q) {
             return []
         } else {
             this.$http.get('/api/get-all/' + this.username)
-                .success(function (data) {
+                .then(function (data) {
                     var result = [];
                     data.forEach(function(app){
                         var newApp = {

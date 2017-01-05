@@ -162,6 +162,9 @@
           "question": "Are there any portions of the application that send back data to the user that you would want to mask, so that the user cannot see the data displayed in their browser or within the response content?",
           "description": "Example: account numbers, sort codes or other private details",
           "type": "radio",
+          "hasFurtherOptions" : {
+            "0" : false
+          },
           "options": [
             "Yes - Masking sensitive data is needed",
             "No - Masking sensitive data is not needed"
@@ -180,12 +183,14 @@
           "name": "gQues2",
           "selectedAnswer": "",
           "hasFurtherOptions" : {
-            "id" : "gQues2",
-            "showMore" : true,
-            "hasMore" : false,
+            "1" : true
+          },
+          "furtherOptions" : {
             "yes" : [
               [
-                { "label" : "Select allowed geo-locations", "countryOption":[ "UK","America"], "type" : "dropdownSelect", "answer" : "" }]
+                { "label" : "Select allowed geo-locations", "countryOption":[
+                  "Nigeria","Ghana"
+                ], "type" : "dropdownSelect", "answer" : "" }]
             ]
           }
         },
@@ -200,13 +205,13 @@
           "name": "gQues3",
           "selectedAnswer": "",
           "hasFurtherOptions" : {
-            "id" : "gQues3",
-            "showMore" : true,
-            "hasMore" : false,
+            "2" : true
+          },
+          "furtherOptions" : {
             "yes" : [
               [{ "label" : "Login Url", "type" : "textbox", "answer" : "" },
-                { "label" : "Authentication type", "type" : "select", "options" : [], "answer" : "" },
-                { "label" : "Expected HTTP Response status code",  "type" : "textbox", "answer" : "" }]
+              { "label" : "Authentication type", "type" : "select", "options" : [], "answer" : "" },
+              { "label" : "Expected HTTP Response status code",  "type" : "textbox", "answer" : "" }]
             ]
           }
         },
@@ -218,6 +223,9 @@
             "No - DoS protection is not required",
             "Yes - DoS protection is required"
           ],
+          "hasFurtherOptions" : {
+            "3" : false
+          },
           "name": "gQues4",
           "selectedAnswer": ""
         },
@@ -232,9 +240,9 @@
           "name": "gQues5",
           "selectedAnswer": "",
           "hasFurtherOptions" : {
-            "id" : "gQues5",
-            "showMore" : true,
-            "hasMore" : false,
+            "4" : true
+          },
+          "furtherOptions" : {
             "yes" : [
               [{ "label" : "URL", "type" : "textbox", "answer" : "" }]
             ]
@@ -249,6 +257,9 @@
             "No - content is unlikely to be harvested"
           ],
           "name": "gQues6",
+          "hasFurtherOptions" : {
+            "5" : false
+          },
           "selectedAnswer": ""
         },
         {
@@ -261,20 +272,23 @@
           ],
           "name": "gQues7",
           "hasFurtherOptions" : {
-            "id" : "gQues7",
-            "showMore" : true,
-            "hasMore" : false,
+            "6" : true
+          },
+          "selectedAnswer": "",
+          "furtherOptions" : {
             "yes" : [
               [{ "label" : "Syslog/SIEM Type", "type" : "textbox", "answer" : "" }]
             ]
-          },
-          "selectedAnswer": ""
+          }
         },
         {
           "question": "Are there any areas of the web application that you are aware of, where security needs to be enhanced? Please outline these areas.",
           "description" : "",
           "type": "text",
           "name": "gQues8",
+          "hasFurtherOptions" : {
+            "7" : false
+          },
           "selectedAnswer": ""
         }
 
@@ -310,17 +324,7 @@
           "options" : ["No - Only GET and POST are used", "Yes - additional HTTP methods are used - please specify.."],
           "name": "depQues6",
           "ASM_Feature": "Valid HTTP request methods",
-          "selectedAnswer" : "",
-          "hasFurtherOptions" : {
-            "id" : "depQues6",
-            "showMore" : false,
-            "hasMore" : false,
-            "yes" : [
-              [
-                { "label" : "Please specify other HTTP methods", "type" : "textbox", "answer" : "" }
-              ]
-            ]
-          }
+          "selectedAnswer" : ""
         },
         {
           "question" : "Does the application allow any files to be uploaded by the users? If so, are these files checked for viruses by the application? (Examples: Images, videos, documents) ?",
@@ -341,41 +345,21 @@
       "tabContent": [
         {
           "question" : "What type of character encoding does the application use?",
-          "description": "Examples: UTF-8, Unicode, ISO-8859-1",
+          "description":"Examples: UTF-8, Unicode, ISO-8859-1",
           "type":"radio",
-          "options" : ["Unicode (utf-8)", "Western European (iso-8859-1)","Western European (iso-8859-15)", "Western European (windows-1252)", "Central European (iso-8859-2)","Central European (windows-1250)","South European (iso-8859-3)","Other"],
+          "options" : ["Unicode (utf-8)", "Western European (iso-8859-1)","Western European (iso-8859-15)", "Western European (windows-1252)", "Central European (iso-8859-2)","Central European (windows-1250)","South European (iso-8859-3)","Others"],
           "name": "appOver1",
           "ASM_Feature": "General",
-          "selectedAnswer" : "",
-          "hasFurtherOptions" : {
-            "id" : "appOver1",
-            "showMore" : false,
-            "hasMore" : false,
-            "other" : [
-              [
-                { "label" : "Please specify other encoding here", "type" : "textbox", "answer" : "" }
-              ]
-            ]
-          }
+          "selectedAnswer" : ""
         },
         {
           "question" : "Which layer 7 protocols does the application use? Are there any bespoke or atypical protocols used?",
           "description":"Examples: Standard HTTP, Standard HTTPS",
           "type":"radio",
-          "options" : ["Standard HTTP only", "Standard HTTPS only", "Standard HTTP and HTTPS", "Non standard HTTP/HTTPS", "Other "],
+          "options" : ["Stanadard HTTP only", "Stanadard HTTPS only", "Standard HTTP and HTTPS", "Non standard HTTP/HTTPS - please specify.."],
           "name": "appOver2",
           "ASM_Feature": "General",
-          "selectedAnswer" : "",
-          "hasFurtherOptions" : {
-            "id" : "appOver2",
-            "showMore" : false,
-            "hasMore" : false,
-            "other" : [
-              [
-                { "label" : "Please specify other layer 7 protocols", "type" : "textbox", "answer" : "" }
-              ]
-            ]
-          }
+          "selectedAnswer" : ""
         },
         {
           "question" : "If custom error pages are used, how are they implemented ?",
@@ -591,21 +575,11 @@
           "options" : ["No - Only GET and POST are used", "Yes - additional HTTP methods are used - please specify.."],
           "name": "knownAppdepQues1",
           "ASM_Feature": "Valid HTTP request methods",
-          "selectedAnswer" : "",
-          "hasFurtherOptions" : {
-            "id" : "knownAppdepQues1",
-            "showMore" : false,
-            "hasMore" : false,
-            "yes" : [
-              [
-                { "label" : "Please specify other HTTP methods", "type" : "textbox", "answer" : "" }
-              ]
-            ]
-          }
+          "selectedAnswer" : ""
         },
         {
-          "question" : "Does any part of the application use JSON? If so, please specify the URLs or parameters which use JSON?",
-          "description":"A JSON profile can be assigned to URLs or parameters to allow protection of the POST request  body or protection of parameter value of a GET or a POST request",
+          "question" : "Does any part of the application use JSON? If so, please specify the URL or parameter which use JSON?",
+          "description":"A JSON profile can be assigned to URL or parameter to allow protection of the POST request  body or protection of parameter value of a GET or a POST request",
           "type":"radio",
           "options" : ["No - JSON is not in use by the application", "Yes - JSON is in use by the application"],
           "name": "knownAppdepQues2",
@@ -716,6 +690,9 @@
           "question": "Are there any portions of the application that send back data to the user that you would want to mask, so that the user cannot see the data displayed in their browser or within the response content?",
           "description": "Example: account numbers, sort codes or other private details",
           "type": "radio",
+          "hasFurtherOptions" : {
+            "10" : false
+          },
           "options": [
             "Yes - Masking sensitive data is needed",
             "No - Masking sensitive data is not needed"
@@ -734,12 +711,14 @@
           "name": "gQues221",
           "selectedAnswer": "",
           "hasFurtherOptions" : {
-            "id" : "gQues221",
-            "showMore" : true,
-            "hasMore" : false,
+            "11" : true
+          },
+          "furtherOptions" : {
             "yes" : [
               [
-                { "label" : "Select allowed geo-locations", "countryOption":[ "UK","America"], "type" : "dropdownSelect", "answer" : "" }]
+                { "label" : "Select allowed geo-locations", "countryOption":[
+                  "Nigeria","Ghana"
+                ], "type" : "dropdownSelect", "answer" : "" }]
             ]
           }
         },
@@ -754,9 +733,9 @@
           "name": "gQues321",
           "selectedAnswer": "",
           "hasFurtherOptions" : {
-            "id" : "gQues321",
-            "showMore" : true,
-            "hasMore" : false,
+            "12" : true
+          },
+          "furtherOptions" : {
             "yes" : [
               [{ "label" : "Login Url", "type" : "textbox", "answer" : "" },
                 { "label" : "Authentication type", "type" : "select", "options" : [], "answer" : "" },
@@ -773,7 +752,7 @@
             "Yes - DoS protection is required"
           ],
           "hasFurtherOptions" : {
-            "3" : false
+            "13" : false
           },
           "name": "gQues421",
           "selectedAnswer": ""
@@ -789,9 +768,9 @@
           "name": "gQues521",
           "selectedAnswer": "",
           "hasFurtherOptions" : {
-            "id" : "gQues521",
-            "showMore" : true,
-            "hasMore" : false,
+            "14" : true
+          },
+          "furtherOptions" : {
             "yes" : [
               [{ "label" : "URL", "type" : "textbox", "answer" : "" }]
             ]
@@ -806,6 +785,9 @@
             "No - content is unlikely to be harvested"
           ],
           "name": "gQues621",
+          "hasFurtherOptions" : {
+            "15" : false
+          },
           "selectedAnswer": ""
         },
         {
@@ -818,20 +800,23 @@
           ],
           "name": "gQues721",
           "hasFurtherOptions" : {
-            "id" : "gQues721",
-            "showMore" : true,
-            "hasMore" : false,
+            "16" : true
+          },
+          "selectedAnswer": "",
+          "furtherOptions" : {
             "yes" : [
               [{ "label" : "Syslog/SIEM Type", "type" : "textbox", "answer" : "" }]
             ]
-          },
-          "selectedAnswer": ""
+          }
         },
         {
           "question": "Are there any areas of the web application that you are aware of, where security needs to be enhanced? Please outline these areas.",
           "description" : "",
           "type": "text",
           "name": "gQues821",
+          "hasFurtherOptions" : {
+            "17" : false
+          },
           "selectedAnswer": ""
         }
       ]
@@ -858,40 +843,16 @@
           "options" : ["No - Only GET and POST are used", "Yes - additional HTTP methods are used - please specify.."],
           "name": "knownAttackdepQues6",
           "ASM_Feature": "Valid HTTP request methods",
-          "selectedAnswer" : "",
-          "hasFurtherOptions" : {
-            "id" : "knownAttackdepQues6",
-            "showMore" : false,
-            "hasMore" : false,
-            "yes" : [
-              [
-                { "label" : "Please specify other HTTP methods", "type" : "textbox", "answer" : "" }
-              ]
-            ]
-          }
+          "selectedAnswer" : ""
         },
         {
-          "question" : "Does any part of the application use JSON? If so, please specify the URLs or parameters which use JSON?",
-          "description":"A JSON profile can be assigned to URLs or parameters to allow protection of the POST request  body or protection of parameter value of a GET or a POST request",
+          "question" : "Does any part of the application use JSON? If so, please specify the URL or parameter which use JSON?",
+          "description":"A JSON profile can be assigned to URL or parameter to allow protection of the POST request  body or protection of parameter value of a GET or a POST request",
           "type":"radio",
           "options" : ["No - JSON is not in use by the application", "Yes - JSON is in use by the application"],
           "name": "knownAttackdepQues7",
           "ASM_Feature": "",
-          "selectedAnswer" : "",
-          "hasFurtherOptions" : {
-            "id" : "knownAttackdepQues7",
-            "showMore" : false,
-            "hasMore" : true,
-            "yes" : [
-              [
-                { "label" : "Is it applied to URL(s) or Parameter(s)",
-                  "options":[ "URL","Parameter"], "type" : "radio", "answer" : "" }]
-            ],
-            "furtherAnswers" : {
-              "selectedOpt" : "",
-              "data" : []
-            }
-          }
+          "selectedAnswer" : ""
         },
         {
           "question" : "Does the application allow any files to be uploaded by the users? If so, are these files checked for viruses by the application? (Examples: Images, videos, documents) ?",
@@ -911,41 +872,21 @@
       "tabContent": [
         {
           "question" : "What type of character encoding does the application use?",
-          "description": "Examples: UTF-8, Unicode, ISO-8859-1",
+          "description":"Examples: UTF-8, Unicode, ISO-8859-1",
           "type":"radio",
-          "options" : ["Unicode (utf-8)", "Western European (iso-8859-1)","Western European (iso-8859-15)", "Western European (windows-1252)", "Central European (iso-8859-2)","Central European (windows-1250)","South European (iso-8859-3)","Other"],
+          "options" : ["Unicode (utf-8)", "Western European (iso-8859-1)","Western European (iso-8859-15)", "Western European (windows-1252)", "Central European (iso-8859-2)","Central European (windows-1250)","South European (iso-8859-3)","Others"],
           "name": "knownAttackappOver1",
           "ASM_Feature": "General",
-          "selectedAnswer" : "",
-          "hasFurtherOptions" : {
-            "id" : "knownAttackappOver1",
-            "showMore" : false,
-            "hasMore" : false,
-            "other" : [
-              [
-                { "label" : "Please specify other encoding here", "type" : "textbox", "answer" : "" }
-                ]
-            ]
-          }
+          "selectedAnswer" : ""
         },
         {
           "question" : "Which layer 7 protocols does the application use? Are there any bespoke or atypical protocols used?",
           "description":"Examples: Standard HTTP, Standard HTTPS",
           "type":"radio",
-          "options" : ["Standard HTTP only", "Standard HTTPS only", "Standard HTTP and HTTPS", "Non standard HTTP/HTTPS ", "Other"],
+          "options" : ["Stanadard HTTP only", "Stanadard HTTPS only", "Standard HTTP and HTTPS", "Non standard HTTP/HTTPS - please specify.."],
           "name": "knownAttackappOver2",
           "ASM_Feature": "General",
-          "selectedAnswer" : "",
-          "hasFurtherOptions" : {
-            "id" : "knownAttackappOver2",
-            "showMore" : false,
-            "hasMore" : false,
-            "other" : [
-              [
-                { "label" : "Please specify layer 7 protocols", "type" : "textbox", "answer" : "" }
-              ]
-            ]
-          }
+          "selectedAnswer" : ""
         },
         {
           "question" : "If custom error pages are used, how are they implemented ?",
@@ -1014,6 +955,9 @@
           "question": "Are there any portions of the application that send back data to the user that you would want to mask, so that the user cannot see the data displayed in their browser or within the response content?",
           "description": "Example: account numbers, sort codes or other private details",
           "type": "radio",
+          "hasFurtherOptions" : {
+            "20" : false
+          },
           "options": [
             "Yes - Masking sensitive data is needed",
             "No - Masking sensitive data is not needed"
@@ -1032,12 +976,14 @@
           "name": "gQues112",
           "selectedAnswer": "",
           "hasFurtherOptions" : {
-            "id" : "gQues112",
-            "showMore" : true,
-            "hasMore" : false,
+            "21" : true
+          },
+          "furtherOptions" : {
             "yes" : [
               [
-                { "label" : "Select allowed geo-locations", "countryOption":[ "UK","America"], "type" : "dropdownSelect", "answer" : "" }]
+                { "label" : "Select allowed geo-locations", "countryOption":[
+                  "Nigeria","Ghana"
+                ], "type" : "dropdownSelect", "answer" : "" }]
             ]
           }
         },
@@ -1052,11 +998,11 @@
           "name": "gQues113",
           "selectedAnswer": "",
           "hasFurtherOptions" : {
-            "id" : "gQues113",
-            "showMore" : true,
-            "hasMore" : false,
+            "22" : true
+          },
+          "furtherOptions" : {
             "yes" : [
-              [{ "label" : "Login URL", "type" : "textbox", "answer" : "" },
+              [{ "label" : "Login Url", "type" : "textbox", "answer" : "" },
                 { "label" : "Authentication type", "type" : "select", "options" : [], "answer" : "" },
                 { "label" : "Expected HTTP Response status code",  "type" : "textbox", "answer" : "" }]
             ]
@@ -1070,6 +1016,9 @@
             "No - DoS protection is not required",
             "Yes - DoS protection is required"
           ],
+          "hasFurtherOptions" : {
+            "23" : false
+          },
           "name": "gQues114",
           "selectedAnswer": ""
         },
@@ -1084,9 +1033,9 @@
           "name": "gQues115",
           "selectedAnswer": "",
           "hasFurtherOptions" : {
-            "id" : "gQues115",
-            "showMore" : true,
-            "hasMore" : false,
+            "24" : true
+          },
+          "furtherOptions" : {
             "yes" : [
               [{ "label" : "URL", "type" : "textbox", "answer" : "" }]
             ]
@@ -1101,6 +1050,9 @@
             "No - content is unlikely to be harvested"
           ],
           "name": "gQues116",
+          "hasFurtherOptions" : {
+            "25" : false
+          },
           "selectedAnswer": ""
         },
         {
@@ -1113,20 +1065,23 @@
           ],
           "name": "gQues117",
           "hasFurtherOptions" : {
-            "id" : "gQues117",
-            "showMore" : true,
-            "hasMore" : false,
+            "26" : true
+          },
+          "selectedAnswer": "",
+          "furtherOptions" : {
             "yes" : [
               [{ "label" : "Syslog/SIEM Type", "type" : "textbox", "answer" : "" }]
             ]
-          },
-          "selectedAnswer": ""
+          }
         },
         {
           "question": "Are there any areas of the web application that you are aware of, where security needs to be enhanced? Please outline these areas.",
           "description" : "",
           "type": "text",
           "name": "gQues118",
+          "hasFurtherOptions" : {
+            "27" : false
+          },
           "selectedAnswer": ""
         }
       ]
@@ -1144,40 +1099,16 @@
           "options" : ["No - Only GET and POST are used", "Yes - additional HTTP methods are used - please specify.."],
           "name": "unknownAttackdepQues5",
           "ASM_Feature": "Valid HTTP request methods",
-          "selectedAnswer" : "",
-          "hasFurtherOptions" : {
-            "id" : "unknownAttackdepQues5",
-            "showMore" : false,
-            "hasMore" : false,
-            "yes" : [
-              [
-                { "label" : "Please specify other HTTP methods", "type" : "textbox", "answer" : "" }
-              ]
-            ]
-          }
+          "selectedAnswer" : ""
         },
         {
-          "question" : "Does any part of the application use JSON? If so, please specify the URLs or parameters which use JSON?",
-          "description":"A JSON profile can be assigned to URLs or parameters to allow protection of the POST request  body or protection of parameter value of a GET or a POST request",
+          "question" : "Does any part of the application use JSON? If so, please specify the URL or parameter which use JSON?",
+          "description":"A JSON profile can be assigned to URL or parameter to allow protection of the POST request  body or protection of parameter value of a GET or a POST request",
           "type":"radio",
           "options" : ["No - JSON is not in use by the application", "Yes - JSON is in use by the application"],
           "name": "unknownAttackdepQues6",
           "ASM_Feature": "",
-          "selectedAnswer" : "",
-          "hasFurtherOptions" : {
-            "id" : "unknownAttackdepQues6",
-            "showMore" : false,
-            "hasMore" : true,
-            "yes" : [
-              [
-                { "label" : "Is it applied to URL(s) or Parameter",
-                  "options":[ "url","parameter"], "type" : "radio", "answer" : "" }]
-            ],
-            "furtherAnswers" : {
-              "selectedOpt" : "",
-              "data" : []
-            }
-          }
+          "selectedAnswer" : ""
         },
         {
           "question" : "Does the application allow any files to be uploaded by the users? If so, are these files checked for viruses by the application? (Examples: Images, videos, documents) ?",
@@ -1208,7 +1139,7 @@
           "selectedAnswer" : ""
         },
         {
-          "question" : "Does the application perform any control on the parameter? If not, is it required to prevent Parameter Tampering?",
+          "question" : "Does the application perfrom any control on the parameter? If not, is it required to prevent Parameter Tampering?",
           "description":"Example: If a user tampers  with a parameter value like changing a value form £10 to -£10000. Is there a protection mechanism such as logging off the user, or locking the account?",
           "type":"radio",
           "options" : ["Yes - application performs parameter control", "No - parameter control is needed - please specify…", "No - parameter control is not needed"],
@@ -1235,47 +1166,25 @@
           "selectedAnswer" : ""
         },
         {
-          "question" : "Does any part of the application use XML, SOAP, or both?",
-          "description":"ASM is able to parse specific requests with an XML parser or SOAP parser. Criteria for parsing can be a specific HTTP header name and value, or specific parameter.",
+          "question" : "Does any part of the application use XML, SOAP, or both? If so, is a current definition or schema xsd or wsdl file available?",
+          "description":"ASM is able to parse specific requests with an XML parser or SOAP parser. Critiria for parsing can be a specific HTTP header name and value, or specific parameter.",
           "type":"radio",
-          "options" : [
-            "No - XML/SOAP are not in use within the application",
-            "Yes - SOAP is used within the application - wsdl file is available",
-            "XML is in use within the application - wsdl file is available"],
+          "options" : ["No - XML/SOAP are not in use within the application", "Yes - SOAP is used within the application - wsd file is available", "XML is in use within the application - wsdl file is available"],
           "name": "unknownAttackdepQues13",
           "ASM_Feature": "",
-          "selectedAnswer" : "",
-          "hasFurtherOptions" : {
-            "id" : "unknownAttackdepQues13",
-            "showMore" : false,
-            "hasMore" : true,
-            "yes" : [
-              [
-                { "label" : "Does the application uses SOAP applied to a URL or a Parameter",
-                  "options":[ "url","parameter"], "type" : "radio", "answer" : "" }]
-            ],
-            "other" : [
-              [
-                { "label" : "Does the application uses XML applied to a URL or a Parameter",
-                  "options":[ "url","parameter"], "type" : "radio", "answer" : "" }]
-            ],
-            "furtherAnswers" : {
-                "selectedOpt" : "",
-                "data" : []
-            }
-          }
+          "selectedAnswer" : ""
         },
         {
           "question" : "Does the application enforce any navigational  flows between pages? If so, how is it enforced?",
           "description":"A flow could be defined as a specific route through the application that a user cannot deviate from. This could be something like A -> B -> C -> D, where A is the login page, B is the PIN code validation, C is the disclaimer and D is the account information page. The implication of this flow is that it is impossible for a user to start at B, C, or D  without passing via page A first.",
           "type":"radio",
-          "options" : ["Navigational flows are not enforced by the application", "There is no need for navigational flows enforcement" , "Navigational flows enforcement is needed"],
+          "options" : ["Navigational flows are not enforced by the application", "There is no need for navigaional flows enforcement" , "Navigational flows enforcement is needed"],
           "name": "unknownAttackdepQues14",
           "ASM_Feature": "",
           "selectedAnswer" : ""
         },
         {
-          "question" : "Does the application use any kind of dynamic parameter(s) names?",
+          "question" : "Does the application use any kind of dynamic parameter names?",
           "description":"For example a parameter might have a base name of PARA and a variable component of numbers from 0000 to 9999, which will create a 10,000 parameter names of PARA0000 to PARA9999",
           "type":"radio",
           "options" : ["Dynamic parameter names are not in use", "Dynamic parameter names are in used"],
@@ -1312,40 +1221,19 @@
           "question" : "What type of character encoding does the application use?",
           "description":"Examples: UTF-8, Unicode, ISO-8859-1",
           "type":"radio",
-          "options" : ["Unicode (utf-8)", "Western European (iso-8859-1)","Western European (iso-8859-15)", "Western European (windows-1252)", "Central European (iso-8859-2)","Central European (windows-1250)","South European (iso-8859-3)","Other"],
+          "options" : ["Unicode (utf-8)", "Western European (iso-8859-1)","Western European (iso-8859-15)", "Western European (windows-1252)", "Central European (iso-8859-2)","Central European (windows-1250)","South European (iso-8859-3)","Others"],
           "name": "unknownAttackappOver1",
           "ASM_Feature": "General",
-          "selectedAnswer" : "",
-          "hasFurtherOptions" : {
-            "id" : "unknownAttackappOver1",
-            "showMore" : false,
-            "hasMore" : false,
-            "other" : [
-              [
-                { "label" : "Please specify other encoding here", "type" : "textbox", "answer" : "" }
-              ]
-            ]
-          }
+          "selectedAnswer" : ""
         },
         {
           "question" : "Which layer 7 protocols does the application use? Are there any bespoke or atypical protocols used?",
           "description":"Examples: Standard HTTP, Standard HTTPS",
           "type":"radio",
-          "options" : ["Stanadard HTTP only", "Stanadard HTTPS only", "Standard HTTP and HTTPS", "Non standard HTTP/HTTPS", "Other"],
+          "options" : ["Stanadard HTTP only", "Stanadard HTTPS only", "Standard HTTP and HTTPS", "Non standard HTTP/HTTPS - please specify.."],
           "name": "unknownAttackappOver2",
           "ASM_Feature": "General",
-          "selectedAnswer" : "",
-          "hasFurtherOptions" : {
-            "id" : "unknownAttackappOver2",
-            "showMore" : false,
-            "hasMore" : false,
-            "other" : [
-              [
-                { "label" : "Please specify other layer 7 protocols", "type" : "textbox", "answer" : "" }
-              ]
-            ]
-          }
-
+          "selectedAnswer" : ""
         },
         {
           "question" : "If custom error pages are used, how are they implemented ?",

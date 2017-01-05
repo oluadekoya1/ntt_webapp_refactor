@@ -2,7 +2,7 @@
 <div class="col-md-12" ng-show="newPolicy.knowappOnly * 1 > 0">
     <div class="tab-content">
         <div ng-repeat="tab in newPolicy.knownApp" role="tabpanel" class="tab-pane" id={{tab.tabID}} ng-class="{active: $index === 0}">
-            <div ng-repeat="tabChild in tab.tabContent">
+            <div ng-repeat="tabChild in tab.tabContent" ng-click="processSelectedAnswer(tabChild, $index)">
                 <div class="form-group" ng-if="tabChild.type === 'text'">
                     <label for="" class="font-weight-500">
                         {{tabChild.question}}

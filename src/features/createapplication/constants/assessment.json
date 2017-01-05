@@ -144,7 +144,7 @@
         "selectedAnswer" : ""
       },
       {
-        "question" : "What is the financial business impact if this web application is hacked? ",
+        "question" : "What is the financially business impact if this web application is hacked? ",
         "description":"For instance, you may want to base this on financial impact",
         "type":"radio",
         "options" : ["High Impact", "Medium Impact", "Low Impact", "No Impact"],

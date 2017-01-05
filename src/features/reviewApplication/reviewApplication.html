@@ -1,5 +1,5 @@
 <menubar></menubar>
-<div ng-hide="showPDF" data-ng-init="computeResult">
+<div data-ng-init="computeResult">
 <table  width="100%" class="table table-striped table-bordered table-hover tableFont" >
     <thead>
     <tr>
@@ -18,6 +18,73 @@
     </tr>
     </thead>
     <tbody>
+    <!--code to test collapse function!-->
+    <!--<tr ng-repeat="app in allSavedApps">-->
+        <!--<td >-->
+            <!--<a data-toggle="collapse" href="#{{app.id}}">-->
+                <!--<i class="glyphicon glyphicon-collapse-down"></i>-->
+            <!--</a>-->
+        <!--</td>-->
+        <!--<td >{{ app.appName }}</td>-->
+        <!--<td id="#{{app.id}}">-->
+            <!--<ul class="positionList" ng-repeat="uri in app.uris">-->
+                    <!--{{uri.uriFunction}}-->
+            <!--</ul>-->
+        <!--</td>-->
+        <!--<td>-->
+            <!--{{app.appFqdn}}-->
+        <!--</td>-->
+        <!--<td>-->
+            <!--<ul class="positionList" ng-repeat="uri in app.uris" >-->
+                    <!--{{uri.name}}-->
+            <!--</ul>-->
+        <!--</td>-->
+        <!--<td align="center" ng-click="editAssessment(app.id)">-->
+            <!--<a><i class='glyphicon glyphicon-wrench'></i></a>-->
+        <!--</td>-->
+        <!--<td align="center">-->
+            <!--<ul class="positionList" ng-if="app.uris.length > 0" ng-repeat="uri in app.uris">-->
+                <!--<a ng-click="editPolicy(app.id, uri.id)">-->
+                    <!--<i class='glyphicon glyphicon-cog'></i>-->
+                <!--</a>-->
+            <!--</ul>-->
+            <!--<ul class="positionList" ng-if="app.uris.length === 0" >-->
+                <!--<a ng-click="editPolicy(app.id)">-->
+                    <!--<i class='glyphicon glyphicon-cog'></i>-->
+                <!--</a>-->
+            <!--</ul>-->
+        <!--</td>-->
+        <!--<td>-->
+            <!--&lt;!&ndash;<a ng-show="app.policyCheck === 'true'" ng-click="readFile()">&ndash;&gt;-->
+                <!--&lt;!&ndash;<i class="glyphicon glyphicon-paperclip"></i>&ndash;&gt;-->
+            <!--&lt;!&ndash;</a>&ndash;&gt;-->
+            <!--<ul class="positionList" ng-if="app.uris.length > 0" ng-repeat="uri in app.uris">-->
+                <!--<a ng-show="app.policyCheck === 'true'" ng-click="readFile()">-->
+                    <!--<i class="glyphicon glyphicon-paperclip"></i>-->
+                <!--</a>-->
+            <!--</ul>-->
+            <!--<ul class="positionList" ng-if="app.uris.length === 0" >-->
+                <!--<a ng-show="app.policyCheck === 'true'" ng-click="readFile()">-->
+                    <!--<i class="glyphicon glyphicon-paperclip"></i>-->
+                <!--</a>-->
+            <!--</ul>-->
+        <!--</td>-->
+        <!--&lt;!&ndash;<td align="center" ng-click="dashboard(app.id)" ng-style="{'background-color': getCValue(app.id) >= 75 ?  'red': 'amber'}" >&ndash;&gt;-->
+            <!--&lt;!&ndash;<a>{{getCValue(app.id)}} <i class='glyphicon glyphicon-new-window'></i></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;</td>&ndash;&gt;-->
+
+        <!--<td align="center" ng-click="dashboard(app.id)" ng-style="{'background-color': getCValue(app.id)[0] }" >-->
+            <!--<a>{{getCValue(app.id)[1]}} <i class='glyphicon glyphicon-new-window'></i></a>-->
+        <!--</td>-->
+
+        <!--<td align="center" ng-click="editAppInfo(app.id)">-->
+            <!--<a><i class='glyphicon glyphicon-pencil'></i></a>-->
+        <!--</td>-->
+        <!--<td align="center" ng-click="deleteApp(app.id)">-->
+            <!--<a><i class='glyphicon glyphicon-trash'></i></a>-->
+        <!--</td>-->
+    <!--</tr>-->
+    <!--&lt;!&ndash;code to test collapse function!&ndash;&gt;-->
 
     <tr ng-repeat-start="app in allSavedApps">
         <td >
@@ -53,20 +120,18 @@
                 </a>
             </ul>
         </td>
-        <td  align="center" ng-click="generatePDF(app)">
-            <a ng-show="app.policyCheck === 'true'">
-                <i class="glyphicon glyphicon-file"></i>
-            </a>
+        <td align="center" ng-click=" ">
+            <a><i class= "glyphicon glyphicons-file-cloud-download"></i></a>
         </td>
-        <td align="center">
+        <td>
             <ul class="positionList" ng-if="app.uris.length > 0" ng-repeat="uri in app.uris">
                 <a ng-show="app.policyCheck === 'true'" ng-click="readFile()">
-                    <i class="glyphicon glyphicon-download-alt"></i>
+                    <i class="glyphicon glyphicon-paperclip"></i>
                 </a>
             </ul>
             <ul class="positionList" ng-if="app.uris.length === 0" >
                 <a ng-show="app.policyCheck === 'true'" ng-click="readFile()">
-                    <i class="glyphicon glyphicon-download-alt"></i>
+                    <i class="glyphicon glyphicon-paperclip"></i>
                 </a>
             </ul>
         </td>
@@ -83,370 +148,17 @@
             <a><i class='glyphicon glyphicon-trash'></i></a>
         </td>
     </tr>
+
     <tr ng-if="app.expanded" ng-repeat-end=" ">
         <td colspan="12"></td>
+
     </tr>
+
+
     </tbody>
 </table>
+
+
+
+
 </div>
-<div ng-show="showPDF">
-    <div class="pdf-tables">
-        <table class="table table-condensed" id="app-details">
-            <thead>
-            <tr>
-                <th>Application Information</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Application Name</td>
-                <td>{{selectedApplication.appName}}</td>
-            </tr>
-            <tr>
-                <td>Domain Name</td>
-                <td>{{selectedApplication.appFqdn}}</td>
-            </tr>
-            <tr>
-                <td>Application Type</td>
-                <td>{{selectedApplication.selectedAppType}}</td>
-            </tr>
-            <tr>
-                <td>Application Description</td>
-                <td>{{}}</td>
-            </tr>
-            </tbody>
-        </table>
-        <table class="table table-condensed" id="app-functions">
-            <thead>
-            <tr>
-                <th>Application Functions</th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="uri in selectedApplication.uris">
-                <td>URI</td>
-                <td>{{uri.name}}</td>
-                <td style="font-weight: bold">Function</td>
-                <td>{{uri.uriFunction}}</td>
-            </tr>
-            </tbody>
-        </table>
-        <table class="table table-condensed" id="security-features-custom" ng-if=" selectedApplication.uris.length > 0 ">
-            <thead>
-            <tr>
-                <th>Securities Features</th>
-                <th ng-repeat="uri in selectedApplication.uris">
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td></td>
-                <td ng-repeat="uri in selectedApplication.uris">
-                    /{{uri.name}}
-                </td>
-            </tr>
-            <tr>
-                <td>OWASP Top 10 Application Vulnerabilities</td>
-                <td ng-repeat="uri in selectedApplication.uris">
-                    {{uri.customOptions.owasp.checked}}
-                </td>
-            </tr>
-            <tr>
-                <td>Web Services (SOAP and REST)</td>
-                <td ng-repeat="uri in selectedApplication.uris">
-                    {{uri.customOptions.api.checked}}
-                </td>
-            </tr>
-            <tr>
-                <td>Login Page (Brute Force Protection)</td>
-                <td ng-repeat="uri in selectedApplication.uris">
-                    {{uri.customOptions.loginPage.checked}}
-                </td>
-            </tr>
-            <tr>
-                <td>Harvested Data (Web Scraping)</td>
-                <td ng-repeat="uri in selectedApplication.uris">
-                    {{uri.customOptions.harvestedData.checked}}
-                </td>
-            </tr>
-            <tr>
-                <td>File Upload (Anti-Virus)</td>
-                <td ng-repeat="uri in selectedApplication.uris">
-                    {{uri.customOptions.fileUpload.checked}}
-                </td>
-            </tr>
-            <tr>
-                <td>Resource Consumption (Denial-of-Service)</td>
-                <td ng-repeat="uri in selectedApplication.uris">
-                    {{uri.customOptions.resConsumption.checked}}
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <table class="table table-condensed" id="infrastructure-information-custom" ng-if=" selectedApplication.uris.length > 0 ">
-            <thead>
-            <tr>
-                <th>Infrastructure Information</th>
-                <th ng-repeat="uri in selectedApplication.uris">
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Operating Systems</td>
-                <td ng-repeat="uri in selectedApplication.uris">
-                    <div ng-repeat="opt in uri.customOptions.opSystems.optionsdata">
-                        {{ getOptionDataLabel(opt.id, uri.customOptions.opSystems ) }}
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>Languages, Frameworks and Applications</td>
-                <td ng-repeat="uri in selectedApplication.uris">
-                    <div ng-repeat="opt in uri.customOptions.langFrameApp.optionsdata">
-                        {{ getOptionDataLabel(opt.id, uri.customOptions.langFrameApp ) }}
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>Web Servers</td>
-                <td ng-repeat="uri in selectedApplication.uris">
-                    <div ng-repeat="opt in uri.customOptions.webServers.optionsdata">
-                        {{ getOptionDataLabel(opt.id, uri.customOptions.webServers ) }}
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>Database Servers</td>
-                <td ng-repeat="uri in selectedApplication.uris">
-                    <div ng-repeat="opt in uri.customOptions.databaseServers.optionsdata">
-                        {{ getOptionDataLabel(opt.id, uri.customOptions.databaseServers ) }}
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <table class="table table-condensed" id="security-features" ng-if=" selectedApplication.uris.length === 0 ">
-            <thead>
-            <tr>
-                <th>Securities Features</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td></td>
-                <td>
-                    appDescription
-                </td>
-            </tr>
-            <tr>
-                <td>OWASP Top 10 Application Vulnerabilities</td>
-                <td>
-                    {{selectedApplication.knownAppOptions.owasp.checked}}
-                </td>
-            </tr>
-            <tr>
-                <td>Web Services (SOAP and REST)</td>
-                <td >
-                    {{selectedApplication.knownAppOptions.api.checked}}
-                </td>
-            </tr>
-            <tr>
-                <td>Login Page (Brute Force Protection)</td>
-                <td >
-                    {{selectedApplication.knownAppOptions.loginPage.checked}}
-                </td>
-            </tr>
-            <tr>
-                <td>Harvested Data (Web Scraping)</td>
-                <td >
-                    {{selectedApplication.knownAppOptions.harvestedData.checked}}
-                </td>
-            </tr>
-            <tr>
-                <td>File Upload (Anti-Virus)</td>
-                <td>
-                    {{selectedApplication.knownAppOptions.fileUpload.checked}}
-                </td>
-            </tr>
-            <tr>
-                <td>Resource Consumption (Denial-of-Service)</td>
-                <td >
-                    {{selectedApplication.knownAppOptions.resConsumption.checked}}
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <table class="table table-condensed" id="infrastructure-information" ng-if="selectedApplication.uris.length === 0">
-            <thead>
-            <tr>
-                <th>Infrastructure Information</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Operating Systems</td>
-                <td>
-                    <div ng-repeat="opt in selectedApplication.knownAppOptions.opSystems.optionsdata" >
-                        {{ getOptionDataLabel(opt.id, selectedApplication.knownAppOptions.opSystems ) }}
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>Languages, Frameworks and Applications</td>
-                <td>
-                    <div ng-repeat="opt in selectedApplication.knownAppOptions.langFrameApp.optionsdata">
-                        {{ getOptionDataLabel(opt.id, selectedApplication.knownAppOptions.langFrameApp ) }}
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>Web Servers</td>
-                <td>
-                    <div ng-repeat="opt in selectedApplication.knownAppOptions.webServers.optionsdata">
-                        {{ getOptionDataLabel(opt.id, selectedApplication.knownAppOptions.webServers ) }}
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>Database Servers</td>
-                <td>
-                    <div ng-repeat="opt in selectedApplication.knownAppOptions.databaseServers.optionsdata">
-                        {{ getOptionDataLabel(opt.id, selectedApplication.knownAppOptions.databaseServers ) }}
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <hr>
-        <table  ng-repeat="assessment in selectedApplication.assessmentList[0]" class="table table-condensed" id={{'id'+$index}}>
-            <thead>
-            <tr>
-                <th>{{assessment.tabName}}</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="tab in assessment.tabContent">
-                <td>{{tab.question}}</td>
-                <td>{{tab.selectedAnswer}}</td>
-            </tr>
-            </tbody>
-        </table>
-        <div ng-if="selectedApplication.uris.length === 0">
-            <div ng-if="selectedApplication.policyDefinition.webServiceOnly === '1'">
-                <table  ng-repeat="policy in selectedApplication.policyDefinition.webServices" class="table table-condensed" id={{key+'-'+$index}} >
-                    <thead>
-                    <tr>
-                        <th>{{policy.tabName}}</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="tab in policy.tabContent">
-                        <td>{{tab.question}}</td>
-                        <td>{{tab.selectedAnswer}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div ng-if="selectedApplication.policyDefinition.knownAttack === '0'">
-                <table  ng-repeat="policy in selectedApplication.policyDefinition.unknownAttacks" class="table table-condensed" id={{key+'-'+$index}} >
-                    <thead>
-                    <tr>
-                        <th>{{policy.tabName}}</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="tab in policy.tabContent">
-                        <td>{{tab.question}}</td>
-                        <td>{{tab.selectedAnswer}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div ng-if="selectedApplication.policyDefinition.knownAttack === '1'">
-                <table  ng-repeat="policy in selectedApplication.policyDefinition.knownAttacks" class="table table-condensed" id={{key+'-'+$index}} >
-                    <thead>
-                    <tr>
-                        <th>{{policy.tabName}}</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="tab in policy.tabContent">
-                        <td>{{tab.question}}</td>
-                        <td>{{tab.selectedAnswer}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div ng-repeat="(key,policies) in selectedApplication.policyDefinition" ng-if="selectedApplication.uris.length > 0">
-            <div style="font-size: 15px; font-weight: bold">POLICY {{$index + 1}}</div>
-            <div ng-if="policies.webServiceOnly === '1'">
-                <table  ng-repeat="policy in policies.webServices" class="table table-condensed" id={{key+'-'+$index}} >
-                    <thead>
-                    <tr>
-                        <th>{{policy.tabName}}</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="tab in policy.tabContent">
-                        <td>{{tab.question}}</td>
-                        <td>{{tab.selectedAnswer}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div ng-if="policies.knownAttack === '0'">
-                <table  ng-repeat="policy in policies.unknownAttacks" class="table table-condensed" id={{key+'-'+$index}} >
-                    <thead>
-                    <tr>
-                        <th>{{policy.tabName}}</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="tab in policy.tabContent">
-                        <td>{{tab.question}}</td>
-                        <td>{{tab.selectedAnswer}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div ng-if="policies.knownAttack === '1'">
-                <table  ng-repeat="policy in policies.knownAttacks" class="table table-condensed" id={{key+'-'+$index}} >
-                    <thead>
-                    <tr>
-                        <th>{{policy.tabName}}</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="tab in policy.tabContent">
-                        <td>{{tab.question}}</td>
-                        <td>{{tab.selectedAnswer}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <div class="button-right ">
-        <input type="submit" value="Print PDF" class="btn btn-success" ng-click="htmlToPDF()"/>
-        <input type="submit" value="Cancel" class="btn btn-danger" ng-click="Cancel()"/>
-    </div>
-</div>
-
-
-

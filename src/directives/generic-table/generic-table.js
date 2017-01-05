@@ -18,6 +18,8 @@ function genericTable() {
         template: templateData,
         link: function(scope){
 
+            console.log("=============>>>>>>>>>>>",  scope.knownAppOptions.owasp.checked, scope.uris);
+
             scope.checkItems = function(obj){
                 obj.checked = !obj.checked;
             };

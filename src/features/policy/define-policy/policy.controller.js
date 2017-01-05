@@ -112,7 +112,7 @@ console.log(currentApp);
             $state.go('review-app', {redirect : true});
         };
 
-    $scope.generatePDF = function(){ console.log($scope);
+        $scope.generatePDF = function(){ console.log($scope);
             $scope.showResult = !$scope.showResult;
             var option;
             if($scope.newPolicy.webServiceOnly * 1 === 1){
@@ -128,7 +128,6 @@ console.log(currentApp);
                 option = "unknown attack"
             }
             $scope.results = getResults(option);
-        console.log($scope.results);
         };
 
         $scope.Cancel = function(){
