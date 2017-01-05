@@ -11,7 +11,7 @@ var config = {
         './src'
     ],
     resolve: {
-        modulesDirectories: ['node_modules', './src'],
+        modulesDirectories: ['node_modules', 'src'],
         extension: ['', '.js', '.scss']
     },
     output: {
