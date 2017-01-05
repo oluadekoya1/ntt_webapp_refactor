@@ -60,9 +60,8 @@ class pdfService {
     }
     generateCurrentAssmntPDF(name, allTables){
         var pdf = new jsPDF('l', 'pt', 'a4');
-        var appDetails = pdf.autoTableHtmlToJson(document.getElementById("assessment-details"));
         var totalPagesExp = "{total_pages_count_string}";
-        var resultArray = [appDetails];
+        var resultArray = [];
         var footer =  function(data){
             var str = "Page " + data.pageCount;
             // Total page number plugin only available in jspdf v1.0+
