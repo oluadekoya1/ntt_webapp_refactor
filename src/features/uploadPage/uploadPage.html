@@ -1,5 +1,36 @@
 <menubar></menubar>
 
+<form name="myForm">
+    <fieldset>
+        <legend>Upload Vulnerability Assessment Report</legend>
+
+        <fieldset>
+            <div class="input-group">
+                <label class="input-group-btn">
+                    <span class="btn btn-primary">
+                        Browse&hellip; <input type="file" id="file" name="file" onchange="angular.element(this).scope().setFiles(this)"
+                                               style="display: none;" multiple>
+                    </span>
+                </label>
+                <input type="text" ng-model=retrievedFileName placeholder="No file chosen" class="form-control" readonly>
+            </div>
+        </fieldset>
 
 
-<div>Page is working</div>
+        <fieldset>
+            <div class="input-group">
+                <label class="input-group-btn">
+                        <input type="button" class="btn btn-success" ng-click="" value=" Upload..." />
+                </label>
+                <div >
+                   <!--DIV FOR UPLOAD PROGRESS BAR-->
+                </div>
+            </div>
+        </fieldset>
+
+    </fieldset>
+    <br>
+</form>
+
+
+
