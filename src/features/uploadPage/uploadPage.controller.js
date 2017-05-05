@@ -11,6 +11,8 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
     //};
     $scope.user = appServices.getUserName();
 
+    $scope.testObject = [];
+
     //GET THE FILE INFORMATION
     $scope.setFiles = function(element) {
 
@@ -18,15 +20,14 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
         var index =angular.element(element).scope().$index;
         var Dfile = element.files[0].name;
         $scope.retrievedFileName= Dfile;
-        console.log(element.files);
+
 
             //READ FILE TO CONSOLE
             var file = document.getElementById('file').files[0],
             reader = new FileReader();
             reader.onloadend =function(e){
                 $scope.data = e.target.result;
-                console.log("i am reading this");
-                console.log ($scope.data);
+
             };
             reader.readAsBinaryString(file);
 
@@ -36,7 +37,7 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
                 //STORE THE FILE OBJECT ARRAY
                 for (var i=0; i<element.files.length; i++){
                     $scope.files.push(element.files[i]);
-                    console.log(element.files[i]);
+
                 }
             });
     };
@@ -44,7 +45,7 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
 
     $scope.transformXML= function(){
 
-        console.log("this is the second time", $scope.data);
+
         var x,k,y,i,parser, xmlDoc;
         var text = $scope.data;
         var txt= "";
@@ -71,83 +72,119 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
     $scope.testXMLFields= function(){
 
         var xmlData = $scope.data;
-
         var parser = new DOMParser();
 
         var vulArray = [];
-
         var xmlDoc = parser.parseFromString(xmlData,"text/xml");
-
         var childNodes = xmlDoc.getElementsByTagName("VULNERABILITY_LIST")[0].childNodes;
 
+        console.log(xmlDoc);
 
         if(childNodes){
             for ( var i = 0; i <= childNodes.length; i++) {
-
                 if(childNodes[i] && childNodes[i].nodeName === "VULNERABILITY"){
-
                     vulArray.push(childNodes[i]);
-
                 }
-
             }
         }
 
         for(var j = 0; j < vulArray.length; j++){
 
-            var children = vulArray[j].children;
+            //get qid
+            var qid = vulArray[j].getElementsByTagName('QID')[0].innerHTML;
 
-            for(var child = 0; child < children.length; child++) {
+            //get category
+            var category = $scope.getCategory(qid);
 
-                if(children[child].tagName.toLowerCase() === "qid") {
+            //get title
+            var title = $scope.getTitle(qid);
 
-                    var qid = vulArray[j].children[child].innerHTML;
+            //get request
+            var method = vulArray[j].getElementsByTagName('METHOD')[0].innerHTML;
 
-                    var category = $scope.getCategory(qid);
+            //get url
+            var url = vulArray[j].getElementsByTagName('URL')[0].innerHTML;
 
-                    var title = $scope.getTitle(qid);
+            //get trigger
+            var trigger = vulArray[j].getElementsByTagName("PAYLOAD")[0].getElementsByTagName("PAYLOAD")[0].innerHTML
 
-                    console.log(qid, "=====", category, "======", title);
+            //get cwe
+            var cwe = $scope.getCWE(qid);
 
-                }
-            }
+            //get cvss base
+            var cvssbase = $scope.getCVSSBASE(qid);
 
+            $scope.testObject.push({
+                qid: qid,
+                category: category,
+                title: title,
+                method: method,
+                url: url,
+                trigger:trigger,
+                cwe: cwe,
+                cvssbase: cvssbase
+            });
 
         }
 
-        console.log(childNodes, xmlDoc, vulArray);
+    };
 
 
+    $scope.getMethodAndUrl = function(payloads){
 
+        var parser = new DOMParser();
+
+        var payloadsXML = parser.parseFromString(payloads,"text/xml");
+
+        var method = payloadsXML.getElementsByTagName("METHOD")[0].innerHTML;
+
+        var url = payloadsXML.getElementsByTagName("URL")[0].innerHTML;
+
+        return {
+            method: method,
+            url: url
+        }
     };
 
     $scope.getCategory = function (qid) {
 
         //get glossary
         var glossary = $scope.glossary();
-
-
         return glossary.filter(function(obj){
-
             return obj["QID"] === qid
         })[0]["CATEGORY"];
 
     };
 
-    $scope.getTitle = function (qid) {
+    $scope.getCWE = function (qid) {
 
         //get glossary
         var glossary = $scope.glossary();
-
-
         return glossary.filter(function(obj){
+            return obj["QID"] === qid
+        })[0]["CWE"];
 
+    };
+
+    $scope.getCVSSBASE = function (qid) {
+
+        //get glossary
+        var glossary = $scope.glossary();
+        return glossary.filter(function(obj){
+            return obj["QID"] === qid
+        })[0]["CVSS_BASE"];
+
+    };
+
+    $scope.getTitle = function (qid) {
+        //get glossary
+        var glossary = $scope.glossary();
+        return glossary.filter(function(obj){
             return obj["QID"] === qid
 
         })[0]["TITLE"];
 
     };
-
 
     $scope.glossary = function(){
 
@@ -156,6 +193,8 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
         var xmlDoc = parser.parseFromString($scope.data,"text/xml");
 
         var childNodes = xmlDoc.getElementsByTagName("QID_LIST")[0].childNodes;
+
+
 
         var qidList = [];
 
@@ -166,10 +205,18 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
 
                 if(childNodes[i] && childNodes[i].nodeName === "QID"){
                     qidList.push(childNodes[i]);
+
+
                 }
 
             }
         }
+
+
+
+
+
+
 
         for(var j = 0; j < qidList.length; j++){
 
@@ -181,6 +228,8 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
 
                 item[qidList[j].children[child].tagName] = qidList[j].children[child].innerHTML;
 
+
+
             }
 
             qidArray.push(angular.copy(item));
@@ -189,7 +238,14 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
 
         return qidArray;
 
+
+
     }
+
+
+
+
+
 
 }
 
