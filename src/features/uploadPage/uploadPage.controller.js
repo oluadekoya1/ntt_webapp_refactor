@@ -6,20 +6,22 @@
 export default function UploadPageController($scope ,$state, $stateParams, appServices ) {
 
 
-    //$scope.myApps = function(){
-    //    $state.go('review-app', {username :$scope.user });
-    //};
+
     $scope.user = appServices.getUserName();
 
     $scope.testObject = [];
 
     //GET THE FILE INFORMATION
+
     $scope.setFiles = function(element) {
 
         //GET XML FILE NAME & UPDATE INPUT BOX
+
+
         var index =angular.element(element).scope().$index;
         var Dfile = element.files[0].name;
         $scope.retrievedFileName= Dfile;
+
 
 
             //READ FILE TO CONSOLE
@@ -40,41 +42,26 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
 
                 }
             });
+
     };
 
 
-    $scope.transformXML= function(){
 
-
-        var x,k,y,i,parser, xmlDoc;
-        var text = $scope.data;
-        var txt= "";
-
-        parser = new DOMParser();
-        xmlDoc = parser.parseFromString(text,"text/xml");
-            document.getElementById("demo23").innerHTML =
-            xmlDoc.getElementsByTagName("QID")[0].childNodes[0].nodeValue;
-
-        x = xmlDoc.documentElement.childNodes;
-        for (k=0; k < x.length; k++){
-            if(x[k].nodeName == "RESULTS"){
-
-
-            }
-            //txt += x[k].nodeName  + "<br>";
-        }
-        document.getElementById("demo27").innerHTML = txt;
-
-
+    $scope.resetField=function(){
+        $scope.myvalue = false;
     };
 
 
     $scope.testXMLFields= function(){
 
+        $scope.myvalue = true;
+        $scope.testObject = [];
+
         var xmlData = $scope.data;
         var parser = new DOMParser();
 
         var vulArray = [];
+
         var xmlDoc = parser.parseFromString(xmlData,"text/xml");
         var childNodes = xmlDoc.getElementsByTagName("VULNERABILITY_LIST")[0].childNodes;
 
@@ -152,7 +139,7 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
         var glossary = $scope.glossary();
         return glossary.filter(function(obj){
             return obj["QID"] === qid
-        })[0]["CATEGORY"];
+        })[0]["GROUP"];
 
     };
 
@@ -241,6 +228,8 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
 
 
     }
+
+
 
 
 
