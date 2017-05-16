@@ -6,18 +6,21 @@ import '../../factories/appServices';
 
 export default function adminPortalController($scope, $state, $stateParams, $http, appServices) {
 
+    $scope.user = appServices.getAdminName();
 
-    $scope.adminName = "";
 
-    $scope.adminPassword = "";
+    if($scope.user !== ""){
+        $scope.varName =true;
+    }
+
+    $scope.logout1 = function(){
+        appServices.deleteCookie("loggedInUser");
+    };
 
 
 }
 
 adminPortalController.$inject = ["$scope", "$state", '$stateParams', "$http", "appServices"];
-
-
-'use strict';
 
 
 
