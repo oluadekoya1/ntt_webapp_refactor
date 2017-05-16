@@ -1,29 +1,32 @@
-
-<div class="login-page1">
-    <div class="form1">
-        <form class="login-form">
-            <label>Administration Portal</label>
-            <br>
-            <br>
-            <br>
-            <input type="text" placeholder="username" ng-model="adminName"/>
-            <input type="password" placeholder="password" ng-model="adminPassword"/>
-            <button ng-click="adminLogin()" >login</button>
-
-        </form>
-    </div>
+<!-- Vertical Section -->
+<div id="sidebar">
+    <ul >
+        <br>
+        <br>
+        <br>
+        <br>
+        <li ><a href="">Vulnerability Mapping</a></li>
+        <li><a href="">User Account </a></li>
+    </ul>
 </div>
 
-
-<div class="modal fade" id="errorModal1" role="dialog">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-body">
-                <p>The Username or password that you've entered is incorrect. </p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-            </div>
-        </div>
+<!--Horizontal Section-->
+<div class="topnav">
+    <div class="textFormat">
+        Welcome to the Administration Portal
     </div>
+
+    <ul class="nav nav-logout navbar-nav textFormat1 ">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn-xlarge " data-toggle="dropdown">{{user}}<span class="badge" ng-show="varName">Online</span></a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a ng-click="logout1()">Sign out<span class="glyphicon glyphicon-log-out pull-right"></span></a>
+                </li>
+            </ul>
+        </li>
+    </ul>
 </div>
+
+<div>where is this going</div>
+
