@@ -30,10 +30,11 @@ var nttComs = angular.module('app', [uirouter,assessDocs, signIn, admin, assessA
 nttComs.run(function($rootScope, appServices, $location) {
 
     $rootScope.$on('$stateChangeStart', function () {
-        if (appServices.getCookie("loggedInUser").length === 0) {
-            if($location.url() !== '/admin'){
+        if(appServices.getCookie("loggedInAdmin").length !== 0 && ($location.url()==='/admin' || $location.url()==='/adminPortal')){
+            return false;
+        }
+        else if (appServices.getCookie("loggedInUser").length === 0) {
                 $location.path('/');
-            }
         }
     });
 
