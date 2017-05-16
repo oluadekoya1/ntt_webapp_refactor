@@ -8,7 +8,7 @@ import signIn from './features/signIn/index';
 import admin from './features/admin/index';
 import uploadPage from './features/uploadPage/index';
 //import adminPortal from './features/adminPortal/index';
-import adminPortal from './features/adminPortal/index';
+import adminPortal from './features/admin/index';
 import homepage from './features/homepage/index';
 import createapp from './features/createapplication/index';
 import defineapp from './features/defineApplication/index';
