@@ -15,6 +15,7 @@ export default function adminPortalController($scope, $state, $stateParams, $htt
 
     $scope.logout1 = function(){
         appServices.deleteCookie("loggedInUser");
+        $state.go("admin");
     };
 
 
