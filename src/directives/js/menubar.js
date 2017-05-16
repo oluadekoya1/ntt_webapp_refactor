@@ -22,6 +22,12 @@ function menubar() {
                 $state.go("signIn");
             }
 
+            $scope.adminEntry = function(){
+                $scope.username="";
+                appServices.deleteCookie("loggedInUser");
+                $state.go("admin");
+            }
+
         }
     }
 }
