@@ -7,7 +7,7 @@ import swal from 'sweetalert';
 import signIn from './features/signIn/index';
 import admin from './features/admin/index';
 import uploadPage from './features/uploadPage/index';
-import adminPortal from './features/adminPortal/index';
+import adminPortal from './features/admin_portal/index';
 import homepage from './features/homepage/index';
 import createapp from './features/createapplication/index';
 import defineapp from './features/defineApplication/index';

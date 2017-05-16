@@ -5,16 +5,16 @@ export default function adminPortalController($scope ,$state, $stateParams, appS
 
     $scope.test = '';
 
-    //$scope.user = appServices.getAdminName();
-    //
-    //
-    //if($scope.user !== ""){
-    //    $scope.varName =true;
-    //}
-    //
-    //$scope.logout1 = function(){
-    //    appServices.deleteCookie("loggedInUser");
-    //};
+    $scope.user = appServices.getAdminName();
+
+
+    if($scope.user !== ""){
+        $scope.varName =true;
+    }
+
+    $scope.logout1 = function(){
+        appServices.deleteCookie("loggedInUser");
+    };
 
 }
 
