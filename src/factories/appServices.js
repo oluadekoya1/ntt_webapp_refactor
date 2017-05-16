@@ -38,6 +38,8 @@ function appServices($http, $q) {
 
     this.username = this.getCookie('loggedInUser') || "";
 
+    this.adminName = this.getCookie('loggedInAdmin') || "";
+
     this.appDetails = {};
 
     this.getUserName = function(){
@@ -46,6 +48,14 @@ function appServices($http, $q) {
 
     this.setUserName = function(name){
         this.username = name;
+    };
+
+    this.setAdminName = function(name){
+        this.adminName = name;
+    };
+
+    this.getAdminName = function(){
+        return this.adminName;
     };
 
     this.getAllApps = function(){

@@ -1,6 +1,7 @@
 'use strict';
 import logo1 from '../../directives/imgs/download.png';
 import $ from'jquery';
+import '../../factories/appServices';
 
 export default function signInController($scope, $state, $http, appServices) {
 

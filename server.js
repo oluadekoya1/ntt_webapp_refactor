@@ -73,6 +73,21 @@ app.post('/api/sign-in', function (request, response) {
     });
 });
 
+app.post('/api/admin-sign-in', function (request, response) {
+    pg.connect(connectionString, function(err, client, done) {
+        client.query("SELECT username, password FROM admindetails WHERE username = '"+request.body.username+"' AND password = '"+request.body.password+"'", function(err, result) {
+            done();
+            debugger;
+            if (err) {
+                console.error(err); response.send("Error " + err);
+            }
+            else {
+                response.send(result.rows.length === 1);
+            }
+        });
+    });
+});
+
 
 app.post('/api/save', function (request, response) {
 
