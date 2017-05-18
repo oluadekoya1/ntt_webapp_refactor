@@ -135,6 +135,8 @@ app.get('/api/get-saved-app/:username', function (request, response) {
     });
 });
 
+
+
 app.post('/api/update-assessment1/:id', function (request, response) {
 
     pg.connect(connectionString, function(err, client, done) {
@@ -190,6 +192,25 @@ app.get('/api/get-all/:username', function (request, response) {
         });
     });
 });
+
+app.get('/api/get-matrix/', function (request, response) {
+
+    pg.connect(connectionString, function(err, client, done) {
+
+        client.query( "SELECT * FROM qualysasmmapping", function(err, result) {
+            done();
+            if (err) {
+                console.error(err); response.send("Error " + err);
+            }
+            else {
+                response.send(result.rows);
+            }
+        });
+    });
+});
+
+
+
 
 app.get('/api/get-app-with-id/:id', function (request, response) {
 

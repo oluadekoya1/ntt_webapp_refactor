@@ -99,6 +99,44 @@ function appServices($http, $q) {
 
     };
 
+    this.getAllInfo = function(){
+        var dfd = $q.defer();
+
+            this.$http.get('/api/matrix/')
+                .then(function (data) {
+                    var result = [];
+                    data.forEach(function(app){
+                        var newApp = {
+                            id : app.id * 1,
+                            username : app.username,
+                            assessApp : (app.criticality_complete === 'true'),
+                            appName : app.application_name,
+                            appDescription: app.application_description,
+                            commonQuestions: JSON.parse(app.common_questions),
+                            assessmentList : JSON.parse(app.criticality),
+                            policyDefinition: JSON.parse(app.policy) ,
+                            status : app.application_status,
+                            policyCheck : (app.policy_check === 'true'),
+                            knownAppOptions : app.features,
+                            uris : app.uris,
+                            appFqdn : app.application_fqdn,
+                            selectedAppType : app.application_type,
+                            parameters : app.parameters,
+                            features1 :  app.features
+                        };
+                        result.push(newApp);
+                    });
+                    dfd.resolve(result);
+                })
+                .error(function (error) {
+                    dfd.reject(error)
+                });
+
+            return dfd.promise;
+
+
+    };
+
     this.getAppWIthID = function(id){
         var dfd = $q.defer();
 

@@ -2,7 +2,7 @@
 import $ from 'jquery';
 import assessmentQuestions from './constant/assessment_questions.json';
 import lookupAnswers from './constant/assessment_scoringMatrix.json';
-//import policyQuestions from '../createapplication/constants/policyDefine.json';
+
 
 function  getResult(allList){
     var result = [],
@@ -124,20 +124,6 @@ export default function reviewAppCtrl($scope ,$state, $stateParams, $http, appSe
             return ['red', val]
         }
     };
-
-    //$scope.getCValue = function(id){
-    //
-    //    var allList = JSON.parse(sessionStorage.computedAssessment);
-    //    var cval = allList.filter(function (list) {
-    //        return list.appID === id
-    //    })[0];
-    //    var total = 0;
-    //    for (var prop in cval.result){
-    //        total = total + cval.result[prop];
-    //    }
-    //    return Math.ceil((total * 100)/98);
-    //
-    //};
 
     function customApp(){
         $scope.rowHeader = $scope.currentAppData.uris;
