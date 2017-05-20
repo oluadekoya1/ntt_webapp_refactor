@@ -4,9 +4,20 @@ import $ from'jquery';
 import '../../factories/appServices';
 
 
-export default function adminPortalController($scope, $state, $stateParams, $http, appServices) {
+export default function adminPortalController($scope, $state, $stateParams, $http, appServices, allInfo) {
+
+
 
     $scope.user = appServices.getAdminName();
+
+    console.log(allInfo);
+
+    $scope.allSavedInfo = allInfo;
+
+
+
+
+
 
 
     if($scope.user !== ""){
@@ -21,7 +32,7 @@ export default function adminPortalController($scope, $state, $stateParams, $htt
 
 }
 
-adminPortalController.$inject = ["$scope", "$state", '$stateParams', "$http", "appServices"];
+adminPortalController.$inject = ["$scope", "$state", '$stateParams', "$http", "appServices", "allInfo"];
 
 
 

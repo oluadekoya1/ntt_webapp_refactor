@@ -9,7 +9,12 @@ export default function routes($stateProvider) {
             url: '/adminPortal',
             template: require('./admin_portal.html'),
             controller: 'adminPortalController',
-            controllerAs: 'adminPortal'
+            controllerAs: 'adminPortal',
+            resolve: {
+                allInfo : function(appServices){
+                    return appServices.getAllSavedQid();
+                }
+            }
         });
 }
 

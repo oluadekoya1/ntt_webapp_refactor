@@ -83,7 +83,7 @@ function  getResult(allList){
 
 export default function reviewAppCtrl($scope ,$state, $stateParams, $http, appServices, allApps) {
 
-    console.log(allApps);
+
 
     $scope.readFile = function () {
         $http.get('/api/getxml').success(function (data) {
