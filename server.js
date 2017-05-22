@@ -156,6 +156,38 @@ app.post('/api/update-assessment1/:id', function (request, response) {
     });
 });
 
+//New endpoint
+
+app.post('/api/mappingUpdate', function (request, response) {
+
+    pg.connect(connectionString, function(err, client, done) {
+
+        var qid= request.body.qid,
+            title= request.body.title,
+            sub_category= request.body.subCategory,
+            severity= request.body.severity,
+            category= request.body.category,
+            cvss= request.body.cvss,
+            mitigation_level= request.body.mitigationLevel,
+            asm_mitigation= request.body.asmMitigation,
+            comments= request.body.comments
+
+        client.query( "INSERT INTO qualysasmmapping VALUES ('"+qid+"','"+title+"','"+sub_category+"', '"+severity+"', '"+category+"' ,'"+cvss+"','"+mitigation_level+"', '"+asm_mitigation+"','"+comments+"' )", function(err, result) {
+            done();
+            if (err) {
+                console.error(err); response.send("Error " + err);
+            }
+            else { console.log("success");
+                response.send(result);
+
+
+            }
+        });
+    });
+});
+
+
+
 
 
 app.post('/api/update-policy/:id', function (request, response) {
@@ -235,6 +267,24 @@ app.post('/api/delete/:id', function (request, response) {
 
     pg.connect(connectionString, function(err, client, done) {
         client.query( "DELETE FROM appinformation WHERE id = '" + id + "'", function(err, result) {
+            done();
+            if (err) {
+                console.error(err); response.send("Error " + err);
+            }
+            else {
+                response.send(result);
+            }
+        });
+    });
+});
+
+app.post('/api/delete-matrix/:qid', function (request, response) {
+
+    var qid = request.params.qid;
+
+
+    pg.connect(connectionString, function(err, client, done) {
+        client.query( "DELETE FROM qualysasmmapping WHERE qid = '" + qid + "'", function(err, result) {
             done();
             if (err) {
                 console.error(err); response.send("Error " + err);

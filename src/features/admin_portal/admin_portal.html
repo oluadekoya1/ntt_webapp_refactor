@@ -59,31 +59,112 @@
             <td >{{qids.mitigationLevel}}</td>
             <td >{{qids.asmMitigation}}</td>
             <td >{{qids.comments}}</td>
-            <td ><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span></button></p></td>
-            <td ><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+            <td ><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#myModal1"><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+            <td ><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" ng-click="deleteAppEntry(qids.qid)" data-title="Delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
         </tr>
         </tbody>
     </table>
      <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal fade modalallignLeft" id="myModal" role="dialog">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
+                    <h4 class="modal-title"> Add new vulnerability to the mapping matrix</h4>
                 </div>
                 <div class="modal-body">
-                    <p>This is a large modal.</p>
+                    <!--This is the form-->
+                    <form id="modaldes">
+                        <div class="col-2">
+                            <label>
+                                QID :
+                                <input placeholder="Please enter the QID" ng-model="qid">
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <label>
+                                Title :
+                                <input placeholder="What is the vulnerability title?" ng-model="title" >
+                            </label>
+                        </div>
+                        <div class="col-3">
+                            <label>
+                                Sub Category :
+                                <input placeholder=" What is the vulnerability sub category" ng-model="subCategory">
+                            </label>
+                        </div>
+                        <div class="col-3">
+                            <label>
+                                Severity :
+                                <input placeholder=" What is the vulnerability severity" ng-model="severity" >
+                            </label>
+                        </div>
+                        <div class="col-3">
+                            <label>
+                                Category :
+                                <input placeholder=" What is the vulnerability category" ng-model="category" >
+                            </label>
+                        </div>
+
+
+                        <div class="col-3">
+                            <label>
+                                CVSS :
+                                <input placeholder="What is vulnerability CVSS Score?" ng-model="cvss"  >
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <label>
+                                Mitigation Level :
+                                <input placeholder="What is the mitigation Level?" ng-model="mitigationLevel">
+                            </label>
+                        </div>
+
+                        <div class="col-3">
+                            <label>
+                                BIG-IP ASM Mitigation :
+                                <input placeholder="What is the BIG-IP ASM Mitigation" ng-model="asmMitigation" >
+                            </label>
+                        </div>
+                        <div class="col-3">
+                            <label>
+                                Comments :
+                                <input placeholder="Please eneter your comments" ng-model="comments" >
+                            </label>
+                        </div>
+
+                    </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-success" ng-click="updateTableMapping()" data-dismiss="modal">Submit</button>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="allignLeft1">
-    <a id="add_row" class="btn btn-success pull-left">Add Row</a>
+<div id= buttonFont" class="allignLeft1"><p data-placement="top" data-toggle="tooltip" title="Add New Entry">
+    <button class="btn btn-success btnFont " data-title="Add New Entry" data-toggle="modal" data-target="#myModal">
+        <span class="glyphicon glyphicon-plus-sign"></span> Add New Entry
+    </button></p>
 </div>
+
+
+<div class="modal fade" id="errorModal11" role="dialog ">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body ">
+                <p>The QID and Title field can not be blank </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
