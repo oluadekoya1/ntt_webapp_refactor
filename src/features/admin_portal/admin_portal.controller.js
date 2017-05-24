@@ -10,8 +10,8 @@ export default function adminPortalController($scope, $state, $stateParams, $htt
 
     $scope.user = appServices.getAdminName();
     $scope.allSavedInfo = allInfo;
-
-
+    $scope.allSavedInfo1 = allInfo;
+    $scope.isUpdate = false;
 
     if($scope.user !== ""){
         $scope.varName =true;
@@ -32,6 +32,40 @@ export default function adminPortalController($scope, $state, $stateParams, $htt
     $scope.asmMitigation="";
     $scope.comments="";
 
+    $scope.openModal = function(){
+
+        $scope.qid="";
+        $scope.title="";
+        $scope.subCategory="";
+        $scope.severity="";
+        $scope.category="";
+        $scope.cvss="";
+        $scope.mitigationLevel="";
+        $scope.asmMitigation="";
+        $scope.comments="";
+
+        $('#myModal').modal('show');
+    };
+
+    $scope.addNew = function(newTableUpdate){
+        $http.post('/api/mappingUpdate', newTableUpdate)
+            .success(function(){
+               // console.log('Successful...');
+            })
+            .error(function(data){
+                console.log(data);
+            });
+    };
+
+    $scope.updateExisting = function(newTableUpdate){
+        $http.post('/api/update-vulnerability/'+newTableUpdate.qid, newTableUpdate)
+            .success(function(data){
+               // $scope.allSavedInfo = appServices.getAllSavedQid();
+            })
+            .error(function(data){
+                console.log(data);
+            });
+    };
 
     $scope.updateTableMapping = function(){
 
@@ -47,24 +81,22 @@ export default function adminPortalController($scope, $state, $stateParams, $htt
             comments: $scope.comments
         };
         //if  qid is not in the table
-
         if($scope.qid == ""){
-            $('#errorModal11').modal('show')
-
+            $('#errorModal11').modal('show');
         }
         else {
-            $http.post('/api/mappingUpdate', newTableUpdate)
-                .success(function(){
-                    console.log(newTableUpdate);
-                })
-                .error(function(data){
-                    console.log(data);
-                });
+            if(!$scope.isUpdate){
+                $scope.addNew(newTableUpdate);
+            } else {
+                $scope.updateExisting(newTableUpdate);
+            }
+
             $state.go('adminPortal');
-        };
-    }
+        }
+    };
 
     $scope.deleteAppEntry = function(qid){
+        debugger;
         $http.post('/api/delete-matrix/' +qid)
             .success(function (data){ console.log(data);
                 $scope.allSavedInfo = $scope.allSavedInfo.filter(function(list){
@@ -74,6 +106,30 @@ export default function adminPortalController($scope, $state, $stateParams, $htt
             console.log(error);
         })
     };
+
+    $scope.retrieveRowEntry = function(qid){
+debugger;
+        $scope.selectedRow = $scope.allSavedInfo.filter(function(list){
+            return list.qid === qid
+        })[0];
+
+        $scope.qid = $scope.selectedRow.qid;
+        $scope.title = $scope.selectedRow.title;
+        $scope.subCategory = $scope.selectedRow.subCategory;
+        $scope.severity = $scope.selectedRow.severity;
+        $scope.category = $scope.selectedRow.category;
+        $scope.cvss = $scope.selectedRow.cvss;
+        $scope.mitigationLevel = $scope.selectedRow.mitigationLevel;
+        $scope.asmMitigation = $scope.selectedRow.asmMitigation;
+        $scope.comments = $scope.selectedRow.comments;
+
+        $scope.isUpdate = true;
+
+    };
+
+
+
+
 
 
 

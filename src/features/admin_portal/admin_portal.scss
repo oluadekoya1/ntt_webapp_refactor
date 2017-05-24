@@ -8,10 +8,10 @@
   position: fixed;
   height: 100%;
   overflow: auto;
-  margin-top: -20px;
+  margin-top: -60px;
   margin-left: -20px;
   font-family: "Roboto", sans-serif;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 
@@ -45,6 +45,23 @@
   margin-top: 50px;
   font-family: "Roboto", sans-serif;
   font-size:11px;
+}
+
+#vtab1 div {
+  font-family: "Roboto", sans-serif;
+  font-size:10px;
+
+}
+
+#vtab2 div {
+  font-family: "Roboto", sans-serif;
+  font-size:10px;
+
+}
+#vtab3 div {
+  font-family: "Roboto", sans-serif;
+  font-size:10px;
+
 }
 
 .allignLeft1 {
@@ -192,6 +209,18 @@
 }
 
 
+#vtab2 div a span { padding:8px; background:#ffffff; margin-right:4px; }
+#vtab2 div a { padding: 1px 15px 3px 2px; border-radius:50px;
+  width: 100%;
+  text-align:center}
+
+
+centreButton {
+  display: flex;
+  margin:0 auto;
+  align-items:center;
+
+}
 
 
 

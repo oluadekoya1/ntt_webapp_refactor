@@ -117,6 +117,22 @@ function appServices($http, $q) {
 
     };
 
+    this.getRowWIthQID = function(qid){
+        var dfd = $q.defer();
+
+        this.$http.get('/api/get-row-qid/' + qid)
+            .success(function (data) {
+                dfd.resolve(data);
+            })
+            .error(function (error) {
+                dfd.reject(error)
+            });
+
+        return dfd.promise;
+
+
+    };
+
     this.deleteWithID = function(id){
         var dfd = $q.defer();
 
@@ -210,6 +226,7 @@ function appServices($http, $q) {
 
         this.$http.get('/api/get-matrix/')
             .success((data) => {
+                debugger;
                 var result = [];
                 data.forEach(function (app) {
                     var newApp = {

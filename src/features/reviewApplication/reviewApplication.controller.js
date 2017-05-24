@@ -137,6 +137,7 @@ export default function reviewAppCtrl($scope ,$state, $stateParams, $http, appSe
 
     $scope.editAssessment = function(id){
         $state.go('edit-assessment', {redirect : true, id : id});
+
     };
 
 

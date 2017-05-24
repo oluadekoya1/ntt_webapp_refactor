@@ -260,6 +260,31 @@ app.get('/api/get-app-with-id/:id', function (request, response) {
     });
 });
 
+app.post('/api/update-vulnerability/:qid', function (request, response) {
+
+    pg.connect(connectionString, function(err, client, done) {
+        var qid = request.params.qid;
+        var asmMitigation = request.body.asmMitigation;
+        var category = request.body.category;
+        var comments = request.body.comments;
+        var cvss = request.body.cvss;
+        var mitigationLevel = request.body.mitigationLevel;
+        var severity = request.body.severity;
+        var subCategory = request.body.subCategory;
+        var title = request.body.title;
+
+
+        client.query( "UPDATE qualysasmmapping SET title = '"+ title +"' ,sub_category = '"+ subCategory +"' ,severity = '"+ severity +"' ,mitigation_level = '"+ mitigationLevel +"' ,cvss = '"+ cvss +"' ,comments = '"+ comments +"' ,asm_mitigation = '"+ asmMitigation +"' ,category = '"+ category +"'  WHERE qid = '"+ qid +"'", function(err, result){
+            done();
+            if (err) {
+                console.error(err); response.send("Error " + err);
+            }
+            else {
+                response.send(result);
+            }
+        });
+    });
+});
 
 app.post('/api/delete/:id', function (request, response) {
 
@@ -284,7 +309,7 @@ app.post('/api/delete-matrix/:qid', function (request, response) {
 
 
     pg.connect(connectionString, function(err, client, done) {
-        client.query( "DELETE FROM qualysasmmapping WHERE qid = '" + qid + "'", function(err, result) {
+        client.query( "DELETE FROM qualysasmmapping WHERE qid = '"+request.params.qid+ "'", function(err, result) {
             done();
             if (err) {
                 console.error(err); response.send("Error " + err);

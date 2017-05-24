@@ -11,8 +11,9 @@ export default function routes($stateProvider) {
             controller: 'adminPortalController',
             controllerAs: 'adminPortal',
             resolve: {
-                allInfo : function(appServices){
+                allInfo : function(appServices){ console.log(appServices.getAllSavedQid());
                     return appServices.getAllSavedQid();
+
                 }
             }
         });
