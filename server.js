@@ -177,8 +177,9 @@ app.post('/api/mappingUpdate', function (request, response) {
             if (err) {
                 console.error(err); response.send("Error " + err);
             }
-            else { console.log("success");
+            else {
                 response.send(result);
+
 
 
             }

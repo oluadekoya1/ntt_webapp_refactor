@@ -49,7 +49,7 @@
                     <!--</button></p>-->
                     <a class="btn btn-success " data-title="Add New Entry" ng-click="openModal()"><span class="glyphicon btn-glyphicon glyphicon-plus-sign img-circle text-info"></span>Add New Entry</a>
                 </div>
-                <div class=" ">
+                <div >
                     <table class="table table-striped table-bordered table-hover">
                         <thead>
                         <tr>
@@ -68,7 +68,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr  ng-repeat="qids in allSavedInfo">
+                        <tr  ng-repeat="qids in allSavedInfo | orderBy:'qid'  track by $index">
                             <td><input type="checkbox" value=""></td>
                             <td >{{qids.qid}}</td>
                             <td >{{qids.title}}</td>

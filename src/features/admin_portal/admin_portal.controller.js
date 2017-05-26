@@ -10,8 +10,14 @@ export default function adminPortalController($scope, $state, $stateParams, $htt
 
     $scope.user = appServices.getAdminName();
     $scope.allSavedInfo = allInfo;
-    $scope.allSavedInfo1 = allInfo;
     $scope.isUpdate = false;
+
+
+
+
+
+
+
 
     if($scope.user !== ""){
         $scope.varName =true;
@@ -21,6 +27,7 @@ export default function adminPortalController($scope, $state, $stateParams, $htt
         appServices.deleteCookie("loggedInUser");
         $state.go("admin");
     };
+
 
     $scope.qid="";
     $scope.title="";
@@ -49,8 +56,12 @@ export default function adminPortalController($scope, $state, $stateParams, $htt
 
     $scope.addNew = function(newTableUpdate){
         $http.post('/api/mappingUpdate', newTableUpdate)
-            .success(function(){
-               // console.log('Successful...');
+            .success(function(data){
+                if(data){
+                    $location.path('/adminPortal');
+                }
+
+
             })
             .error(function(data){
                 console.log(data);
@@ -60,7 +71,7 @@ export default function adminPortalController($scope, $state, $stateParams, $htt
     $scope.updateExisting = function(newTableUpdate){
         $http.post('/api/update-vulnerability/'+newTableUpdate.qid, newTableUpdate)
             .success(function(data){
-               // $scope.allSavedInfo = appServices.getAllSavedQid();
+
             })
             .error(function(data){
                 console.log(data);
@@ -92,11 +103,13 @@ export default function adminPortalController($scope, $state, $stateParams, $htt
             }
 
             $state.go('adminPortal');
+            window.location.reload();
+
         }
     };
 
     $scope.deleteAppEntry = function(qid){
-        debugger;
+
         $http.post('/api/delete-matrix/' +qid)
             .success(function (data){ console.log(data);
                 $scope.allSavedInfo = $scope.allSavedInfo.filter(function(list){
@@ -108,7 +121,7 @@ export default function adminPortalController($scope, $state, $stateParams, $htt
     };
 
     $scope.retrieveRowEntry = function(qid){
-debugger;
+
         $scope.selectedRow = $scope.allSavedInfo.filter(function(list){
             return list.qid === qid
         })[0];
@@ -126,6 +139,11 @@ debugger;
         $scope.isUpdate = true;
 
     };
+
+
+
+
+
 
 
 

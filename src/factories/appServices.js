@@ -226,7 +226,6 @@ function appServices($http, $q) {
 
         this.$http.get('/api/get-matrix/')
             .success((data) => {
-                debugger;
                 var result = [];
                 data.forEach(function (app) {
                     var newApp = {
