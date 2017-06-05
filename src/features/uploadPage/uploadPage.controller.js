@@ -3,13 +3,14 @@
 
 
 
-export default function UploadPageController($scope ,$state, $stateParams, appServices ) {
+export default function UploadPageController($scope ,$state, $stateParams, appServices,allTableData ) {
 
 
 
     $scope.user = appServices.getUserName();
 
     $scope.testObject = [];
+
 
     //GET THE FILE INFORMATION
 
@@ -45,17 +46,19 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
 
     };
 
-
-
     $scope.resetField=function(){
         $scope.myvalue = false;
     };
+
+
 
 
     $scope.testXMLFields= function(){
 
         $scope.myvalue = true;
         $scope.testObject = [];
+
+
         
         var xmlData = $scope.data;
         var parser = new DOMParser();
@@ -76,7 +79,6 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
         }
 
         for(var j = 0; j < vulArray.length; j++){
-
             //get qid
             var qid = vulArray[j].getElementsByTagName('QID')[0].innerHTML;
             //get category
@@ -93,6 +95,12 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
             var cwe = $scope.getCWE(qid);
             //get cvss base
             var cvssbase = $scope.getCVSSBASE(qid);
+            //get asmMitigation base
+            var AsmMitigation = $scope.getAsmMitigation(qid);
+            //get Mitigation Level base
+            var mitigationLevel = $scope.getMitigationLevel(qid);
+            //get comments base
+            var comments = $scope.getComment(qid);
 
             $scope.testObject.push({
                 qid: qid,
@@ -102,13 +110,17 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
                 url: url,
                 trigger:trigger,
                 cwe: cwe,
-                cvssbase: cvssbase
+                cvssbase: cvssbase,
+                asmmitigation:AsmMitigation,
+                mitigationlevel:mitigationLevel,
+                comments:comments
             });
+
 
         }
 
-    };
 
+    };
 
     $scope.getMethodAndUrl = function(payloads){
 
@@ -133,6 +145,7 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
             return obj["QID"] === qid
         })[0]["GROUP"];
     };
+
     $scope.getCWE = function (qid) {
         //get glossary
         var glossary = $scope.glossary();
@@ -140,6 +153,7 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
             return obj["QID"] === qid
         })[0]["CWE"];
     };
+
     $scope.getCVSSBASE = function (qid) {
         //get glossary
         var glossary = $scope.glossary();
@@ -216,26 +230,52 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
             var item = {};
             for(var child = 0; child < children.length; child++) {
                 item[qidList[j].children[child].tagName] = qidList[j].children[child].innerHTML;
-
             }
 
             qidArray.push(angular.copy(item));
-
         };
-
         return qidArray;
-
-
-
     }
 
+    $scope.allSavedTableInfo = allTableData;
 
 
+    $scope.getAsmMitigation = function(qid){
 
+        //get existing Array
+        var existingArray = $scope.allSavedTableInfo;
+        for (var jk=0; jk < existingArray.length; jk++){
+            if(existingArray[jk].qid == qid){
+                return existingArray[jk].asmMitigation;
+            }
+        };
+    };
+    $scope.getComment = function(qid){
+
+        //get existing Array
+        var existingArray = $scope.allSavedTableInfo;
+        for (var jk=0; jk < existingArray.length; jk++){
+            if(existingArray[jk].qid == qid){
+
+                return existingArray[jk].comments;
+            }
+        };
+    };
+
+    $scope.getMitigationLevel = function(qid){
+
+        //get existing Array
+        var existingArray = $scope.allSavedTableInfo;
+        for (var jk=0; jk < existingArray.length; jk++){
+            if(existingArray[jk].qid == qid){
+                return existingArray[jk].mitigationLevel;
+            }
+        };
+    };
 
 
 
 
 }
 
-UploadPageController.$inject = ['$scope', '$state', '$stateParams', 'appServices'];
+UploadPageController.$inject = ['$scope', '$state', '$stateParams', 'appServices', 'allTableData'];

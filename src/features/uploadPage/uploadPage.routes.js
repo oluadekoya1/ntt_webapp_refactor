@@ -8,6 +8,11 @@ export default function routes($stateProvider) {
             url: '/uploadPage',
             template: require('./uploadPage.html'),
             controller: 'UploadPageController',
-            controllerAs: 'uploadPage'
+            controllerAs: 'uploadPage',
+            resolve: {
+                allTableData : function(appServices){
+                    return appServices.getAllSavedQid();
+                }
+            }
         });
 }
