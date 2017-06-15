@@ -12,13 +12,6 @@ export default function adminPortalController($scope, $state, $stateParams, $htt
     $scope.allSavedInfo = allInfo;
     $scope.isUpdate = false;
 
-
-
-
-
-
-
-
     if($scope.user !== ""){
         $scope.varName =true;
     }
