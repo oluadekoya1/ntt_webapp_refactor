@@ -46,6 +46,8 @@
         height: 60px;
         width: 150px;
         font-size: 15px;
+        color:purple;
+        font-family: "Roboto", sans-serif;
     }
 
     &__right {
@@ -98,10 +100,13 @@
 
 .font_color{
     color:steelblue;
+    font-family: "Roboto", sans-serif;
+    font-size:20px;
 }
 
 .text_size{
-    font-size: 11px;
+    font-family: "Roboto", sans-serif;
+    font-size: 13px;
 }
 
 .textPosition{
