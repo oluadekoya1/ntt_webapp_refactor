@@ -24,19 +24,7 @@ app.use(bodyParser.urlencoded({limit: '100mb', extended: true}));
 
 app.use('/', express.static(publicPath));
 
-//app.use('/js', express.static(__dirname + '/js'));
-//app.use('/dist', express.static(__dirname + '/../dist'));
-//app.use('/css', express.static(__dirname + '/css'));
-//app.use('/partials', express.static(__dirname + '/partials'));
 
-//app.all('/*', function(req, res, next) {
-//    // Just send the index.html for other files to support HTML5Mode
-//    res.sendFile('index.html', { root: publicPath });
-//});
-
-//app.use(function(req, res) {
-//    res.sendFile(publicPath);
-//});
 
 
 app.get('/api/getxml', function (request, response) {
@@ -119,6 +107,32 @@ app.post('/api/save', function (request, response) {
     });
 });
 
+//New Endpoint
+
+app.post('/api/saveMappedTable', function (request, response) {
+
+    pg.connect(connectionString, function(err, client, done) {
+        var mib =request.body.mib,
+            file_name = request.body.file_name,
+            mapped_report = request.body.mapped_report,
+            user = request.body.user;
+
+
+        client.query( "INSERT INTO mappedxmltable VALUES ('"+mib+"','"+file_name+"','"+mapped_report+"', '"+user+"' )", function(err, result) {
+            done();
+            if (err) {
+                console.error(err); response.send("Error " + err);
+            }
+            else { console.log("success");
+                response.send(result);
+            }
+        });
+    });
+});
+
+
+
+
 app.get('/api/get-saved-app/:username', function (request, response) {
 
     pg.connect(connectionString, function(err, client, done) {
@@ -156,7 +170,7 @@ app.post('/api/update-assessment1/:id', function (request, response) {
     });
 });
 
-//New endpoint
+
 
 app.post('/api/mappingUpdate', function (request, response) {
 

@@ -19,7 +19,7 @@ export default function QualysScanController($scope ,$state, $stateParams, appSe
     };
 
     $scope.textholder1="Upload your qualys xml scan reports to map the identified vulnerabilities to F5 BIG-IP ASM mitigation features" ;
-    $scope.textholder2="To view your list of sanitisied and mapped qualsy scan reports" ;
+    $scope.textholder2="To view your list of sanitised and mapped qualsy scan reports" ;
     $scope.textholder3="Retrieve and map qualys scan reports directly from the qualys platform " ;
 
 }
