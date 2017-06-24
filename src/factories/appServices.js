@@ -221,6 +221,8 @@ function appServices($http, $q) {
 
     };
 
+
+
     this.getAllSavedQid = function(){
         var dfd = $q.defer();
 
@@ -256,6 +258,39 @@ function appServices($http, $q) {
 
 
     };
+
+    this.getAllSavedMappingTable = function(){
+        var dfd = $q.defer();
+
+        this.$http.get('/api/get-saved-table/' + this.username)
+            .success((data) => {
+                var result = [];
+                data.forEach(function (app) {
+                    var newApp = {
+                        mib: app.mib,
+                        file_name: app["file_name"],
+                        mapped_report: app["mapped_report"],
+                        username: app.username
+                    };
+
+                    result.push(newApp);
+                });
+
+                this.allSavedMappingTable = result;
+
+                dfd.resolve(result);
+
+            })
+            .error( (error) => {
+                dfd.reject(error)
+            });
+
+        return dfd.promise;
+
+
+    };
+
+
 
 
 }

@@ -8,6 +8,12 @@ export default function routes($stateProvider) {
             url: '/savedMapping',
             template: require('./savedMapping.html'),
             controller: 'SavedMappingController',
-            controllerAs: 'savedMapping'
+            controllerAs: 'savedMapping',
+            resolve: {
+                allMappedTable : function(appServices){
+                    return appServices.getAllSavedMappingTable();
+                }
+            }
+
         });
 }

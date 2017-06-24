@@ -7,7 +7,7 @@ export default function UploadPageController($scope ,$state, $stateParams, $http
 
 
 
-    $scope.user = appServices.getUserName();
+    $scope.username = appServices.getUserName();
 
     $scope.testObject = [];
     var testObject1 =[];
@@ -57,7 +57,6 @@ export default function UploadPageController($scope ,$state, $stateParams, $http
 
     $scope.testXMLFields= function(){
 
-        console.log('rain')
 
         $scope.myvalue = true;
         $scope.mybutton = true;
@@ -125,7 +124,9 @@ export default function UploadPageController($scope ,$state, $stateParams, $http
         }
 
 
-        sessionStorage.setItem('table1',  $scope.testObject);
+        sessionStorage.setItem('table1',  JSON.stringify($scope.testObject));
+        //console.log($scope.testObject);
+        //sessionStorage.setItem('table1',  $scope.testObject);
         var randomvalue;
         $scope.randomNumber= Math.floor((Math.random() * 10000) + 1);
         randomvalue=$scope.randomNumber;
@@ -299,32 +300,29 @@ export default function UploadPageController($scope ,$state, $stateParams, $http
         if ($scope.myvalue===true){
 
 
-                $scope.mapped_report = JSON.stringify(sessionStorage.getItem('table1'));
+
+                $scope.mapped_report = sessionStorage.getItem('table1');
+            //$scope.mapped_report = JSON.parse(sessionStorage.getItem('table1'));
                 $scope.mib = sessionStorage.getItem('randomvalue1');
+                $scope.fileName=$scope.retrievedFileName;
 
 
         }
 
         var newXMLTableMapping = {
             mib:$scope.mib,
-            user: $scope.user,
-            file_name: $scope.retrievedFileName,
+            username: $scope.username,
+            file_name: $scope.fileName,
             mapped_report: $scope.mapped_report
         };
 
         console.log(newXMLTableMapping);
 
-        debugger;
-
         $http.post('/api/saveMappedTable', newXMLTableMapping)
             .success(function(data){
-                debugger;
                 if(data){
-                    sessionStorage.removeItem('');
-                    sessionStorage.removeItem('');
                     $location.path('/savedMapping');
                 }
-
 
             })
             .error(function(data){

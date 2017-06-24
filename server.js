@@ -107,35 +107,14 @@ app.post('/api/save', function (request, response) {
     });
 });
 
-//New Endpoint
 
-app.post('/api/saveMappedTable', function (request, response) {
-
-    pg.connect(connectionString, function(err, client, done) {
-        var mib =request.body.mib,
-            file_name = request.body.file_name,
-            mapped_report = request.body.mapped_report,
-            user = request.body.user;
-
-
-        client.query( "INSERT INTO mappedxmltable VALUES ('"+mib+"','"+file_name+"','"+mapped_report+"', '"+user+"' )", function(err, result) {
-            done();
-            if (err) {
-                console.error(err); response.send("Error " + err);
-            }
-            else { console.log("success");
-                response.send(result);
-            }
-        });
-    });
-});
 
 
 
 
 app.get('/api/get-saved-app/:username', function (request, response) {
 
-    pg.connect(connectionString, function(err, client, done) {
+    pg.connect(connectionString, function(err, client, done) { ;
 
         client.query( "SELECT * FROM appinformation WHERE username = '"+request.params.username+"'", function(err, result) {
             done();
@@ -148,6 +127,8 @@ app.get('/api/get-saved-app/:username', function (request, response) {
         });
     });
 });
+
+
 
 
 
@@ -204,6 +185,26 @@ app.post('/api/mappingUpdate', function (request, response) {
 
 
 
+app.post('/api/saveMappedTable', function (request, response) {
+
+    pg.connect(connectionString, function(err, client, done) {
+        var mib =request.body.mib,
+            file_name = request.body.file_name,
+            mapped_report = request.body.mapped_report,
+            username = request.body.username;
+
+
+        client.query( "INSERT INTO mappedxmltable VALUES ('"+mib+"','"+file_name+"','"+mapped_report+"', '"+username+"' )", function(err, result) {
+            done();
+            if (err) {
+                console.error(err); response.send("Error " + err);
+            }
+            else { console.log("success");
+                response.send(result);
+            }
+        });
+    });
+});
 
 app.post('/api/update-policy/:id', function (request, response) {
 
@@ -226,7 +227,7 @@ app.post('/api/update-policy/:id', function (request, response) {
 
 app.get('/api/get-all/:username', function (request, response) {
 
-    pg.connect(connectionString, function(err, client, done) {
+    pg.connect(connectionString, function(err, client, done) { console.log(request.params.username)
 
         client.query( "SELECT * FROM appdetails WHERE username = '"+request.params.username+"'", function(err, result) {
             done();
@@ -239,6 +240,29 @@ app.get('/api/get-all/:username', function (request, response) {
         });
     });
 });
+
+
+app.get('/api/get-saved-table/:username', function (request, response) {
+
+    pg.connect(connectionString, function(err, client, done) {
+
+        client.query( "SELECT * FROM mappedxmltable WHERE username = '"+request.params.username+"'", function(err, result) {
+            done();
+            if (err) {
+                console.error(err); response.send("Error " + err);
+            }
+            else {
+                response.send(result.rows);
+            }
+        });
+    });
+});
+
+
+
+
+
+
 
 app.get('/api/get-matrix/', function (request, response) {
 
@@ -255,8 +279,6 @@ app.get('/api/get-matrix/', function (request, response) {
         });
     });
 });
-
-
 
 
 app.get('/api/get-app-with-id/:id', function (request, response) {

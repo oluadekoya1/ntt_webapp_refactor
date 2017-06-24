@@ -98,6 +98,8 @@ export default function reviewAppCtrl($scope ,$state, $stateParams, $http, appSe
 
     $scope.currentAppData = {};
 
+
+
     $scope.allSavedApps = allApps;
 
     $scope.computeResult = getResult(allApps);
