@@ -13,6 +13,9 @@ export default function SavedMappingController($scope ,$state, $stateParams, app
     $scope.uploadXML = function(){
         $state.go('uploadPage', {username :$scope.user });
     };
+    $scope.manageXML = function(){
+        $state.go('qualysScan', {username :$scope.user });
+    };
 
 }
 

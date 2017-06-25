@@ -8,8 +8,13 @@
                 <section class="box">
                     <h3 class="boxStyle">Mapped reports</h3>
                 </section>
+                <section ng-click="manageXML()">
+                    <button type="button" class="btn btn-info boxStyle1">Manage qualys report</button>
+                </section>
+                <br>
+                <br>
                 <section ng-click="uploadXML()">
-                    <button type="button" class="btn btn-info boxStyle1">Upload qualys report</button>
+                    <button type="button" class="btn btn-info color9 boxStyle1">Upload qualys report</button>
                 </section>
             </div>
             <div class ="8u 12u$(medium)">
@@ -41,14 +46,10 @@
                                 <div class="modal-dialog modal-lg">
                                     <!-- Modal content-->
                                     <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">Modal Header</h4>
-                                        </div>
                                         <div class="modal-body">
                                             <section>
                                                 <table  class="table tableLength table-bordered table-fixed-header">
-                                                    <thead class="tableFontHead">
+                                                    <thead class="modalTableFontHead">
                                                     <tr>
                                                         <th >QID</th>
                                                         <th >Category</th>
@@ -63,7 +64,7 @@
                                                         <th >Comments</th>
                                                     </tr>
                                                     </thead>
-                                                    <tbody class="tableFontBody">
+                                                    <tbody class="modalTableFontBody">
                                                     <tr ng-repeat="vul in testObject | orderBy:'qid'  track by $index  ">
                                                         <td>{{vul.qid}}</td>
                                                         <td>{{vul.category}}</td>

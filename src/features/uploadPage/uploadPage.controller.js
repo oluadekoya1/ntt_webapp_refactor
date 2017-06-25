@@ -332,6 +332,10 @@ export default function UploadPageController($scope ,$state, $stateParams, $http
 
     };
 
+    $scope.manageXML = function(){
+        $state.go('qualysScan', {username :$scope.user });
+    };
+
 
 
 
