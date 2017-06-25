@@ -10,6 +10,9 @@ export default function SavedMappingController($scope ,$state, $stateParams, app
 
     $scope.user = appServices.getUserName();
     $scope.allSavedMappedTable =allMappedTable;
+    $scope.uploadXML = function(){
+        $state.go('uploadPage', {username :$scope.user });
+    };
 
 }
 

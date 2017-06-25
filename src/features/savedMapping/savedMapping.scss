@@ -1,3 +1,5 @@
+@import "../qualysScan/css/font-awesome.min.css";
+
 .tableFontBody{
   font-family: "Roboto", sans-serif;
   font-size: 11px;
@@ -10,7 +12,25 @@
   font-weight: bold;
 }
 
+.tableFontBody{
+  font-family: "Roboto", sans-serif;
+  font-size: 11px;
+
+}
+
 .modalTableFontHead{
   font-family: "Roboto", sans-serif;
   font-size: 10px;
+}
+
+.boxStyle{
+  color:steelblue;
+  font-family: "Roboto", sans-serif;
+  font-size: 17px;
+}
+
+.boxStyle1{
+  color:white;
+  font-family: "Roboto", sans-serif;
+  font-size: 17px;
 }
