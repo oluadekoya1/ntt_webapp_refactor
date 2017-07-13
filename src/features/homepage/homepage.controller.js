@@ -16,8 +16,8 @@ export default function HomePageController($scope ,$state, $stateParams, appServ
         $state.go('define-app', {username :$scope.user });
     };
 
-    $scope.uploadXML = function(){
-        $state.go('uploadPage', {username :$scope.user });
+    $scope.manageXML = function(){
+        $state.go('qualysScan', {username :$scope.user });
     };
 
 

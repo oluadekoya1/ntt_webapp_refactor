@@ -98,9 +98,7 @@ console.log(currentApp);
                 policyDefinition: JSON.stringify(currentApp.policyDefinition),
                 policyCheck: true
             };
-            console.log("Olu testing");
-            console.log(newApp);
-            console.log("Olu testing");
+
 
             appServices.updatePolicy(currentID, newApp).then(function(data){
                 //sessionStorage.allList = JSON.stringify(allList);

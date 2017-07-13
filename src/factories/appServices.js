@@ -11,6 +11,8 @@ function appServices($http, $q) {
 
     this.allSavedApplications = [];
 
+    this.allSavedQidInformation = [];
+
     this.setCookie = function(cname, cvalue, exdays) {
         var d = new Date();
 
@@ -99,44 +101,6 @@ function appServices($http, $q) {
 
     };
 
-    this.getAllInfo = function(){
-        var dfd = $q.defer();
-
-            this.$http.get('/api/matrix/')
-                .then(function (data) {
-                    var result = [];
-                    data.forEach(function(app){
-                        var newApp = {
-                            id : app.id * 1,
-                            username : app.username,
-                            assessApp : (app.criticality_complete === 'true'),
-                            appName : app.application_name,
-                            appDescription: app.application_description,
-                            commonQuestions: JSON.parse(app.common_questions),
-                            assessmentList : JSON.parse(app.criticality),
-                            policyDefinition: JSON.parse(app.policy) ,
-                            status : app.application_status,
-                            policyCheck : (app.policy_check === 'true'),
-                            knownAppOptions : app.features,
-                            uris : app.uris,
-                            appFqdn : app.application_fqdn,
-                            selectedAppType : app.application_type,
-                            parameters : app.parameters,
-                            features1 :  app.features
-                        };
-                        result.push(newApp);
-                    });
-                    dfd.resolve(result);
-                })
-                .error(function (error) {
-                    dfd.reject(error)
-                });
-
-            return dfd.promise;
-
-
-    };
-
     this.getAppWIthID = function(id){
         var dfd = $q.defer();
 
@@ -149,6 +113,22 @@ function appServices($http, $q) {
                 });
 
             return dfd.promise;
+
+
+    };
+
+    this.getRowWIthQID = function(qid){
+        var dfd = $q.defer();
+
+        this.$http.get('/api/get-row-qid/' + qid)
+            .success(function (data) {
+                dfd.resolve(data);
+            })
+            .error(function (error) {
+                dfd.reject(error)
+            });
+
+        return dfd.promise;
 
 
     };
@@ -240,6 +220,77 @@ function appServices($http, $q) {
 
 
     };
+
+
+
+    this.getAllSavedQid = function(){
+        var dfd = $q.defer();
+
+        this.$http.get('/api/get-matrix/')
+            .success((data) => {
+                var result = [];
+                data.forEach(function (app) {
+                    var newApp = {
+                        qid: app.qid * 1,
+                        title: app["title"],
+                        subCategory: app["sub_category"],
+                        severity: app["severity"],
+                        category: app["category"],
+                        cvss: app["cvss"],
+                        mitigationLevel: app["mitigation_level"],
+                        asmMitigation:app["asm_mitigation"],
+                        comments: app["comments"]
+                    };
+
+                    result.push(newApp);
+                });
+
+                this.allSavedQidInformation = result;
+
+                dfd.resolve(result);
+
+            })
+            .error( (error) => {
+                dfd.reject(error)
+            });
+
+        return dfd.promise;
+
+
+    };
+
+    this.getAllSavedMappingTable = function(){
+        var dfd = $q.defer();
+
+        this.$http.get('/api/get-saved-table/' + this.username)
+            .success((data) => {
+                var result = [];
+                data.forEach(function (app) {
+                    var newApp = {
+                        mib: app.mib,
+                        file_name: app["file_name"],
+                        mapped_report: app["mapped_report"],
+                        username: app.username
+                    };
+
+                    result.push(newApp);
+                });
+
+                this.allSavedMappingTable = result;
+
+                dfd.resolve(result);
+
+            })
+            .error( (error) => {
+                dfd.reject(error)
+            });
+
+        return dfd.promise;
+
+
+    };
+
+
 
 
 }

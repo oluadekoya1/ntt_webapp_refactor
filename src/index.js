@@ -15,6 +15,8 @@ import reviewapp from './features/reviewApplication/index';
 import assessApp from './features/assessment/assess-application/index';
 import definepolicy from './features/policy/define-policy/index';
 import editpolicy from './features/policy/define-policy/index';
+import qualysScan from './features/qualysScan/index';
+import savedMapping from './features/savedMapping/index';
 import assessDocs from './features/assessment/assessment-docs/index';
 import routing from './app.config';
 import support from './features/support/index';
@@ -25,7 +27,7 @@ google.load('visualization', '1', {packages:['corechart', 'gauge']});
 google.setOnLoadCallback(function() {});
 
 
-var nttComs = angular.module('app', [uirouter,assessDocs, signIn, admin, assessApp, reviewapp, createapp, defineapp, uploadPage, adminPortal, homepage, support, definepolicy, editpolicy, appServices]);
+var nttComs = angular.module('app', [uirouter,assessDocs, signIn, admin, assessApp, reviewapp, createapp, defineapp, uploadPage, adminPortal, homepage, support, definepolicy, qualysScan, savedMapping, editpolicy, appServices]);
 
 nttComs.run(function($rootScope, appServices, $location) {
 

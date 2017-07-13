@@ -41,3 +41,9 @@
     right: 14px;
     z-index: 10;
 }
+
+.appFont{
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+
+};

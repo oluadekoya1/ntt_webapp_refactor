@@ -3,13 +3,15 @@
 
 
 
-export default function UploadPageController($scope ,$state, $stateParams, appServices ) {
+export default function UploadPageController($scope ,$state, $stateParams, $http, $location, appServices,allTableData ) {
 
 
 
-    $scope.user = appServices.getUserName();
+    $scope.username = appServices.getUserName();
 
     $scope.testObject = [];
+    var testObject1 =[];
+
 
     //GET THE FILE INFORMATION
 
@@ -45,18 +47,24 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
 
     };
 
-
-
     $scope.resetField=function(){
         $scope.myvalue = false;
+        $scope.mybutton = false;
     };
+
+
 
 
     $scope.testXMLFields= function(){
 
+
         $scope.myvalue = true;
+        $scope.mybutton = true;
         $scope.testObject = [];
-        
+
+
+
+
         var xmlData = $scope.data;
         var parser = new DOMParser();
 
@@ -76,7 +84,6 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
         }
 
         for(var j = 0; j < vulArray.length; j++){
-
             //get qid
             var qid = vulArray[j].getElementsByTagName('QID')[0].innerHTML;
             //get category
@@ -93,6 +100,12 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
             var cwe = $scope.getCWE(qid);
             //get cvss base
             var cvssbase = $scope.getCVSSBASE(qid);
+            //get asmMitigation base
+            var AsmMitigation = $scope.getAsmMitigation(qid);
+            //get Mitigation Level base
+            var mitigationLevel = $scope.getMitigationLevel(qid);
+            //get comments base
+            var comments = $scope.getComment(qid);
 
             $scope.testObject.push({
                 qid: qid,
@@ -102,12 +115,27 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
                 url: url,
                 trigger:trigger,
                 cwe: cwe,
-                cvssbase: cvssbase
+                cvssbase: cvssbase,
+                asmmitigation:AsmMitigation,
+                mitigationlevel:mitigationLevel,
+                comments:comments
             });
 
         }
 
+
+        sessionStorage.setItem('table1',  JSON.stringify($scope.testObject));
+        //console.log($scope.testObject);
+        //sessionStorage.setItem('table1',  $scope.testObject);
+        var randomvalue;
+        $scope.randomNumber= Math.floor((Math.random() * 10000) + 1);
+        randomvalue=$scope.randomNumber;
+        sessionStorage.setItem('randomvalue1', randomvalue);
+
+
     };
+
+
 
 
     $scope.getMethodAndUrl = function(payloads){
@@ -133,6 +161,7 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
             return obj["QID"] === qid
         })[0]["GROUP"];
     };
+
     $scope.getCWE = function (qid) {
         //get glossary
         var glossary = $scope.glossary();
@@ -140,6 +169,7 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
             return obj["QID"] === qid
         })[0]["CWE"];
     };
+
     $scope.getCVSSBASE = function (qid) {
         //get glossary
         var glossary = $scope.glossary();
@@ -216,20 +246,95 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
             var item = {};
             for(var child = 0; child < children.length; child++) {
                 item[qidList[j].children[child].tagName] = qidList[j].children[child].innerHTML;
-
             }
 
             qidArray.push(angular.copy(item));
-
         };
-
         return qidArray;
-
-
-
     }
 
+    $scope.allSavedTableInfo = allTableData;
 
+
+    $scope.getAsmMitigation = function(qid){
+
+        //get existing Array
+        var existingArray = $scope.allSavedTableInfo;
+        for (var jk=0; jk < existingArray.length; jk++){
+            if(existingArray[jk].qid == qid){
+                return existingArray[jk].asmMitigation;
+            }
+        };
+    };
+    $scope.getComment = function(qid){
+
+        //get existing Array
+        var existingArray = $scope.allSavedTableInfo;
+        for (var jk=0; jk < existingArray.length; jk++){
+            if(existingArray[jk].qid == qid){
+
+                return existingArray[jk].comments;
+            }
+        };
+    };
+
+    $scope.getMitigationLevel = function(qid){
+
+        //get existing Array
+        var existingArray = $scope.allSavedTableInfo;
+        for (var jk=0; jk < existingArray.length; jk++){
+            if(existingArray[jk].qid == qid){
+                return existingArray[jk].mitigationLevel;
+            }
+        };
+    };
+
+
+
+
+
+
+
+    $scope.saveXMLTableMapping = function(newXMLTableMapping){
+
+        if ($scope.myvalue===true){
+
+
+
+                $scope.mapped_report = sessionStorage.getItem('table1');
+            //$scope.mapped_report = JSON.parse(sessionStorage.getItem('table1'));
+                $scope.mib = sessionStorage.getItem('randomvalue1');
+                $scope.fileName=$scope.retrievedFileName;
+
+
+        }
+
+        var newXMLTableMapping = {
+            mib:$scope.mib,
+            username: $scope.username,
+            file_name: $scope.fileName,
+            mapped_report: $scope.mapped_report
+        };
+
+        console.log(newXMLTableMapping);
+
+        $http.post('/api/saveMappedTable', newXMLTableMapping)
+            .success(function(data){
+                if(data){
+                    $location.path('/savedMapping');
+                }
+
+            })
+            .error(function(data){
+                console.log(data);
+            });
+
+
+    };
+
+    $scope.manageXML = function(){
+        $state.go('qualysScan', {username :$scope.user });
+    };
 
 
 
@@ -238,4 +343,4 @@ export default function UploadPageController($scope ,$state, $stateParams, appSe
 
 }
 
-UploadPageController.$inject = ['$scope', '$state', '$stateParams', 'appServices'];
+UploadPageController.$inject = ['$scope', '$state', '$stateParams', '$http', '$location', 'appServices', 'allTableData'];

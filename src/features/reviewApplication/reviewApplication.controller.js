@@ -83,7 +83,7 @@ function  getResult(allList){
 
 export default function reviewAppCtrl($scope ,$state, $stateParams, $http, appServices, allApps) {
 
-    console.log(allApps);
+
 
     $scope.readFile = function () {
         $http.get('/api/getxml').success(function (data) {
@@ -97,6 +97,8 @@ export default function reviewAppCtrl($scope ,$state, $stateParams, $http, appSe
     };
 
     $scope.currentAppData = {};
+
+
 
     $scope.allSavedApps = allApps;
 
@@ -137,6 +139,7 @@ export default function reviewAppCtrl($scope ,$state, $stateParams, $http, appSe
 
     $scope.editAssessment = function(id){
         $state.go('edit-assessment', {redirect : true, id : id});
+
     };
 
 

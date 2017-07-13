@@ -1,10 +1,9 @@
 <menubar></menubar>
 
 <form name="myForm">
-    <fieldset>
-        <legend>Upload Vulnerability Assessment Report</legend>
-
-        <fieldset>
+    <section class="box ">
+        <legend class="headingFont">Upload Vulnerability Assessment Report</legend>
+        <section class="box">
             <div class="input-group">
                 <label class="input-group-btn">
                     <span class="btn btn-primary" >
@@ -14,55 +13,53 @@
                 </label>
                 <input type="text" ng-model="retrievedFileName"  placeholder="No file chosen" class="form-control" readonly>
             </div>
-        </fieldset>
-
-
-        <fieldset>
+        </section>
             <div class="input-group">
-                <label class="input-group-btn">
-                        <input type="button" class="btn btn-success" ng-click="testXMLFields()" value=" Transform XML..." />
-                </label>
-                <div >
-                   <!--DIV FOR UPLOAD PROGRESS BAR-->
+                <div class="input-group-btn">
+                    <input type="button" class="btn btn-success custom" ng-click="testXMLFields()" value=" Transform XML..." />
                 </div>
-            </div>
-        </fieldset>
+                <div ng-show="mybutton" class="input-group-btn">
+                    <input type="button" class="btn btn-warning custom" ng-click="saveXMLTableMapping()" value="     Save XML..." />
+                </div>
+                <div class="input-group-btn">
+                    <input type="button" class="btn btn-info custom" ng-click="manageXML()" value= "Manage Qualys report "/>
+                </div>
 
-    </fieldset>
-    <br>
+            </div>
+    </section>
 </form>
 
-<div class="row displayFont">
+<div class="row displayFont" id="uptab">
     <div class="col-lg-12">
         <table  ng-show="myvalue"  class="table tableLength table-bordered table-fixed-header">
-            <thead class='header'>
+            <thead>
             <tr>
-                <th colspan="1" rowspan="2" >QID</th>
-                <th colspan="1" rowspan="2">Category</th>
-                <th colspan="1" rowspan="2">Title</th>
-                <th colspan="1" rowspan="2">Method</th>
-                <th colspan="1" rowspan="2">URL</th>
-                <th colspan="1" rowspan="2" style=" max-width: 80px">Trigger</th>
-                <th colspan="1" rowspan="2">CWE</th>
-                <th colspan="1" rowspan="2">CVSS</th>
-                <th colspan="1" rowspan="2">Mitigation Level</th>
-                <th colspan="1" rowspan="2">BIG-IP ASM Mitigation</th>
-                <th colspan="1" rowspan="2">Comments</th>
+                <th >QID</th>
+                <th >Category</th>
+                <th >Title</th>
+                <th style=" word-wrap: break-word; max-width: 50px">Method</th>
+                <th >URL</th>
+                <th style=" max-width: 80px">Trigger</th>
+                <th >CWE</th>
+                <th >CVSS</th>
+                <th style=" word-wrap: break-word; max-width: 60px">Mitigation Level</th>
+                <th style="max-width: 180px">BIG-IP ASM Mitigation</th>
+                <th >Comments</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody class="body">
             <tr ng-repeat="vul in testObject | orderBy:'qid'  track by $index  ">
                 <td>{{vul.qid}}</td>
                 <td>{{vul.category}}</td>
                 <td style=" word-wrap: break-word; max-width: 100px">{{vul.title}}</td>
-                <td style=" word-wrap: break-word; max-width: 30px">{{vul.method}}</td>
+                <td style=" word-wrap: break-word; max-width: 50px">{{vul.method}}</td>
                 <td style=" word-wrap: break-word; max-width: 100px">{{vul.url}}</td>
                 <td style=" word-wrap: break-word; max-width: 100px">{{vul.trigger}}</td>
                 <td>{{vul.cwe}}</td>
                 <td>{{vul.cvssbase}}</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td style=" word-wrap: break-word; max-width: 60px">{{vul.mitigationlevel}}</td>
+                <td style="max-width: 180px">{{vul.asmmitigation}}</td>
+                <td>{{vul.comments}}</td>
             </tr>
             </tbody>
         </table>
@@ -70,6 +67,9 @@
 
     </div>
 </div>
+
+
+
 
 
 

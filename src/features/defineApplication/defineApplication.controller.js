@@ -7,7 +7,7 @@ import policyQuestions from '../createapplication/constants/policyDefine.json';
 import questionData1 from '../defineApplication/constants/constant1.json';
 import $ from'jquery';
 
-console.log(features);
+
 
 function makeid() {
     var text = "";

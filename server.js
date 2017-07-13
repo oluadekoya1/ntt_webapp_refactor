@@ -24,19 +24,7 @@ app.use(bodyParser.urlencoded({limit: '100mb', extended: true}));
 
 app.use('/', express.static(publicPath));
 
-//app.use('/js', express.static(__dirname + '/js'));
-//app.use('/dist', express.static(__dirname + '/../dist'));
-//app.use('/css', express.static(__dirname + '/css'));
-//app.use('/partials', express.static(__dirname + '/partials'));
 
-//app.all('/*', function(req, res, next) {
-//    // Just send the index.html for other files to support HTML5Mode
-//    res.sendFile('index.html', { root: publicPath });
-//});
-
-//app.use(function(req, res) {
-//    res.sendFile(publicPath);
-//});
 
 
 app.get('/api/getxml', function (request, response) {
@@ -119,9 +107,14 @@ app.post('/api/save', function (request, response) {
     });
 });
 
+
+
+
+
+
 app.get('/api/get-saved-app/:username', function (request, response) {
 
-    pg.connect(connectionString, function(err, client, done) {
+    pg.connect(connectionString, function(err, client, done) { ;
 
         client.query( "SELECT * FROM appinformation WHERE username = '"+request.params.username+"'", function(err, result) {
             done();
@@ -134,6 +127,8 @@ app.get('/api/get-saved-app/:username', function (request, response) {
         });
     });
 });
+
+
 
 
 
@@ -158,6 +153,59 @@ app.post('/api/update-assessment1/:id', function (request, response) {
 
 
 
+app.post('/api/mappingUpdate', function (request, response) {
+
+    pg.connect(connectionString, function(err, client, done) {
+
+        var qid= request.body.qid,
+            title= request.body.title,
+            sub_category= request.body.subCategory,
+            severity= request.body.severity,
+            category= request.body.category,
+            cvss= request.body.cvss,
+            mitigation_level= request.body.mitigationLevel,
+            asm_mitigation= request.body.asmMitigation,
+            comments= request.body.comments
+
+        client.query( "INSERT INTO qualysasmmapping VALUES ('"+qid+"','"+title+"','"+sub_category+"', '"+severity+"', '"+category+"' ,'"+cvss+"','"+mitigation_level+"', '"+asm_mitigation+"','"+comments+"' )", function(err, result) {
+            done();
+            if (err) {
+                console.error(err); response.send("Error " + err);
+            }
+            else {
+                response.send(result);
+
+
+
+            }
+        });
+    });
+});
+
+
+
+
+app.post('/api/saveMappedTable', function (request, response) {
+
+    pg.connect(connectionString, function(err, client, done) {
+        var mib =request.body.mib,
+            file_name = request.body.file_name,
+            mapped_report = request.body.mapped_report,
+            username = request.body.username;
+
+
+        client.query( "INSERT INTO mappedxmltable VALUES ('"+mib+"','"+file_name+"','"+mapped_report+"', '"+username+"' )", function(err, result) {
+            done();
+            if (err) {
+                console.error(err); response.send("Error " + err);
+            }
+            else { console.log("success");
+                response.send(result);
+            }
+        });
+    });
+});
+
 app.post('/api/update-policy/:id', function (request, response) {
 
     pg.connect(connectionString, function(err, client, done) {
@@ -179,7 +227,7 @@ app.post('/api/update-policy/:id', function (request, response) {
 
 app.get('/api/get-all/:username', function (request, response) {
 
-    pg.connect(connectionString, function(err, client, done) {
+    pg.connect(connectionString, function(err, client, done) { console.log(request.params.username)
 
         client.query( "SELECT * FROM appdetails WHERE username = '"+request.params.username+"'", function(err, result) {
             done();
@@ -192,6 +240,29 @@ app.get('/api/get-all/:username', function (request, response) {
         });
     });
 });
+
+
+app.get('/api/get-saved-table/:username', function (request, response) {
+
+    pg.connect(connectionString, function(err, client, done) {
+
+        client.query( "SELECT * FROM mappedxmltable WHERE username = '"+request.params.username+"'", function(err, result) {
+            done();
+            if (err) {
+                console.error(err); response.send("Error " + err);
+            }
+            else {
+                response.send(result.rows);
+            }
+        });
+    });
+});
+
+
+
+
+
+
 
 app.get('/api/get-matrix/', function (request, response) {
 
@@ -210,8 +281,6 @@ app.get('/api/get-matrix/', function (request, response) {
 });
 
 
-
-
 app.get('/api/get-app-with-id/:id', function (request, response) {
 
     pg.connect(connectionString, function(err, client, done) { console.log(request.params.id);
@@ -228,6 +297,31 @@ app.get('/api/get-app-with-id/:id', function (request, response) {
     });
 });
 
+app.post('/api/update-vulnerability/:qid', function (request, response) {
+
+    pg.connect(connectionString, function(err, client, done) {
+        var qid = request.params.qid;
+        var asmMitigation = request.body.asmMitigation;
+        var category = request.body.category;
+        var comments = request.body.comments;
+        var cvss = request.body.cvss;
+        var mitigationLevel = request.body.mitigationLevel;
+        var severity = request.body.severity;
+        var subCategory = request.body.subCategory;
+        var title = request.body.title;
+
+
+        client.query( "UPDATE qualysasmmapping SET title = '"+ title +"' ,sub_category = '"+ subCategory +"' ,severity = '"+ severity +"' ,mitigation_level = '"+ mitigationLevel +"' ,cvss = '"+ cvss +"' ,comments = '"+ comments +"' ,asm_mitigation = '"+ asmMitigation +"' ,category = '"+ category +"'  WHERE qid = '"+ qid +"'", function(err, result){
+            done();
+            if (err) {
+                console.error(err); response.send("Error " + err);
+            }
+            else {
+                response.send(result);
+            }
+        });
+    });
+});
 
 app.post('/api/delete/:id', function (request, response) {
 
@@ -235,6 +329,24 @@ app.post('/api/delete/:id', function (request, response) {
 
     pg.connect(connectionString, function(err, client, done) {
         client.query( "DELETE FROM appinformation WHERE id = '" + id + "'", function(err, result) {
+            done();
+            if (err) {
+                console.error(err); response.send("Error " + err);
+            }
+            else {
+                response.send(result);
+            }
+        });
+    });
+});
+
+app.post('/api/delete-matrix/:qid', function (request, response) {
+
+    var qid = request.params.qid;
+
+
+    pg.connect(connectionString, function(err, client, done) {
+        client.query( "DELETE FROM qualysasmmapping WHERE qid = '"+request.params.qid+ "'", function(err, result) {
             done();
             if (err) {
                 console.error(err); response.send("Error " + err);
