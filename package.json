@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node server",
-    "postinstall": "node deploy"
+    "postinstall": "node deploy",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "keywords": [],
   "author": "Olu Adekoya",
@@ -46,9 +48,11 @@
     "babel-core": "^6.21.0",
     "xml": "^1.0.1",
     "webpack": "2.2.0",
-    "xml-loader": "^1.1.0"
+    "xml-loader": "^1.1.0",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
-   "webpack-dev-server": "^1.14.1"
-  }
+    "webpack-dev-server": "^1.14.1"
+  },
+  "snyk": true
 }
